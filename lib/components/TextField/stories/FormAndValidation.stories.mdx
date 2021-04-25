@@ -1,0 +1,40 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+import { FormAndValidationExample } from "./FormAndValidationExample"
+
+<Meta title="Components/TextField/Form and Validation" />
+
+# Validation
+
+<FormAndValidationExample />
+
+```tsx
+import { useForm } from "@italodeandra/pijama#react-hook-form"
+import { Button, TextField } from "@italodeandra/pijama"
+
+export const FormAndValidationExample = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<{ example: string, exampleRequired: string }>()
+  const onSubmit = data => console.log(data)
+
+  console.log(watch("example")) // watch input value by passing the name of it
+
+  return (
+    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {/* register your input into the hook by invoking the "register" function */}
+      <TextField defaultValue="test" {...register("example")} />
+
+      {/* include validation with required or other standard HTML validation rules */}
+      {/* errors will return when field validation fails  */}
+      <TextField
+        {...register("exampleRequired", {
+          required: "This field is required"
+        })}
+        error={!!errors["exampleRequired"]}
+        helperText={errors["exampleRequired"]?.message}
+      />
+
+      <Button type="submit">Submit</Button>
+    </form>
+  )
+}
+```
