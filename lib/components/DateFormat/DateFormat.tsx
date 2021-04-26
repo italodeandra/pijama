@@ -1,4 +1,5 @@
-import { VFC, memo } from "react"
+import { Box, BoxProps } from "../Box/Box"
+import { Fragment, VFC, memo } from "react"
 import { format as formatDate } from "date-fns"
 
 export type DateFormatProps = {
@@ -13,19 +14,26 @@ export type DateFormatProps = {
    * @default Pp
    */
   format?: string
-}
+} & BoxProps
 
 export const DateFormat: VFC<DateFormatProps> = memo(
-  ({ date, format = "Pp" }) => {
+  ({ date, format = "Pp", ...props }) => {
+    const Component = props.as ? Box : Fragment
+    if (!props.as) {
+      delete props.as
+      delete props.sh
+    }
     if (typeof date === "string") {
       date = new Date(date)
     }
     if (!date) {
       return null
     }
-    if (isNaN(new Date(date).getTime())) {
-      return <>Invalid date</>
-    }
-    return <>{formatDate(date, format)}</>
+    const isInvalid = isNaN(new Date(date).getTime())
+    return (
+      <Component {...props}>
+        {isInvalid ? "Invalid date" : formatDate(date, format)}
+      </Component>
+    )
   }
 )

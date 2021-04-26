@@ -1,5 +1,6 @@
-import { ElementType, MouseEventHandler, ReactNode, VFC } from "react"
+import { Box, BoxProps } from "../Box/Box"
 import { Gray, ThemeColors, withTheme } from "../../styles"
+import { MouseEventHandler, ReactNode, VFC } from "react"
 import Color from "color"
 import { css } from "@emotion/react"
 
@@ -35,7 +36,7 @@ export type ButtonProps = {
    * @default contained
    */
   variant?: "contained" | "outlined" | "text"
-}
+} & BoxProps
 
 export const Button: VFC<ButtonProps> = ({
   children,
@@ -44,9 +45,10 @@ export const Button: VFC<ButtonProps> = ({
   icon,
   type = "button",
   variant = "contained",
+  as,
   ...props
 }) => {
-  const Component: ElementType = href ? "a" : "button"
+  as = as || (href ? "a" : "button")
 
   const buttonStyles = withTheme((theme, sh) => {
     let styles = []
@@ -178,8 +180,8 @@ export const Button: VFC<ButtonProps> = ({
   })
 
   return (
-    <Component css={buttonStyles} href={href} type={type} {...props}>
+    <Box as={as} css={buttonStyles} href={href} type={type} {...props}>
       {children}
-    </Component>
+    </Box>
   )
 }

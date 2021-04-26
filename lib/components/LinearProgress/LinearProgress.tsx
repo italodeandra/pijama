@@ -1,3 +1,4 @@
+import { Box, BoxProps } from "../Box/Box"
 import Color from "color"
 import { VFC } from "react"
 import { css } from "@emotion/react"
@@ -9,7 +10,7 @@ export type LinearProgressProps = {
    * @default 0
    */
   value: number
-}
+} & Omit<BoxProps, "children">
 
 const linearProgressStyles = withTheme((theme, sh) => {
   const primaryColor = Color(theme.color.primary)
@@ -28,18 +29,21 @@ const linearProgressStyles = withTheme((theme, sh) => {
   )
 })
 
-export const LinearProgress: VFC<LinearProgressProps> = ({ value }) => {
+export const LinearProgress: VFC<LinearProgressProps> = ({
+  value,
+  ...props
+}) => {
   value = value || 0 /* necessary for handling empty string values */
   value = value > 100 ? 100 : value /* max value */
 
   return (
-    <div css={linearProgressStyles}>
+    <Box css={linearProgressStyles} {...props}>
       <div
         data-testid="bar"
         style={{
           width: `${value}%`,
         }}
       />
-    </div>
+    </Box>
   )
 }

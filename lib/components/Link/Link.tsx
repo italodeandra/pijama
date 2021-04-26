@@ -1,4 +1,5 @@
-import { AnchorHTMLAttributes, ReactElement, VFC, forwardRef } from "react"
+import { Box, BoxProps } from "../Box/Box"
+import { ReactElement, VFC, forwardRef } from "react"
 import { ThemeColors, withTheme } from "../../styles"
 import Color from "color"
 import { css } from "@emotion/react"
@@ -17,10 +18,10 @@ export type LinkProps = {
    * URL of the link.
    */
   href: string
-} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">
+} & BoxProps
 
 export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ children, color = "primary", href, ...props }, ref) => {
+  ({ as = "a", children, color = "primary", href, ...props }, ref) => {
     const linkStyles = withTheme((theme, sh) => {
       let styles = []
 
@@ -68,9 +69,9 @@ export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
     })
 
     return (
-      <a css={linkStyles} href={href} {...props} ref={ref}>
+      <Box as={as} css={linkStyles} href={href} {...props} ref={ref}>
         {children}
-      </a>
+      </Box>
     )
   }
 )

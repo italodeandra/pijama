@@ -1,3 +1,4 @@
+import { Box, BoxProps } from "../Box/Box"
 import {
   ChangeEventHandler,
   FocusEventHandler,
@@ -62,7 +63,7 @@ export type TextFieldProps = {
    * The value of the input.
    */
   value?: unknown
-}
+} & BoxProps
 
 export const TextField: VFC<TextFieldProps> = forwardRef<
   HTMLInputElement,
@@ -70,6 +71,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef<
 >(
   (
     {
+      as = "input",
       color,
       error,
       helperText,
@@ -188,7 +190,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef<
     }, [value])
 
     return (
-      <div css={textFieldStyles}>
+      <Box as={as} css={textFieldStyles}>
         {label && <label htmlFor={id}>{label}</label>}
         <input
           id={id}
@@ -211,7 +213,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef<
           {...props}
         />
         {helperText && <span>{helperText}</span>}
-      </div>
+      </Box>
     )
   }
 )
