@@ -1,7 +1,7 @@
-import { MouseEventHandler, ReactNode, VFC } from "react"
+import { ElementType, MouseEventHandler, ReactNode, VFC } from "react"
+import { Gray, ThemeColors, withTheme } from "../../styles"
 import Color from "color"
 import { css } from "@emotion/react"
-import { withTheme } from "../../styles"
 
 export type ButtonProps = {
   /**
@@ -12,7 +12,11 @@ export type ButtonProps = {
    * The color of the background when contained, color of the border when outlined, or color of the text.
    * @default primary
    */
-  color?: "primary" | "secondary" | string
+  color?: ThemeColors | string
+  /**
+   * Turn the button into a link.
+   */
+  href?: string
   /**
    * If should be shown with a square style for icons.
    */
@@ -20,7 +24,7 @@ export type ButtonProps = {
   /**
    * Click event handler.
    */
-  onClick?: MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
   /**
    * Type of the button.
    * @default button
@@ -36,16 +40,19 @@ export type ButtonProps = {
 export const Button: VFC<ButtonProps> = ({
   children,
   color = "primary",
+  href,
   icon,
   type = "button",
   variant = "contained",
   ...props
 }) => {
+  const Component: ElementType = href ? "a" : "button"
+
   const buttonStyles = withTheme((theme, sh) => {
     let styles = []
 
     try {
-      const buttonColor = ["primary", "secondary"].includes(color)
+      const buttonColor = !!theme.color[color]
         ? Color(theme.color[color])
         : Color(color)
       const isDark = Color(buttonColor).isDark()
@@ -128,7 +135,21 @@ export const Button: VFC<ButtonProps> = ({
         },
       })
     } catch (e) {
-      console.error(e)
+      const buttonColor = Color(Gray.N300)
+      const contrastColor = Color("black")
+      const colorStyles = css(
+        sh({
+          "&:focus::after": {
+            boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor.alpha(0.3).rgb()}`,
+          },
+          "&:hover": {
+            bgColor: buttonColor.darken(0.1).hex(),
+          },
+          bgColor: buttonColor.hex(),
+          color: contrastColor.hex(),
+        })
+      )
+      styles.push(colorStyles)
     }
 
     styles.unshift(
@@ -139,7 +160,9 @@ export const Button: VFC<ButtonProps> = ({
           transition: "boxShadow",
         },
         border: "none",
+        boxSizing: "border-box",
         br: theme.spacing(0.5),
+        display: "inline-block",
         fontFamily: theme.typography.fontFamily,
         fontSize: 13,
         fontWeight: 500,
@@ -147,6 +170,7 @@ export const Button: VFC<ButtonProps> = ({
         outline: "none",
         p: [1, 2],
         position: "relative",
+        textDecoration: "none",
         transition: "backgroundColor",
       })
     )
@@ -154,8 +178,8 @@ export const Button: VFC<ButtonProps> = ({
   })
 
   return (
-    <button css={buttonStyles} type={type} {...props}>
+    <Component css={buttonStyles} href={href} type={type} {...props}>
       {children}
-    </button>
+    </Component>
   )
 }

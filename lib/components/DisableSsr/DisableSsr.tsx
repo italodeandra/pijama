@@ -1,5 +1,5 @@
 import { ReactElement, VFC, useState } from "react"
-import { useSsrEffect } from "../../index"
+import { useIsomorphicLayoutEffect } from "react-use"
 
 export type DisableSsrProps = {
   /**
@@ -11,7 +11,7 @@ export type DisableSsrProps = {
 export const DisableSsr: VFC<DisableSsrProps> = ({ children }) => {
   const [mountedState, setMountedState] = useState(false)
 
-  useSsrEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setMountedState(true)
   }, [])
 

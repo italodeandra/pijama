@@ -13,7 +13,7 @@ export default {
     },
   },
   component: FadeComponent,
-  title: "Components/Fade",
+  title: "Components/Transitions/Fade",
 } as Meta
 
 const Template: Story<FadeProps> = ({ children, ...args }) => (

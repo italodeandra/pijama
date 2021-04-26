@@ -1,0 +1,30 @@
+import { MouseEvent } from "react"
+
+export const goToIdSmoothly = (
+  event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
+) => {
+  event?.preventDefault()
+  const currentTarget = event.currentTarget
+  const parentNode = currentTarget?.parentNode as HTMLAnchorElement | undefined
+  const parentParentNode = parentNode?.parentNode as
+    | HTMLAnchorElement
+    | undefined
+  const hash =
+    currentTarget?.getAttribute("href") ||
+    parentNode?.getAttribute("href") ||
+    parentParentNode?.getAttribute("href")
+  const id = hash?.replace(/^.*#/, "")
+  const target = id && hash ? document.querySelector(hash) : document.body
+  if (target && id) {
+    target.id = `${id}-tmp`
+  }
+  if (hash) {
+    window.location.hash = hash
+  }
+  if (target && id) {
+    target.scrollIntoView({
+      behavior: "smooth",
+    })
+    target.id = id
+  }
+}

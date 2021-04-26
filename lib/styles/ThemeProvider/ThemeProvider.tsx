@@ -3,17 +3,18 @@ import {
   ThemeProvider as EmotionThemeProvider,
   css,
 } from "@emotion/react"
-import { ReactElement, VFC } from "react"
+import { ReactNode, VFC } from "react"
 import { NProgress } from "../../components/NProgress"
 import { Snackbar } from "../../components"
 import { Theme } from "../Theme"
+import { createTheme } from "../createTheme/createTheme"
 import { withTheme } from "../withTheme"
 
 export type ThemeProviderProps = {
   /**
    * The element hierarchy that will consume the theme from this provider.
    */
-  children: ReactElement | string
+  children: ReactNode
   /**
    * Disable the automatic usage of NProgress so you can use your own or none.
    */
@@ -25,14 +26,14 @@ export type ThemeProviderProps = {
   /**
    * The theme object created using `createTheme()`.
    */
-  theme: Theme
+  theme?: Theme
 }
 
 export const ThemeProvider: VFC<ThemeProviderProps> = ({
   children,
   disableNProgress,
   disableSnackbar,
-  theme,
+  theme = createTheme(),
 }) => {
   const globalStyles = withTheme((theme, sh) =>
     css(

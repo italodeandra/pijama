@@ -1,24 +1,30 @@
 import { Meta, Story } from "@storybook/react"
-import { Tooltip as TooltipComponent, TooltipProps } from "./Tooltip"
+import { Box } from "../Box/Box"
+import { Tooltip } from "./Tooltip"
 
 export default {
-  argTypes: {
-    children: {
-      control: {
-        type: null,
+  component: Tooltip,
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        type: "code",
       },
     },
   },
-  component: TooltipComponent,
   title: "Components/Tooltip",
 } as Meta
 
-const Template: Story<TooltipProps> = ({ children, ...args }) => (
-  <TooltipComponent {...args}>{children}</TooltipComponent>
+const Template: Story = () => (
+  <Box sh={{ display: "flex", height: "calc(100vh - 40px)" }}>
+    <Tooltip title={"This is the tooltip"}>
+      <Box sh={{ mb: "auto" }}>Hover me</Box>
+    </Tooltip>
+    <Tooltip title={"This is the tooltip"}>
+      <Box sh={{ ml: "auto", mt: "auto" }}>Hover me</Box>
+    </Tooltip>
+  </Box>
 )
 
-export const Tooltip = Template.bind({})
-Tooltip.args = {
-  children: <span>Hover me</span>,
-  title: "This is a tooltip",
-}
+export const TooltipStory = Template.bind({})
+TooltipStory.storyName = "Tooltip"

@@ -1,10 +1,18 @@
 import { nprogress, nprogressState } from "./nprogressState"
 import { Collapse } from "../Collapse/Collapse"
 import { LinearProgress } from "../LinearProgress/LinearProgress"
+import { Router } from "next/router"
 import { css } from "@emotion/react"
 import { useDebounce } from "react-use"
 import { useSnapshot } from "valtio"
 import { withTheme } from "../../styles"
+
+const handleRouteChangeStart = () => nprogress.start()
+const handleRouteChangeComplete = () => nprogress.end()
+
+Router.events.on("routeChangeStart", handleRouteChangeStart)
+Router.events.on("routeChangeComplete", handleRouteChangeComplete)
+Router.events.on("routeChangeError", handleRouteChangeComplete)
 
 const nprogressStyles = withTheme((theme, sh) =>
   css(

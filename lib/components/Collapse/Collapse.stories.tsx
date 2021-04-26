@@ -12,7 +12,7 @@ export default {
     },
   },
   component: CollapseComponent,
-  title: "Components/Collapse",
+  title: "Components/Transitions/Collapse",
 } as Meta
 
 const Template: Story<CollapseProps> = ({ children, ...args }) => (

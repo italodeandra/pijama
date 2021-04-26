@@ -12,7 +12,7 @@ export default {
       },
     },
   },
-  title: "Components/ThemeProvider",
+  title: "Components/Styles/ThemeProvider",
 } as Meta
 
 const Template: Story = () => {

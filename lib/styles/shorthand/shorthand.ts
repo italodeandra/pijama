@@ -1,6 +1,6 @@
 import { CSSInterpolation } from "@emotion/serialize"
 import { CSSProperties } from "react"
-import { Theme } from "./Theme"
+import { Theme } from "../Theme"
 
 const shorthands = {
   bgColor: "backgroundColor",
@@ -20,6 +20,25 @@ const shorthands = {
   pos: "pos",
   pr: "paddingRight",
   pt: "paddingTop",
+  shadow: "boxShadow",
+}
+
+const shadows = {
+  /* eslint-disable sort-keys */
+  xs:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+  sm:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+  md:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+  lg:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+  xl:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px",
+  xxl:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+  inner:
+    "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset",
 }
 
 const shorthandKey = (shorthand: string) => shorthands[shorthand]
@@ -28,7 +47,6 @@ export const shorthandValue = (theme: Theme, css: CSSInterpolation) => {
   for (let [key, value] of Object.entries(css)) {
     delete css[key]
     key = shorthandKey(key) || key
-    // console.log("key", key, "value", value, "typeof", typeof value === "object")
     if (typeof value === "object" && !Array.isArray(value)) {
       if (key.endsWith("::before") || key.endsWith("::after")) {
         value["content"] = '""'
@@ -41,6 +59,10 @@ export const shorthandValue = (theme: Theme, css: CSSInterpolation) => {
       } else {
         css[key] = theme.transition.create(value)
       }
+    } else if (key.toLowerCase().includes("color")) {
+      css[key] = theme.color[value] || value
+    } else if (key === "boxShadow") {
+      css[key] = shadows[value] || value
     } else if (typeof value === "string") {
       css[key] = value
     } else if (key === "fontSize") {

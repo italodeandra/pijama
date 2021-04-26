@@ -7,11 +7,10 @@ import {
   useRef,
   useState,
 } from "react"
+import { useHover, useNumber } from "react-use"
 import { Fade } from "../Fade/Fade"
-import { createPortal } from "react-dom"
+import { Portal } from "../Portal/Portal"
 import { css } from "@emotion/react"
-import { useHover } from "react-use"
-import useMeasureDirty from "react-use/lib/useMeasureDirty"
 
 const tooltipStyles = withTheme((theme, sh) =>
   css(
@@ -22,6 +21,7 @@ const tooltipStyles = withTheme((theme, sh) =>
       fontSize: 12,
       p: [1, 2],
       position: "absolute",
+      whiteSpace: "nowrap",
     })
   )
 )
@@ -49,12 +49,13 @@ export const Tooltip: VFC<TooltipProps> = ({
 }) => {
   const hoverableRef = useRef<HTMLDivElement>()
   const tooltipRef = useRef<HTMLDivElement>()
-  const hoverableMeasure = useMeasureDirty(hoverableRef)
-  const tooltipMeasure = useMeasureDirty(tooltipRef)
+
+  const [update, { inc: triggerUpdate }] = useNumber()
   let [hoverable, hovered] = useHover(
     cloneElement(children, { ref: hoverableRef })
   )
-  const [position, setPosition] = useState({})
+  const [left, setLeft] = useState<number | undefined>(undefined)
+  const [top, setTop] = useState<number | undefined>(undefined)
   const theme = useTheme()
 
   useEffect(() => {
@@ -63,45 +64,57 @@ export const Tooltip: VFC<TooltipProps> = ({
       height: 0,
       width: 0,
     }
-    let left =
+    let newLeft =
       hoverableRect.left + hoverableRect.width / 2 - tooltipRect.width / 2
-    if (left < 0) {
-      left = theme.spacingSize
+    if (newLeft < 0) {
+      newLeft = theme.spacingSize
     }
-    let top =
+    if (
+      newLeft + tooltipRect.width + theme.spacingSize >
+      window.visualViewport.width
+    ) {
+      newLeft =
+        window.visualViewport.width -
+        tooltipRect.width -
+        theme.spacingSize -
+        window.scrollX
+    }
+    let newTop =
       placement === "bottom"
         ? hoverableRect.top + hoverableRect.height + theme.spacingSize
         : hoverableRect.top - tooltipRect.height - theme.spacingSize
-    if (top < 0) {
-      top = hoverableRect.top + hoverableRect.height + theme.spacingSize
+    if (newTop < 0) {
+      newTop = hoverableRect.top + hoverableRect.height + theme.spacingSize
     }
     if (
-      top + tooltipRect.height + theme.spacingSize >
+      newTop + tooltipRect.height + theme.spacingSize >
       window.visualViewport.height
     ) {
-      top =
-        hoverableRect.top -
-        tooltipRect.height -
-        theme.spacingSize +
-        window.scrollY
+      newTop =
+        placement !== "bottom"
+          ? window.visualViewport.height -
+            tooltipRect.height -
+            theme.spacingSize
+          : hoverableRect.top - tooltipRect.height - theme.spacingSize
     }
-    setPosition({
-      left,
-      top,
-    })
-  }, [hovered, hoverableMeasure, tooltipMeasure, theme.spacingSize, placement])
+    setLeft(newLeft)
+    setTop(newTop)
+  }, [hovered, theme.spacingSize, placement, update])
 
   return (
     <>
       {hoverable}
-      {createPortal(
-        <Fade in={hovered && !!title} innerRef={tooltipRef}>
-          <div css={tooltipStyles} style={position}>
+      <Portal>
+        <Fade
+          in={hovered && !!title}
+          innerRef={tooltipRef}
+          onEnter={() => triggerUpdate()}
+        >
+          <div css={tooltipStyles} style={{ left, top }}>
             {title}
           </div>
-        </Fade>,
-        document.body
-      )}
+        </Fade>
+      </Portal>
     </>
   )
 }

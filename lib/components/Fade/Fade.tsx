@@ -1,4 +1,10 @@
-import { ENTERED, EXITED, EXITING } from "react-transition-group/Transition"
+import {
+  ENTERED,
+  EXITED,
+  EXITING,
+  EnterHandler,
+  ExitHandler,
+} from "react-transition-group/Transition"
 import { ReactElement, Ref, VFC, cloneElement, useRef } from "react"
 import { Transition } from "react-transition-group"
 import { useTheme } from "../../styles"
@@ -29,9 +35,34 @@ export type FadeProps = {
    * Access the ref from the outside.
    */
   innerRef?: Ref<HTMLDivElement>
+  /**
+   * Enter event handler.
+   */
+  onEnter?: EnterHandler<HTMLDivElement>
+  /**
+   * Entering event handler.
+   */
+  onEntering?: EnterHandler<HTMLDivElement>
+  /**
+   * Entered event handler.
+   */
+  onEntered?: EnterHandler<HTMLDivElement>
+  /**
+   * Exit event handler.
+   */
+  onExited?: ExitHandler<HTMLDivElement>
+  /**
+   * Exiting event handler.
+   */
+  onExiting?: ExitHandler<HTMLDivElement>
 }
 
-export const Fade: VFC<FadeProps> = ({ children, in: inProp, innerRef }) => {
+export const Fade: VFC<FadeProps> = ({
+  children,
+  in: inProp,
+  innerRef,
+  ...props
+}) => {
   const theme = useTheme()
   const nodeRef = useRef<HTMLDivElement>()
 
@@ -51,6 +82,7 @@ export const Fade: VFC<FadeProps> = ({ children, in: inProp, innerRef }) => {
         exit: theme.transition.duration,
       }}
       unmountOnExit
+      {...props}
     >
       {(state) =>
         cloneElement(children, {

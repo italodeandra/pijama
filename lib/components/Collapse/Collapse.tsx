@@ -1,4 +1,9 @@
-import { ENTERED, ENTERING } from "react-transition-group/Transition"
+import {
+  ENTERED,
+  ENTERING,
+  EnterHandler,
+  ExitHandler,
+} from "react-transition-group/Transition"
 import { ReactElement, Ref, VFC, useRef } from "react"
 import { Transition, TransitionStatus } from "react-transition-group"
 import { useTheme, withTheme } from "../../styles"
@@ -47,11 +52,36 @@ export type CollapseProps = {
    * If the content should be collapsed.
    */
   in: boolean
+  /**
+   * Enter event handler.
+   */
+  onEnter?: EnterHandler<HTMLDivElement>
+  /**
+   * Entered event handler.
+   */
+  onEntered?: EnterHandler<HTMLDivElement>
+  /**
+   * Entering event handler.
+   */
+  onEntering?: EnterHandler<HTMLDivElement>
+  /**
+   * Exit event handler.
+   */
+  onExited?: ExitHandler<HTMLDivElement>
+  /**
+   * Exiting event handler.
+   */
+  onExiting?: ExitHandler<HTMLDivElement>
 }
 
 export const Collapse: VFC<CollapseProps> = ({
   children,
   in: inProp,
+  onEnter,
+  onEntered,
+  onEntering,
+  onExited,
+  onExiting,
   ...props
 }) => {
   const theme = useTheme()
@@ -63,6 +93,11 @@ export const Collapse: VFC<CollapseProps> = ({
       in={inProp}
       mountOnEnter
       nodeRef={nodeRef}
+      onEnter={onEnter}
+      onEntered={onEntered}
+      onEntering={onEntering}
+      onExited={onExited}
+      onExiting={onExiting}
       timeout={theme.transition.duration}
       unmountOnExit
     >

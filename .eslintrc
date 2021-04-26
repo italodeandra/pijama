@@ -22,7 +22,7 @@
     "sort-keys": "warn",
     "react/jsx-sort-props": "warn",
     "no-restricted-imports": [
-      "error",
+      "warn",
       {
         "paths": [
           {
