@@ -1,4 +1,4 @@
-import { LightBlue, createTheme } from "../../styles"
+import { Gray, LightBlue, createTheme } from "../../styles"
 import { render, screen } from "@testing-library/react"
 import { Button } from "./Button"
 import Color from "color"
@@ -32,19 +32,13 @@ describe("Button", () => {
     expect(button).toHaveStyle(`color: ${LightBlue.N500}`)
   })
 
-  test("should console an error when using invalid color", () => {
-    let consoleSpy = jest
-      .spyOn(console, "error")
-      .mockImplementationOnce(() => {})
+  test("should use gray color instead when using invalid color", () => {
+    render(<Button color="invalid">Contained</Button>)
 
-    render(<Button color="invalid">Invalid</Button>)
+    const button = screen.getByText("Contained")
 
-    expect(consoleSpy).toBeCalledTimes(1)
-    expect(consoleSpy).toBeCalledWith(
-      new Error("Unable to parse color from string: invalid")
-    )
-
-    consoleSpy.mockRestore()
+    expect(button).toBeInTheDocument()
+    expect(button).toHaveStyle(`background-color: ${Gray.N300}`)
   })
 
   test("should use contrast color black on contained button", () => {
