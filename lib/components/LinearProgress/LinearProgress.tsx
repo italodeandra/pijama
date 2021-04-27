@@ -1,8 +1,8 @@
-import { Box, BoxProps } from "../Box/Box"
+import { ComponentShorthandProps, withTheme } from "../../styles"
+import { Box } from "../Box/Box"
 import Color from "color"
-import { VFC } from "react"
 import { css } from "@emotion/react"
-import { withTheme } from "../../styles"
+import { VFC } from "react"
 
 export type LinearProgressProps = {
   /**
@@ -10,7 +10,7 @@ export type LinearProgressProps = {
    * @default 0
    */
   value: number
-} & Omit<BoxProps, "children">
+} & ComponentShorthandProps
 
 const linearProgressStyles = withTheme((theme, sh) => {
   const primaryColor = Color(theme.color.primary)

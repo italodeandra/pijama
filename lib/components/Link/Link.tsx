@@ -1,6 +1,6 @@
-import { Box, BoxProps } from "../Box/Box"
-import { ReactElement, VFC, forwardRef } from "react"
-import { ThemeColors, withTheme } from "../../styles"
+import { ComponentShorthandProps, ThemeColors, withTheme } from "../../styles"
+import { forwardRef, ReactNode, VFC } from "react"
+import { Box } from "../Box/Box"
 import Color from "color"
 import { css } from "@emotion/react"
 
@@ -8,7 +8,7 @@ export type LinkProps = {
   /**
    * Content of the link.
    */
-  children: ReactElement | string
+  children: ReactNode
   /**
    * The color of the link.
    * @default primary
@@ -18,7 +18,7 @@ export type LinkProps = {
    * URL of the link.
    */
   href: string
-} & BoxProps
+} & ComponentShorthandProps
 
 export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
   ({ as = "a", children, color = "primary", href, ...props }, ref) => {

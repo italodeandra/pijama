@@ -1,5 +1,6 @@
-import { Box, BoxProps } from "../Box/Box"
-import { Fragment, VFC, memo } from "react"
+import { Fragment, memo, VFC } from "react"
+import { Box } from "../Box/Box"
+import { ComponentShorthandProps } from "../../styles"
 import { format as formatDate } from "date-fns"
 
 export type DateFormatProps = {
@@ -14,7 +15,7 @@ export type DateFormatProps = {
    * @default Pp
    */
   format?: string
-} & BoxProps
+} & ComponentShorthandProps
 
 export const DateFormat: VFC<DateFormatProps> = memo(
   ({ date, format = "Pp", ...props }) => {

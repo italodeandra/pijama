@@ -1,17 +1,20 @@
-import { Box, BoxProps } from "../Box/Box"
 import {
-  ChangeEventHandler,
-  FocusEventHandler,
-  VFC,
+  ChangeEvent,
+  ElementType,
   forwardRef,
+  InputHTMLAttributes,
+  Ref,
   useState,
+  VFC,
 } from "react"
+import { Theme, withTheme } from "../../styles"
+import { Box } from "../Box/Box"
 import Color from "color"
 import { css } from "@emotion/react"
+import { CSSInterpolation } from "@emotion/serialize"
 import { useUpdateEffect } from "react-use"
-import { withTheme } from "../../styles"
 
-export type TextFieldProps = {
+export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
   /**
    * The color of the highlight when focused.
    * @default primary
@@ -20,7 +23,7 @@ export type TextFieldProps = {
   /**
    * The default value of the input.
    */
-  defaultValue?: unknown
+  defaultValue?: V
   /**
    * If should show error color.
    */
@@ -43,17 +46,9 @@ export type TextFieldProps = {
    */
   name?: string
   /**
-   * Blur event handler.
+   * Change value event handler.
    */
-  onBlur?: FocusEventHandler<HTMLInputElement>
-  /**
-   * Change event handler.
-   */
-  onChange?: ChangeEventHandler<HTMLInputElement>
-  /**
-   * Focus event handler.
-   */
-  onFocus?: FocusEventHandler<HTMLInputElement>
+  onChangeValue?: (value: V, event: ChangeEvent<E>) => void
   /**
    * Type of the input.
    * @default text
@@ -62,17 +57,27 @@ export type TextFieldProps = {
   /**
    * The value of the input.
    */
-  value?: unknown
-} & BoxProps
+  value?: V
+  /**
+   * Change which HTML element or React component should be.
+   * @default div
+   */
+  as?: ElementType
+  /**
+   * Styles shorthand.
+   */
+  sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
+  /**
+   * Element ref.
+   */
+  ref?: Ref<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement>
 
-export const TextField: VFC<TextFieldProps> = forwardRef<
-  HTMLInputElement,
-  TextFieldProps
->(
+export const TextField: VFC<TextFieldProps> = forwardRef(
   (
     {
-      as = "input",
-      color,
+      as = "div",
+      color = "primary",
       error,
       helperText,
       id,
@@ -83,6 +88,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef<
       onBlur,
       onChange,
       onFocus,
+      onChangeValue,
       value = "",
       ...props
     },
@@ -201,16 +207,17 @@ export const TextField: VFC<TextFieldProps> = forwardRef<
           }}
           onChange={(e) => {
             onChange && onChange(e)
+            onChangeValue && onChangeValue(e.target.value, e)
             setInnerValue(e.target.value)
           }}
           onFocus={(e) => {
             onFocus && onFocus(e)
             setFocused(true)
           }}
-          ref={ref}
           type={type}
           value={innerValue.toString()}
           {...props}
+          ref={ref}
         />
         {helperText && <span>{helperText}</span>}
       </Box>

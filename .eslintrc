@@ -18,7 +18,12 @@
   ],
   "rules": {
     "@next/next/no-html-link-for-pages": "off",
-    "sort-imports": "warn",
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreCase": true
+      }
+    ],
     "sort-keys": "warn",
     "react/jsx-sort-props": "warn",
     "no-restricted-imports": [
