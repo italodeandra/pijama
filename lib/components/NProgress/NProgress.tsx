@@ -1,8 +1,8 @@
 import { nprogress, nprogressState } from "./nprogressState"
-import { Collapse } from "../Collapse/Collapse"
+import { css } from "@emotion/react"
+import { Fade } from "../Fade/Fade"
 import { LinearProgress } from "../LinearProgress/LinearProgress"
 import { Router } from "next/router"
-import { css } from "@emotion/react"
 import { useDebounce } from "react-use"
 import { useSnapshot } from "valtio"
 import { withTheme } from "../../styles"
@@ -52,8 +52,13 @@ export const NProgress = () => {
   )
 
   return (
-    <Collapse css={nprogressStyles} in={!!progress}>
-      <LinearProgress value={progress || 100} />
-    </Collapse>
+    <Fade in={progress !== null}>
+      <div css={nprogressStyles}>
+        <LinearProgress
+          transitionDuration={progress !== 100 ? 6 * 300 : undefined}
+          value={progress !== null ? progress : 100}
+        />
+      </div>
+    </Fade>
   )
 }

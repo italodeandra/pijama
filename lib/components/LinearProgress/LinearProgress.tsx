@@ -10,31 +10,38 @@ export type LinearProgressProps = {
    * @default 0
    */
   value: number
+  /**
+   * Custom duration of the progress animation in milliseconds.
+   */
+  transitionDuration?: number
 } & ComponentShorthandProps
-
-const linearProgressStyles = withTheme((theme, sh) => {
-  const primaryColor = Color(theme.color.primary)
-
-  return css(
-    sh({
-      "& > div": {
-        bgColor: primaryColor.hex(),
-        height: "inherit",
-        transition: "width",
-      },
-      bgColor: primaryColor.lighten(1).hex(),
-      height: 0.5,
-      width: "100%",
-    })
-  )
-})
 
 export const LinearProgress: VFC<LinearProgressProps> = ({
   value,
+  transitionDuration,
   ...props
 }) => {
   value = value || 0 /* necessary for handling empty string values */
   value = value > 100 ? 100 : value /* max value */
+
+  const linearProgressStyles = withTheme((theme, sh) => {
+    const primaryColor = Color(theme.color.primary)
+
+    return css(
+      sh({
+        "& > div": {
+          bgColor: primaryColor.hex(),
+          height: "inherit",
+          transition: "width",
+          transitionDuration:
+            transitionDuration !== undefined ? `${transitionDuration}ms` : "",
+        },
+        bgColor: primaryColor.lighten(1).hex(),
+        height: 0.5,
+        width: "100%",
+      })
+    )
+  })
 
   return (
     <Box css={linearProgressStyles} {...props}>

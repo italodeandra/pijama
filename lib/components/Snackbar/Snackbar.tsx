@@ -12,11 +12,12 @@ import {
   TransitionStatus,
 } from "react-transition-group"
 import { Button } from "../Button/Button"
-import Icon from "@iconify/react"
-import { VFC } from "react"
 import { css } from "@emotion/react"
+import { Fade } from "../Fade/Fade"
+import Icon from "@iconify/react"
 import { useMeasure } from "react-use"
 import { useSnapshot } from "valtio"
+import { VFC } from "react"
 import xIcon from "./icons/x"
 
 export type SnackbarProps = {}
@@ -132,27 +133,31 @@ const Message: VFC<{
 }
 
 export const Snackbar: VFC<SnackbarProps> = () => {
-  const { messages } = useSnapshot(snackbarState) as typeof snackbarState // todo workaround for the typing problem - already asked for help https://github.com/pmndrs/valtio/issues/145
+  const { messages } = useSnapshot(snackbarState)
   const theme = useTheme()
 
   return (
-    <TransitionGroup css={snackbarContainerStyles}>
-      {messages
-        .slice()
-        .reverse()
-        .map((message) => (
-          <Transition
-            appear
-            key={message.id}
-            nodeRef={message.nodeRef}
-            timeout={{
-              enter: theme.transition.duration,
-              exit: theme.transition.duration * 2,
-            }}
-          >
-            {(state) => <Message message={message} state={state} />}
-          </Transition>
-        ))}
-    </TransitionGroup>
+    <Fade in={!!messages.length}>
+      <div css={snackbarContainerStyles}>
+        <TransitionGroup>
+          {messages
+            .slice()
+            .reverse()
+            .map((message) => (
+              <Transition
+                appear
+                key={message.id}
+                nodeRef={message.nodeRef}
+                timeout={{
+                  enter: theme.transition.duration,
+                  exit: theme.transition.duration * 2,
+                }}
+              >
+                {(state) => <Message message={message} state={state} />}
+              </Transition>
+            ))}
+        </TransitionGroup>
+      </div>
+    </Fade>
   )
 }

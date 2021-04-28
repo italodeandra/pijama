@@ -52,7 +52,7 @@ export const shorthandValue = (theme: Theme, css: CSSInterpolation) => {
         value["content"] = '""'
       }
       css[key] = shorthandValue(theme, value)
-    } else if (key === "transition") {
+    } else if (key === "transition" && value !== "none") {
       if (Array.isArray(value)) {
         const values = value as (keyof CSSProperties)[]
         css[key] = theme.transition.create(...values)

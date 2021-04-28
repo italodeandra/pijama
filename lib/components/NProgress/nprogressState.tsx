@@ -20,10 +20,6 @@ export const nprogress = {
     nprogressState.progress = progress
   },
   start() {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => {
-      nprogressState.progress = 1
-      timeout = undefined
-    }, 300)
+    nprogressState.progress = 0
   },
 }

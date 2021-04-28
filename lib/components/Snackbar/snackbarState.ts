@@ -1,4 +1,4 @@
-import { Ref, createRef } from "react"
+import { createRef, Ref } from "react"
 import { proxy, ref } from "valtio"
 import { remove } from "lodash"
 import { uuid } from "../../utils"
@@ -6,7 +6,7 @@ import { uuid } from "../../utils"
 export type IMessage = {
   id: string
   content: string
-  nodeRef: Ref<HTMLDivElement>
+  nodeRef: Ref<HTMLDivElement> & ReturnType<typeof ref>
 }
 
 export const snackbarState = proxy({
