@@ -42,6 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                 packageLocation: "./",
                 packageDependencies: [
                   ["@babel/core", "npm:7.13.16"],
+                  ["@babel/runtime", "npm:7.13.17"],
                   [
                     "@emotion/babel-plugin",
                     "virtual:a8801b19dc760a5142986b7b69f1cb94f1fe9201848d7eb7ec6112081187271028c3df86ec2babf3719f4dc190d5afadefa6f04c9beccea30c989d474bcceaaf#npm:11.3.0",
@@ -5341,6 +5342,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                 packageDependencies: [
                   ["@italodeandra/pijama", "workspace:."],
                   ["@babel/core", "npm:7.13.16"],
+                  ["@babel/runtime", "npm:7.13.17"],
                   [
                     "@emotion/babel-plugin",
                     "virtual:a8801b19dc760a5142986b7b69f1cb94f1fe9201848d7eb7ec6112081187271028c3df86ec2babf3719f4dc190d5afadefa6f04c9beccea30c989d474bcceaaf#npm:11.3.0",
