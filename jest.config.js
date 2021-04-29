@@ -7,6 +7,6 @@ module.exports = {
     "<rootDir>/dist/",
   ],
   transform: {
-    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
   },
 }
