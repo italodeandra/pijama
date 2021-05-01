@@ -90,6 +90,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       autoComplete = "new-password",
       as = "div",
       color = "primary",
+      disabled,
       error,
       helperText,
       id,
@@ -101,6 +102,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       onChange,
       onFocus,
       onChangeValue,
+      readOnly,
       value = "",
       select,
       sh,
@@ -219,6 +221,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
         <Box sh={{ position: "relative" }}>
           <InputComponent
             autoComplete={autoComplete}
+            disabled={disabled}
             id={id}
             name={name}
             onBlur={(e) => {
@@ -234,6 +237,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
               onFocus && onFocus(e)
               setFocused(true)
             }}
+            readOnly={readOnly}
             type={type}
             value={innerValue.toString()}
             {...props}

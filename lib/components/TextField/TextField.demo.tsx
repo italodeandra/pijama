@@ -29,6 +29,12 @@ export const TextFieldDemo = () => {
         description: "The default value of the input.",
         value: undefined,
       },
+      disabled: {
+        description:
+          "If the input should be disabled and should show disabled color.",
+        options: [true, false],
+        value: false,
+      },
       error: {
         description: "If should show error color.",
         options: [true, false],
@@ -53,11 +59,17 @@ If empty it will be used the name or label text.`,
       },
       onChangeValue: {
         description: "Change value event handler.",
+        readOnly: true,
         value: "(value: V, event: ChangeEvent<E>) => void",
       },
       placeholder: {
         description: "Placeholder of the input.",
         value: "Placeholder",
+      },
+      readOnly: {
+        description: "If the input should be read only.",
+        options: [true, false],
+        value: false,
       },
       select: {
         description: "Transform the input into a select.",
