@@ -1,6 +1,6 @@
 import { Box } from "../../../lib"
 import dynamic from "next/dynamic"
-import Head from 'next/head'
+import Head from "next/head"
 import { useMemo } from "react"
 import { useRouter } from "next/router"
 
@@ -36,4 +36,6 @@ const Component = () => {
   )
 }
 
-export default Component
+export default dynamic(() => Promise.resolve(Component), {
+  ssr: false,
+})
