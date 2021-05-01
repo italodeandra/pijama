@@ -1912,6 +1912,7 @@ __metadata:
     "@emotion/eslint-plugin": 11.2.0
     "@emotion/jest": 11.3.0
     "@emotion/react": 11.1.5
+    "@emotion/serialize": ^1.0.2
     "@emotion/server": 11.0.0
     "@fontsource/inter": 4.2.2
     "@iconify/icons-heroicons-outline": 1.1.2
@@ -1926,8 +1927,11 @@ __metadata:
     "@testing-library/jest-dom": 5.12.0
     "@testing-library/react": 11.2.6
     "@testing-library/user-event": 13.1.6
+    "@types/jest": ^26.0.23
+    "@types/lodash": ^4.14.168
     "@types/node": 15.0.1
     "@types/react": ^17.0.4
+    "@types/react-dom": ^17.0.3
     "@typescript-eslint/eslint-plugin": 4.22.0
     "@typescript-eslint/parser": 4.22.0
     axios: 0.21.1
@@ -1935,6 +1939,7 @@ __metadata:
     babel-jest: 26.6.3
     babel-loader: 8.2.2
     color: 3.1.3
+    copy-to-clipboard: ^3.3.1
     cors: 2.8.5
     date-fns: 2.21.1
     eslint: 7.25.0
@@ -1944,11 +1949,12 @@ __metadata:
     eslint-plugin-jsx-a11y: 6.4.1
     eslint-plugin-react: 7.23.2
     eslint-plugin-react-hooks: 4.2.0
+    fast-glob: ^3.2.5
     husky: 6.0.0
     jest: 26.6.3
     json: 11.0.0
     lint-staged: 10.5.4
-    lodash: 4.17.21
+    lodash: ^4.17.21
     next: 10.2.0
     next-seo: 4.24.0
     prettier: 2.2.1
@@ -3527,7 +3533,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:*":
+"@types/jest@npm:*, @types/jest@npm:^26.0.23":
   version: 26.0.23
   resolution: "@types/jest@npm:26.0.23"
   dependencies:
@@ -3555,6 +3561,13 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 66e9ac0143ec521522c7bb670301e9836ee886207eeed1aab6d4854a1b19b404ab3a54cd8d449f9b1f13acc357f540be96f8ac2d1e86e301eab52ae0f9a4066f
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.14.168":
+  version: 4.14.168
+  resolution: "@types/lodash@npm:4.14.168"
+  checksum: 9a4e25f89fc035b9f0388f1f7be85e5eff49f9e6db0d93432c9a89fce0916f8a89db4e8290415f7ea02de6b00d3573826378dcb655b7b2d20530a6e8d6dd6fd0
   languageName: node
   linkType: hard
 
@@ -3685,6 +3698,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: a17679f85c6f39a94cacbac62fff7b976adadd660ee9a8e2c5ab58036520869d4875b2707f7dd097f9eb14756b2041462d3615dfbb1efa61b37327f377866c61
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^17.0.3":
+  version: 17.0.3
+  resolution: "@types/react-dom@npm:17.0.3"
+  dependencies:
+    "@types/react": "*"
+  checksum: 9314c91a985f153591e1e74aef3d63d8b22e098069773f32745bf0733740a49802731761a46da8788a7d3dd2c21346036f12c2c24627630e5a6210b120a650e6
   languageName: node
   linkType: hard
 
@@ -7848,7 +7870,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.1.1":
+"fast-glob@npm:^3.1.1, fast-glob@npm:^3.2.5":
   version: 3.2.5
   resolution: "fast-glob@npm:3.2.5"
   dependencies:
@@ -11050,7 +11072,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.21, lodash@npm:^4.17.13, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.7.0":
+"lodash@npm:^4.17.13, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.7.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 4983720b9abca930a4a46f18db163d7dad8dd00dbed6db0cc7b499b33b717cce69f80928b27bbb1ff2cbd3b19d251ee90669a8b5ea466072ca81c2ebe91e7468

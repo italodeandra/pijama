@@ -1,16 +1,16 @@
-import { Gray, useTheme, withTheme } from "../../styles"
 import {
-  ReactElement,
-  VFC,
   cloneElement,
+  ReactElement,
   useEffect,
   useRef,
   useState,
+  VFC,
 } from "react"
+import { Gray, useTheme, withTheme } from "../../styles"
 import { useHover, useNumber } from "react-use"
+import { css } from "@emotion/react"
 import { Fade } from "../Fade/Fade"
 import { Portal } from "../Portal/Portal"
-import { css } from "@emotion/react"
 
 const tooltipStyles = withTheme((theme, sh) =>
   css(
@@ -22,6 +22,7 @@ const tooltipStyles = withTheme((theme, sh) =>
       p: [1, 2],
       position: "absolute",
       whiteSpace: "nowrap",
+      zIndex: 1
     })
   )
 )
@@ -99,7 +100,7 @@ export const Tooltip: VFC<TooltipProps> = ({
     }
     setLeft(newLeft)
     setTop(newTop)
-  }, [hovered, theme.spacingSize, placement, update])
+  }, [hovered, theme.spacingSize, placement, update, children])
 
   return (
     <>

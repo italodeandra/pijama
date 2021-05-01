@@ -17,7 +17,7 @@ export type LinkProps = {
   /**
    * URL of the link.
    */
-  href: string
+  href?: string
 } & ComponentShorthandProps
 
 export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(

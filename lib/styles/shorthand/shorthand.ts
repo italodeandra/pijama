@@ -17,7 +17,6 @@ const shorthands = {
   p: "padding",
   pb: "paddingBottom",
   pl: "paddingLeft",
-  pos: "pos",
   pr: "paddingRight",
   pt: "paddingTop",
   shadow: "boxShadow",

@@ -23,4 +23,4 @@ export type ComponentShorthandProps<
    * Element ref.
    */
   ref?: Ref<T extends keyof JSX.IntrinsicElements ? HTMLElementFrom<T> : E>
-} & Omit<AllHTMLAttributes<E>, "as">
+} & Omit<AllHTMLAttributes<E>, "as" | "size">

@@ -13,7 +13,7 @@ export type ButtonProps = {
   /**
    * The label or content.
    */
-  children: ReactNode
+  children?: ReactNode
   /**
    * The color of the background when contained, color of the border when outlined, or color of the text.
    * @default primary
@@ -32,6 +32,11 @@ export type ButtonProps = {
    */
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
   /**
+   * Size of the button.
+   * @default normal
+   */
+  size?: "small" | "normal"
+  /**
    * Type of the button.
    * @default button
    */
@@ -45,7 +50,15 @@ export type ButtonProps = {
 
 export const Button: VFC<ButtonProps> = forwardRef(
   (
-    { children, color = "primary", icon, variant = "contained", as, ...props },
+    {
+      as,
+      children,
+      color = "primary",
+      icon,
+      size = "normal",
+      variant = "contained",
+      ...props
+    },
     ref
   ) => {
     as = as || "button"
@@ -141,6 +154,24 @@ export const Button: VFC<ButtonProps> = forwardRef(
           styles.push(iconStyles)
         }
 
+        if (size === "small") {
+          const smallStyles = css(
+            sh(
+              !icon
+                ? {
+                    fontSize: 11,
+                    minH: 3,
+                  }
+                : {
+                    fontSize: 20,
+                    minH: 4,
+                    minW: 4,
+                  }
+            )
+          )
+          styles.push(smallStyles)
+        }
+
         styles.unshift({
           "&:focus::after": {
             boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor.alpha(0.3).rgb()}`,
@@ -185,7 +216,7 @@ export const Button: VFC<ButtonProps> = forwardRef(
           p: [1, 2],
           position: "relative",
           textDecoration: "none",
-          transition: "backgroundColor",
+          transition: ["backgroundColor", "color"],
         })
       )
       return css(styles)

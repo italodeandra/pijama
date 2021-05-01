@@ -22,6 +22,7 @@ const nprogressStyles = withTheme((theme, sh) =>
       },
       pos: [0, 0, "", 0],
       position: "fixed",
+      zIndex: 3
     })
   )
 )
@@ -52,7 +53,7 @@ export const NProgress = () => {
   )
 
   return (
-    <Fade in={progress !== null}>
+    <Fade in={progress !== null && progress < 100}>
       <div css={nprogressStyles}>
         <LinearProgress
           transitionDuration={progress !== 100 ? 6 * 300 : undefined}

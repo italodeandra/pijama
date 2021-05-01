@@ -6,13 +6,9 @@ export const nprogressState = proxy<{
   progress: null,
 })
 
-let timeout
-
 export const nprogress = {
   end() {
-    if (timeout) {
-      clearTimeout(timeout)
-    } else {
+    if (nprogressState.progress >= 0) {
       nprogressState.progress = 100
     }
   },

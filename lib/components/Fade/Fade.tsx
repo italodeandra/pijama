@@ -1,11 +1,11 @@
+import { cloneElement, ReactElement, Ref, useRef, VFC } from "react"
 import {
   ENTERED,
-  EXITED,
-  EXITING,
   EnterHandler,
+  EXITED,
   ExitHandler,
+  EXITING,
 } from "react-transition-group/Transition"
-import { ReactElement, Ref, VFC, cloneElement, useRef } from "react"
 import { Transition } from "react-transition-group"
 import { useTheme } from "../../styles"
 
@@ -78,7 +78,7 @@ export const Fade: VFC<FadeProps> = ({
       mountOnEnter
       nodeRef={innerRef || nodeRef}
       timeout={{
-        enter: 1,
+        enter: 100,
         exit: theme.transition.duration,
       }}
       unmountOnExit

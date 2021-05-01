@@ -3,6 +3,7 @@ import {
   ElementType,
   forwardRef,
   InputHTMLAttributes,
+  ReactNode,
   Ref,
   useState,
   VFC,
@@ -40,7 +41,7 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
   /**
    * Label on top of the field.
    */
-  label?: string
+  label?: ReactNode
   /**
    * Name on the input.
    */
@@ -90,11 +91,13 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       onFocus,
       onChangeValue,
       value = "",
+      sh,
       ...props
     },
     ref
   ) => {
-    id = id || name || label
+    id =
+      id || name || (typeof label === "string" ? (label as string) : undefined)
 
     const [isFocused, setFocused] = useState(false)
     const [innerValue, setInnerValue] = useState(value || defaultValue)
@@ -196,7 +199,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
     }, [value])
 
     return (
-      <Box as={as} css={textFieldStyles}>
+      <Box as={as} css={textFieldStyles} sh={sh}>
         {label && <label htmlFor={id}>{label}</label>}
         <input
           id={id}
