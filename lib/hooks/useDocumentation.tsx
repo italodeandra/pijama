@@ -13,7 +13,7 @@ import { useRouter } from "next/router"
 
 const getComponentName = () => window.location.pathname.split("/").pop()
 
-export const useDocumentation = (properties, example) => {
+export const useDocumentation = (properties, example, description) => {
   const router = useRouter()
   const modalRef = useRef(document.createElement("div"))
   const state = useRef(
@@ -56,6 +56,8 @@ export const useDocumentation = (properties, example) => {
       const [clipboard, copyToClipboard, resetClipboard] = useCopyToClipboard()
       const snap = useSnapshot(state.current)
 
+      const keys = Object.keys(properties)
+
       return (
         <Box
           onMouseLeave={resetClipboard}
@@ -73,7 +75,7 @@ export const useDocumentation = (properties, example) => {
         >
           <Box sh={{ display: "flex", p: 2 }}>
             {getComponentName()}{" "}
-            <Box sh={{ m: [-1, -1, 0, "auto"] }}>
+            <Box sh={{ m: "-6px -6px -7px auto" }}>
               <Tooltip
                 title={
                   clipboard.error
@@ -94,47 +96,54 @@ export const useDocumentation = (properties, example) => {
               </Tooltip>
             </Box>
           </Box>
-          <Box
-            sh={{
-              overflowY: "auto",
-              p: [0, 2],
-            }}
-          >
-            {Object.keys(properties).map((key) => (
-              <TextField
-                key={key}
-                label={
-                  <Tooltip title={properties[key].description}>
-                    <span>{key}</span>
-                  </Tooltip>
-                }
-                name={key}
-                onChangeValue={(value) => {
-                  value =
-                    typeof snap[key] === "boolean" ? value === "true" : value
-                  return (state.current[key] = value)
-                }}
-                readOnly={properties[key].readOnly}
-                sh={{ mb: 2 }}
-                type={!!properties[key].options ? "select" : undefined}
-                value={
-                  !properties[key].readOnly
-                    ? typeof snap[key] === "boolean"
-                      ? snap[key]
-                        ? "true"
-                        : "false"
-                      : snap[key]
-                    : properties[key].value
-                }
-              >
-                {properties[key].options?.map((o) => (
-                  <option key={o} value={o}>
-                    {typeof o === "boolean" ? (o ? "True" : "False") : o}
-                  </option>
-                ))}
-              </TextField>
-            ))}
-          </Box>
+          {description && (
+            <Box sh={{ color: "textSecondary", m: [0, 2, 2, 2] }}>
+              {description}
+            </Box>
+          )}
+          {!!keys.length && (
+            <Box
+              sh={{
+                overflowY: "auto",
+                p: [0, 2],
+              }}
+            >
+              {keys.map((key) => (
+                <TextField
+                  key={key}
+                  label={
+                    <Tooltip title={properties[key].description}>
+                      <span>{key}</span>
+                    </Tooltip>
+                  }
+                  name={key}
+                  onChangeValue={(value) => {
+                    value =
+                      typeof snap[key] === "boolean" ? value === "true" : value
+                    return (state.current[key] = value)
+                  }}
+                  readOnly={properties[key].readOnly}
+                  sh={{ mb: 2 }}
+                  type={!!properties[key].options ? "select" : undefined}
+                  value={
+                    !properties[key].readOnly
+                      ? typeof snap[key] === "boolean"
+                        ? snap[key]
+                          ? "true"
+                          : "false"
+                        : snap[key]
+                      : properties[key].value
+                  }
+                >
+                  {properties[key].options?.map((o) => (
+                    <option key={o} value={o}>
+                      {typeof o === "boolean" ? (o ? "True" : "False") : o}
+                    </option>
+                  ))}
+                </TextField>
+              ))}
+            </Box>
+          )}
         </Box>
       )
     }
