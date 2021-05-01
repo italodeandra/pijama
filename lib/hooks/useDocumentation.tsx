@@ -1,20 +1,46 @@
 import { Box, Button, TextField, Tooltip } from "../components"
 import { proxy, useSnapshot } from "valtio"
 import { useDeepCompareEffect, useUnmount } from "react-use"
+import { useEffect, useRef } from "react"
 import clipboardCopy from "@iconify/icons-heroicons-outline/clipboard-copy"
 import { Gray } from "../styles"
 import Icon from "@iconify/react"
 import { mapValues } from "lodash"
 import { render } from "react-dom"
 import { useCopyToClipboard } from "./useCopyToClipboard"
-import { useRef } from "react"
+import { useRouter } from "next/router"
 
 const getComponentName = () => window.location.pathname.split("/").pop()
 
 export const useDocumentation = (properties, example) => {
+  const router = useRouter()
   const modalRef = useRef(document.createElement("div"))
-  const state = useRef(proxy(mapValues(properties, (p) => p.value)))
+  const state = useRef(
+    proxy(
+      mapValues(properties, (p) =>
+        !p.readOnly && !p.disabled ? p.value : undefined
+      )
+    )
+  )
   const snap = useSnapshot(state.current)
+
+  useEffect(() => {
+    void router.replace(
+      `${window.location.pathname}?state=${JSON.stringify(snap)}`
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snap])
+
+  useEffect(() => {
+    try {
+      Object.assign(
+        state.current,
+        JSON.parse((router.query.state as string) || "{}")
+      )
+    } catch (e) {
+      void router.replace(window.location.pathname)
+    }
+  }, [router])
 
   useDeepCompareEffect(() => {
     const ref = modalRef.current
@@ -37,7 +63,7 @@ export const useDocumentation = (properties, example) => {
             maxH: `calc(100vh - ${theme.spacing(4)})`,
             pos: [2, 2, "", ""],
             shadow: "md",
-            width: 30
+            width: 30,
           })}
         >
           <Box sh={{ display: "flex", p: 2 }}>
@@ -87,11 +113,13 @@ export const useDocumentation = (properties, example) => {
                 select={!!properties[key].options}
                 sh={{ mb: 2 }}
                 value={
-                  typeof snap[key] === "boolean"
-                    ? snap[key]
-                      ? "true"
-                      : "false"
-                    : snap[key]
+                  !properties[key].readOnly
+                    ? typeof snap[key] === "boolean"
+                      ? snap[key]
+                        ? "true"
+                        : "false"
+                      : snap[key]
+                    : properties[key].value
                 }
               >
                 {properties[key].options?.map((o) => (
