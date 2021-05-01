@@ -1930,6 +1930,7 @@ __metadata:
     "@types/jest": ^26.0.23
     "@types/lodash": ^4.14.168
     "@types/node": 15.0.1
+    "@types/qs": ^6.9.6
     "@types/react": ^17.0.4
     "@types/react-dom": ^17.0.3
     "@typescript-eslint/eslint-plugin": 4.22.0
@@ -1958,6 +1959,7 @@ __metadata:
     next: 10.2.0
     next-seo: 4.24.0
     prettier: 2.2.1
+    qs: ^6.10.1
     react: 17.0.2
     react-dom: 17.0.2
     react-hook-form: 7.3.5
@@ -3685,7 +3687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qs@npm:^6.9.5":
+"@types/qs@npm:^6.9.5, @types/qs@npm:^6.9.6":
   version: 6.9.6
   resolution: "@types/qs@npm:6.9.6"
   checksum: a5f3c4f6ad6de2692e710302f5f82fe8db3ec0de1a75ada02a432f75f64025a6e38d28fcc4ed146d3145017e1312cc5cb3d81a0f41a798ec0463b5f47f017963
@@ -13253,7 +13255,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.0":
+"qs@npm:^6.10.0, qs@npm:^6.10.1":
   version: 6.10.1
   resolution: "qs@npm:6.10.1"
   dependencies:
