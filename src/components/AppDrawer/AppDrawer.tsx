@@ -47,8 +47,18 @@ export const AppDrawer: FC = ({ children }) => {
       </Drawer>
       <Box
         sh={{
-          ml: placement === "left" ? isScreenSm && isOpen ? `${width}px` : 0 : undefined,
-          mr: placement === "right" ? isScreenSm && isOpen ? `${width}px` : 0 : undefined,
+          ml:
+            placement === "left"
+              ? isScreenSm && isOpen
+                ? `${width}px`
+                : 0
+              : undefined,
+          mr:
+            placement === "right"
+              ? isScreenSm && isOpen
+                ? `${width}px`
+                : 0
+              : undefined,
           transition: ["marginLeft", "marginRight"],
         }}
       >
@@ -63,9 +73,7 @@ export const AppDrawer: FC = ({ children }) => {
           <Button icon onClick={() => toggleDrawer()} size="small">
             <Icon icon={menuIcon} />
           </Button>
-          <Box sh={{ml: 1}}>
-            Pijama
-          </Box>
+          <Box sh={{ ml: 2 }}>Pijama</Box>
         </Box>
         {children}
       </Box>

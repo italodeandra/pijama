@@ -29,7 +29,7 @@ const Component = () => {
   return (
     <Box sh={{ p: 2 }}>
       <Head>
-        <title>{component}</title>
+        <title>{component || "Pijama"}</title>
       </Head>
       {Demo ? <Demo /> : loading}
     </Box>
