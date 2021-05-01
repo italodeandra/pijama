@@ -37,6 +37,7 @@ export const useDocumentation = (properties, example) => {
             maxH: `calc(100vh - ${theme.spacing(4)})`,
             pos: [2, 2, "", ""],
             shadow: "md",
+            width: 30
           })}
         >
           <Box sh={{ display: "flex", p: 2 }}>

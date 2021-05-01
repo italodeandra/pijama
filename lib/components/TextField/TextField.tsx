@@ -203,7 +203,6 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
             transition: "color",
           },
           pt: "3px",
-          width: 20,
         })
       )
       return css(styles)

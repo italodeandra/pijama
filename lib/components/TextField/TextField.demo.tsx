@@ -45,8 +45,7 @@ export const TextFieldDemo = () => {
         value: "Helper text",
       },
       id: {
-        description: `ID of the input that will be used for linking with the label.
-If empty it will be used the name or label text.`,
+        description: `ID of the input that will be used for linking with the label. If empty it will be used the name or label text.`,
         value: undefined,
       },
       label: {
@@ -102,7 +101,11 @@ If empty it will be used the name or label text.`,
   }
 
   return (
-    <TextField {...props} select={select} sh={tryParseJson(sh)}>
+    <TextField
+      {...props}
+      select={select}
+      sh={{ width: 20, ...tryParseJson(sh) }}
+    >
       {select ? (
         <>
           <option>Option 1</option>
