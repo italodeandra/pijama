@@ -1,11 +1,12 @@
 import { Box, Button, TextField, Tooltip } from "../components"
 import { proxy, useSnapshot } from "valtio"
-import { useDeepCompareEffect, useUnmount, useUpdateEffect } from "react-use"
 import { useEffect, useRef } from "react"
+import { useMount, useUnmount, useUpdateEffect } from "react-use"
 import clipboardCopy from "@iconify/icons-heroicons-outline/clipboard-copy"
 import { Gray } from "../styles"
 import Icon from "@iconify/react"
 import { mapValues } from "lodash"
+import qs from "qs"
 import { render } from "react-dom"
 import { useCopyToClipboard } from "./useCopyToClipboard"
 import { useRouter } from "next/router"
@@ -25,23 +26,19 @@ export const useDocumentation = (properties, example) => {
   const snap = useSnapshot(state.current)
 
   useUpdateEffect(() => {
-    void router.replace(
-      `${window.location.pathname}?state=${JSON.stringify(snap)}`
-    )
+    void router.replace(`${window.location.pathname}?${qs.stringify(snap)}`)
   }, [snap])
 
-  useEffect(() => {
+  useMount(() => {
+    const { component, ...newQueries } = router.query
     try {
-      Object.assign(
-        state.current,
-        JSON.parse((router.query.state as string) || "{}")
-      )
+      Object.assign(state.current, newQueries)
     } catch (e) {
       void router.replace(window.location.pathname)
     }
-  }, [router])
+  })
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     const ref = modalRef.current
 
     document.body.appendChild(ref)
@@ -134,7 +131,8 @@ export const useDocumentation = (properties, example) => {
     }
 
     render(<Documentation />, modalRef.current)
-  }, [properties])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...Object.keys(properties)])
 
   useUnmount(() => {
     modalRef.current.remove()
