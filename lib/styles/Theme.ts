@@ -1,6 +1,6 @@
+import { Color } from "./colors"
 import { CSSInterpolation } from "@emotion/serialize"
 import { CSSProperties } from "react"
-import { Color } from "./colors"
 
 export type ThemeColors = keyof Omit<Theme["color"], "darkMode">
 
