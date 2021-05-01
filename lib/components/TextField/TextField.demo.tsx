@@ -2,13 +2,7 @@ import { TextField } from "./TextField"
 import { useDocumentation } from "../../hooks"
 
 export const TextFieldDemo = () => {
-  const {
-    inputComponent,
-    onChangeValue,
-    select,
-    sh,
-    ...props
-  } = useDocumentation(
+  const { select, sh, ...props } = useDocumentation(
     {
       as: {
         description: "Change which HTML element or React component should be.",
