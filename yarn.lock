@@ -1933,6 +1933,7 @@ __metadata:
     "@types/qs": ^6.9.6
     "@types/react": ^17.0.4
     "@types/react-dom": ^17.0.3
+    "@types/react-transition-group": ^4.4.1
     "@typescript-eslint/eslint-plugin": 4.22.0
     "@typescript-eslint/parser": 4.22.0
     axios: 0.21.1
@@ -3719,6 +3720,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: a94068eee2b8f6e80b160afbd9b30e6f0ba9b20aa22de1be7754f8983e7b8769d3875636272c664997ea617ae5599c8ee38e410f3ef2ea115ba2c7e1c33f3551
+  languageName: node
+  linkType: hard
+
+"@types/react-transition-group@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "@types/react-transition-group@npm:4.4.1"
+  dependencies:
+    "@types/react": "*"
+  checksum: 7d9d9ecf8187902c129c4bf99ee911658f5cf97ffe56f31703be06df70b5209d49515386e26be540508436c8383d2cb1cdc287777103c5eb5106a1027281e8ec
   languageName: node
   linkType: hard
 

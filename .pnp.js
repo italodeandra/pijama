@@ -104,6 +104,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ["@types/qs", "npm:6.9.6"],
                   ["@types/react", "npm:17.0.4"],
                   ["@types/react-dom", "npm:17.0.3"],
+                  ["@types/react-transition-group", "npm:4.4.1"],
                   [
                     "@typescript-eslint/eslint-plugin",
                     "virtual:a8801b19dc760a5142986b7b69f1cb94f1fe9201848d7eb7ec6112081187271028c3df86ec2babf3719f4dc190d5afadefa6f04c9beccea30c989d474bcceaaf#npm:4.22.0",
@@ -5413,6 +5414,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ["@types/qs", "npm:6.9.6"],
                   ["@types/react", "npm:17.0.4"],
                   ["@types/react-dom", "npm:17.0.3"],
+                  ["@types/react-transition-group", "npm:4.4.1"],
                   [
                     "@typescript-eslint/eslint-plugin",
                     "virtual:a8801b19dc760a5142986b7b69f1cb94f1fe9201848d7eb7ec6112081187271028c3df86ec2babf3719f4dc190d5afadefa6f04c9beccea30c989d474bcceaaf#npm:4.22.0",
@@ -10074,6 +10076,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   "./.yarn/cache/@types-react-syntax-highlighter-npm-11.0.5-90d671364b-a94068eee2.zip/node_modules/@types/react-syntax-highlighter/",
                 packageDependencies: [
                   ["@types/react-syntax-highlighter", "npm:11.0.5"],
+                  ["@types/react", "npm:17.0.4"],
+                ],
+                linkType: "HARD",
+              },
+            ],
+          ],
+        ],
+        [
+          "@types/react-transition-group",
+          [
+            [
+              "npm:4.4.1",
+              {
+                packageLocation:
+                  "./.yarn/cache/@types-react-transition-group-npm-4.4.1-ff68c8c8a4-7d9d9ecf81.zip/node_modules/@types/react-transition-group/",
+                packageDependencies: [
+                  ["@types/react-transition-group", "npm:4.4.1"],
                   ["@types/react", "npm:17.0.4"],
                 ],
                 linkType: "HARD",
