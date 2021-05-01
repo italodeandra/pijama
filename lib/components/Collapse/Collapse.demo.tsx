@@ -12,7 +12,7 @@ export const CollapseDemo = () => {
         value: true,
       },
     },
-    () => `<Collapse in={true}>
+    ({ in: inProp }) => `<Collapse in={${inProp ? "true" : "false"}}>
   <Box sh={{ bgColor: Gray.N100 }}>
     This is a text. Change the property "in" for it to be collapsed/un-collapsed.
   </Box>
