@@ -1,7 +1,7 @@
 import { Collapse as CollapseComponent, CollapseProps } from "./Collapse"
 import { Meta, Story } from "@storybook/react"
-import { Gray } from "../../styles"
 import { css } from "@emotion/react"
+import { Gray } from "../../styles"
 
 export default {
   argTypes: {
