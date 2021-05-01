@@ -62,10 +62,6 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
    */
   placeholder?: string
   /**
-   * Transform the input into a select.
-   */
-  select?: boolean
-  /**
    * Styles shorthand.
    */
   sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
@@ -73,7 +69,7 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
    * Type of the input.
    * @default text
    */
-  type?: "text" | "tel" | "email" | "password"
+  type?: "text" | "tel" | "email" | "password" | "select"
   /**
    * The value of the input.
    */
@@ -104,7 +100,6 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       onChangeValue,
       readOnly,
       value = "",
-      select,
       sh,
       ...props
     },
@@ -212,7 +207,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       setInnerValue(value)
     }, [value])
 
-    const InputComponent: any = select ? "select" : "input"
+    const InputComponent: any = type !== "select" ? "input" : "select"
 
     return (
       <Box as={as} css={textFieldStyles} sh={sh}>
@@ -237,12 +232,12 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
               setFocused(true)
             }}
             readOnly={readOnly}
-            type={type}
+            type={type !== "select" ? type : undefined}
             value={innerValue.toString()}
             {...props}
             ref={ref}
           />
-          {select ? (
+          {type === "select" ? (
             <Box as="span" sh={{ pos: ["9px", "9px", "", ""], pointerEvents: "none" }}>
               <Icon icon={chevronDown} />
             </Box>

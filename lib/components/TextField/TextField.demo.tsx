@@ -2,7 +2,7 @@ import { TextField } from "./TextField"
 import { useDocumentation } from "../../hooks"
 
 export const TextFieldDemo = () => {
-  const { select, sh, ...props } = useDocumentation(
+  const { sh, type, ...props } = useDocumentation(
     {
       as: {
         description: "Change which HTML element or React component should be.",
@@ -64,18 +64,13 @@ export const TextFieldDemo = () => {
         options: [true, false],
         value: false,
       },
-      select: {
-        description: "Transform the input into a select.",
-        options: [true, false],
-        value: false,
-      },
       sh: {
         description: "Styles shorthand.",
         value: undefined,
       },
       type: {
         description: "Type of the input.",
-        options: ["text", "tel", "email", "password"],
+        options: ["text", "tel", "email", "password", "select"],
         value: "text",
       },
       value: {
@@ -95,12 +90,8 @@ export const TextFieldDemo = () => {
   }
 
   return (
-    <TextField
-      {...props}
-      select={select}
-      sh={{ width: 20, ...tryParseJson(sh) }}
-    >
-      {select ? (
+    <TextField {...props} sh={{ width: 20, ...tryParseJson(sh) }} type={type}>
+      {type === "select" ? (
         <>
           <option>Option 1</option>
           <option>Option 2</option>

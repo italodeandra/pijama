@@ -109,8 +109,8 @@ export const useDocumentation = (properties, example) => {
                   return (state.current[key] = value)
                 }}
                 readOnly={properties[key].readOnly}
-                select={!!properties[key].options}
                 sh={{ mb: 2 }}
+                type={!!properties[key].options ? "select" : undefined}
                 value={
                   !properties[key].readOnly
                     ? typeof snap[key] === "boolean"
