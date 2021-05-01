@@ -28,13 +28,16 @@ export const useDocumentation = (properties, example) => {
       return (
         <Box
           onMouseLeave={resetClipboard}
-          sh={{
+          sh={(theme) => ({
             bgColor: "white",
             border: `1px solid ${Gray.N50}`,
             br: 0.5,
+            display: "flex",
+            flexDirection: "column",
+            maxH: `calc(100vh - ${theme.spacing(4)})`,
             pos: [2, 2, "", ""],
             shadow: "md",
-          }}
+          })}
         >
           <Box sh={{ display: "flex", p: 2 }}>
             {getComponentName()}{" "}
@@ -59,7 +62,12 @@ export const useDocumentation = (properties, example) => {
               </Tooltip>
             </Box>
           </Box>
-          <Box sh={{ p: [0, 2] }}>
+          <Box
+            sh={{
+              overflowY: "auto",
+              p: [0, 2],
+            }}
+          >
             {Object.keys(properties).map((key) => (
               <TextField
                 key={key}
