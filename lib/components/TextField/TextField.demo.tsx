@@ -78,7 +78,76 @@ export const TextFieldDemo = () => {
         value: undefined,
       },
     },
-    () => `<TextField />` // todo: add properties
+    ({
+       as,
+       color,
+       defaultValue,
+       disabled,
+       error,
+       helperText,
+       id,
+       label,
+       name,
+       placeholder,
+       readOnly,
+       type,
+       value,
+     }) => {
+      const properties = `${
+        as
+          ? `
+  as="${as}"`
+          : ""
+      }
+  color="${color}"${
+        defaultValue
+          ? `
+  defaultValue="${defaultValue}"`
+          : ""
+      }${
+        disabled
+          ? `
+  disabled`
+          : ""
+      }${
+        error
+          ? `
+  error`
+          : ""
+      }
+  helperText="${helperText}"${
+        id
+          ? `
+  id="${id}"`
+          : ""
+      }
+  label="${label}"${
+        name
+          ? `
+  name="${name}"`
+          : ""
+      }
+  placeholder="${placeholder}"${
+        readOnly
+          ? `
+  readOnly`
+          : ""
+      }
+  type="${type}"${
+        value
+          ? `
+  value="${value}"`
+          : ""
+      }
+`
+      return type !== "select"
+        ? `<TextField${properties}/>`
+        : `<TextField${properties}>
+  <option>Option 1</option>
+  <option>Option 2</option>
+  <option>Option 3</option>
+</TextField>`
+    }
   )
 
   const tryParseJson = (jsonString?: string) => {
