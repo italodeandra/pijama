@@ -2,7 +2,13 @@ import { TextField } from "./TextField"
 import { useDocumentation } from "../../hooks"
 
 export const TextFieldDemo = () => {
-  const { onChangeValue, sh, ...props } = useDocumentation(
+  const {
+    inputComponent,
+    onChangeValue,
+    select,
+    sh,
+    ...props
+  } = useDocumentation(
     {
       as: {
         description: "Change which HTML element or React component should be.",
@@ -10,7 +16,14 @@ export const TextFieldDemo = () => {
       },
       color: {
         description: "The color of the highlight when focused.",
-        value: "primary", // todo: use select options
+        options: [
+          "primary",
+          "secondary",
+          "error",
+          "textPrimary",
+          "textSecondary",
+        ],
+        value: "primary",
       },
       defaultValue: {
         description: "The default value of the input.",
@@ -18,7 +31,8 @@ export const TextFieldDemo = () => {
       },
       error: {
         description: "If should show error color.",
-        value: false, // todo: use select options
+        options: [true, false],
+        value: false,
       },
       helperText: {
         description: "Text to be shown above the input.",
@@ -45,13 +59,19 @@ If empty it will be used the name or label text.`,
         description: "Placeholder of the input.",
         value: "Placeholder",
       },
+      select: {
+        description: "Transform the input into a select.",
+        options: [true, false],
+        value: false,
+      },
       sh: {
         description: "Styles shorthand.",
         value: undefined,
       },
       type: {
         description: "Type of the input.",
-        value: "text", // todo: use select options
+        options: ["text", "tel", "email", "password"],
+        value: "text",
       },
       value: {
         description: "The value of the input.",
@@ -69,5 +89,15 @@ If empty it will be used the name or label text.`,
     }
   }
 
-  return <TextField {...props} sh={tryParseJson(sh)} />
+  return (
+    <TextField {...props} select={select} sh={tryParseJson(sh)}>
+      {select ? (
+        <>
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </>
+      ) : null}
+    </TextField>
+  )
 }

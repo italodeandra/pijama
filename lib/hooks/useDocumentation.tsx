@@ -77,10 +77,27 @@ export const useDocumentation = (properties, example) => {
                   </Tooltip>
                 }
                 name={key}
-                onChangeValue={(value) => (state.current[key] = value)}
+                onChangeValue={(value) => {
+                  value =
+                    typeof snap[key] === "boolean" ? value === "true" : value
+                  return (state.current[key] = value)
+                }}
+                select={!!properties[key].options}
                 sh={{ mb: 2 }}
-                value={snap[key]}
-              />
+                value={
+                  typeof snap[key] === "boolean"
+                    ? snap[key]
+                      ? "true"
+                      : "false"
+                    : snap[key]
+                }
+              >
+                {properties[key].options?.map((o) => (
+                  <option key={o} value={o}>
+                    {typeof o === "boolean" ? (o ? "True" : "False") : o}
+                  </option>
+                ))}
+              </TextField>
             ))}
           </Box>
         </Box>

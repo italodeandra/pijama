@@ -8,16 +8,18 @@ import {
   useState,
   VFC,
 } from "react"
-import { Theme, withTheme } from "../../styles"
+import { Theme, ThemeColors, withTheme } from "../../styles"
 import { Box } from "../Box/Box"
+import chevronDown from "@iconify/icons-heroicons-outline/chevron-down"
 import Color from "color"
 import { css } from "@emotion/react"
 import { CSSInterpolation } from "@emotion/serialize"
+import Icon from "@iconify/react"
 import { useUpdateEffect } from "react-use"
 
 export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
   /**
-   * Change which HTML element or React component should be.
+   * Change which HTML element or React component the field should be.
    * @default div
    */
   as?: ElementType
@@ -25,7 +27,7 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
    * The color of the highlight when focused.
    * @default primary
    */
-  color?: "primary" | "secondary" | string
+  color?: ThemeColors | string
   /**
    * The default value of the input.
    */
@@ -60,6 +62,10 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
    */
   placeholder?: string
   /**
+   * Transform the input into a select.
+   */
+  select?: boolean
+  /**
    * Styles shorthand.
    */
   sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
@@ -81,6 +87,7 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
 export const TextField: VFC<TextFieldProps> = forwardRef(
   (
     {
+      autoComplete = "new-password",
       as = "div",
       color = "primary",
       error,
@@ -95,6 +102,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       onFocus,
       onChangeValue,
       value = "",
+      select,
       sh,
       ...props
     },
@@ -118,7 +126,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
         if (error) {
           const errorColor = Color(theme.color.error)
           const errorStyled = css({
-            "& > input": {
+            "& > div > input, & > div > select": {
               /* eslint-disable sort-keys */
               "&:hover": {
                 borderColor: errorColor.darken(0.2).hex(),
@@ -144,7 +152,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
         }
 
         styles.unshift({
-          "& > input": {
+          "& > div > input, & > div > select": {
             /* eslint-disable sort-keys */
             "&:hover": {
               borderColor: labelColor.lighten(1).hex(),
@@ -162,7 +170,8 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       }
       styles.unshift(
         sh({
-          "& > input": {
+          "& > div > input, & > div > select": {
+            appearance: "none",
             border: "1px solid",
             borderRadius: theme.spacing(0.5),
             boxShadow:
@@ -202,30 +211,40 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       setInnerValue(value)
     }, [value])
 
+    const InputComponent: any = select ? "select" : "input"
+
     return (
       <Box as={as} css={textFieldStyles} sh={sh}>
         {label && <label htmlFor={id}>{label}</label>}
-        <input
-          id={id}
-          name={name}
-          onBlur={(e) => {
-            onBlur && onBlur(e)
-            setFocused(false)
-          }}
-          onChange={(e) => {
-            onChange && onChange(e)
-            onChangeValue && onChangeValue(e.target.value, e)
-            setInnerValue(e.target.value)
-          }}
-          onFocus={(e) => {
-            onFocus && onFocus(e)
-            setFocused(true)
-          }}
-          type={type}
-          value={innerValue.toString()}
-          {...props}
-          ref={ref}
-        />
+        <Box sh={{ position: "relative" }}>
+          <InputComponent
+            autoComplete={autoComplete}
+            id={id}
+            name={name}
+            onBlur={(e) => {
+              onBlur && onBlur(e)
+              setFocused(false)
+            }}
+            onChange={(e) => {
+              onChange && onChange(e)
+              onChangeValue && onChangeValue(e.target.value, e)
+              setInnerValue(e.target.value)
+            }}
+            onFocus={(e) => {
+              onFocus && onFocus(e)
+              setFocused(true)
+            }}
+            type={type}
+            value={innerValue.toString()}
+            {...props}
+            ref={ref}
+          />
+          {select ? (
+            <Box as="span" sh={{ pos: ["9px", "9px", "", ""], pointerEvents: "none" }}>
+              <Icon icon={chevronDown} />
+            </Box>
+          ) : null}
+        </Box>
         {helperText && <span>{helperText}</span>}
       </Box>
     )
