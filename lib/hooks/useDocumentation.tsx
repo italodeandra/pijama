@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Tooltip } from "../components"
 import { proxy, useSnapshot } from "valtio"
-import { useDeepCompareEffect, useUnmount } from "react-use"
+import { useDeepCompareEffect, useUnmount, useUpdateEffect } from "react-use"
 import { useEffect, useRef } from "react"
 import clipboardCopy from "@iconify/icons-heroicons-outline/clipboard-copy"
 import { Gray } from "../styles"
@@ -24,11 +24,10 @@ export const useDocumentation = (properties, example) => {
   )
   const snap = useSnapshot(state.current)
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     void router.replace(
       `${window.location.pathname}?state=${JSON.stringify(snap)}`
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snap])
 
   useEffect(() => {
