@@ -50,6 +50,10 @@ export type FadeProps = {
   /**
    * Exit event handler.
    */
+  onExit?: ExitHandler<HTMLDivElement>
+  /**
+   * Exited event handler.
+   */
   onExited?: ExitHandler<HTMLDivElement>
   /**
    * Exiting event handler.
