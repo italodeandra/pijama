@@ -13,7 +13,27 @@ import { useRouter } from "next/router"
 
 const getComponentName = () => window.location.pathname.split("/").pop()
 
-export const useDocumentation = (properties, example, description) => {
+export type UseDocumentation = <
+  P extends {
+    [key: string]: {
+      value: any
+      options?: any[]
+      description: string
+      readOnly?: boolean
+      disabled?: boolean
+    }
+  }
+>(
+  properties: P,
+  example: (values: { [key: string]: any }) => string,
+  description?: string
+) => any
+
+export const useDocumentation: UseDocumentation = (
+  properties,
+  example,
+  description
+) => {
   const router = useRouter()
   const modalRef = useRef(document.createElement("div"))
   const state = useRef(
@@ -37,8 +57,10 @@ export const useDocumentation = (properties, example, description) => {
           typeof newQueries[k] === "string" &&
           typeof state.current[k] === "boolean"
         ) {
+          // @ts-ignore
           state.current[k] = newQueries[k] === "true"
         } else {
+          // @ts-ignore
           state.current[k] = newQueries[k]
         }
       })
@@ -120,6 +142,7 @@ export const useDocumentation = (properties, example, description) => {
                   onChangeValue={(value) => {
                     value =
                       typeof snap[key] === "boolean" ? value === "true" : value
+                    // @ts-ignore
                     return (state.current[key] = value)
                   }}
                   readOnly={properties[key].readOnly}
