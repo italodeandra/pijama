@@ -17,6 +17,11 @@ import { useUpdateEffect } from "react-use"
 
 export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
   /**
+   * Change which HTML element or React component should be.
+   * @default div
+   */
+  as?: ElementType
+  /**
    * The color of the highlight when focused.
    * @default primary
    */
@@ -51,6 +56,14 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
    */
   onChangeValue?: (value: V, event: ChangeEvent<E>) => void
   /**
+   * Placeholder of the input.
+   */
+  placeholder?: string
+  /**
+   * Styles shorthand.
+   */
+  sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
+  /**
    * Type of the input.
    * @default text
    */
@@ -59,15 +72,6 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
    * The value of the input.
    */
   value?: V
-  /**
-   * Change which HTML element or React component should be.
-   * @default div
-   */
-  as?: ElementType
-  /**
-   * Styles shorthand.
-   */
-  sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
   /**
    * Element ref.
    */
