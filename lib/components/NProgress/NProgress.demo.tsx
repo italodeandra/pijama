@@ -1,5 +1,4 @@
 import { Button } from "../Button/Button"
-import { NProgress } from "./NProgress"
 import { nprogress } from "./nprogressState"
 import { useDocumentation } from "../../hooks"
 
@@ -19,7 +18,7 @@ export const NProgressDemo = () => {
       },
     },
     () => `<>
-  <NProgress /> {/* <- Optional if you're already using the ThemeProvider */}
+  <NProgress /> {/* <- Remove this if you're already using the ThemeProvider */}
   <Button onClick={() => nprogress.start()}>Start</Button>
   <Button onClick={() => nprogress.end()}>End</Button>
 </>`,
@@ -28,7 +27,6 @@ export const NProgressDemo = () => {
 
   return (
     <>
-      <NProgress />
       <Button onClick={() => nprogress.start()} sh={{ mr: 1 }}>
         Start
       </Button>
