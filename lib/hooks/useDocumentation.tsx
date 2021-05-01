@@ -32,7 +32,16 @@ export const useDocumentation = (properties, example) => {
   useMount(() => {
     const { component, ...newQueries } = router.query
     try {
-      Object.assign(state.current, newQueries)
+      Object.keys(newQueries).forEach((k) => {
+        if (
+          typeof newQueries[k] === "string" &&
+          typeof state.current[k] === "boolean"
+        ) {
+          state.current[k] = newQueries[k] === "true"
+        } else {
+          state.current[k] = newQueries[k]
+        }
+      })
     } catch (e) {
       void router.replace(window.location.pathname)
     }
