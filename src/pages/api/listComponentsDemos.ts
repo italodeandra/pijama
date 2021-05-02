@@ -1,4 +1,5 @@
 import fg from "fast-glob"
+import { sortBy } from "lodash"
 import { NextApiHandler } from "next"
 
 const listComponentDemos = () =>
@@ -7,7 +8,7 @@ const listComponentDemos = () =>
   )
 
 const listComponentsDemos: NextApiHandler = async (req, res) => {
-  res.send(await listComponentDemos() || [])
+  res.send(sortBy((await listComponentDemos()) || []))
 }
 
 export default listComponentsDemos
