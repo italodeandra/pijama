@@ -394,6 +394,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.14.0":
+  version: 7.14.0
+  resolution: "@babel/runtime@npm:7.14.0"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: ab6653f2f8ecdaebf36674894cef458a9d4f881dc007fdcd50a8261f5c6d9731e03fda2c17e32ecf0e6c779d69eb6cf49d68a48c780aaf07d5b572e8b7ef0508
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.12.13, @babel/template@npm:^7.3.3":
   version: 7.12.13
   resolution: "@babel/template@npm:7.12.13"
@@ -719,6 +728,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@italodeandra/pijama@workspace:."
   dependencies:
+    "@babel/runtime": ^7.14.0
     "@emotion/babel-plugin": 11.3.0
     "@emotion/eslint-plugin": 11.2.0
     "@emotion/jest": 11.3.0

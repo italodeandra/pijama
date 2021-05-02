@@ -41,6 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
               {
                 packageLocation: "./",
                 packageDependencies: [
+                  ["@babel/runtime", "npm:7.14.0"],
                   [
                     "@emotion/babel-plugin",
                     "virtual:a8801b19dc760a5142986b7b69f1cb94f1fe9201848d7eb7ec6112081187271028c3df86ec2babf3719f4dc190d5afadefa6f04c9beccea30c989d474bcceaaf#npm:11.3.0",
@@ -1284,6 +1285,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                 linkType: "HARD",
               },
             ],
+            [
+              "npm:7.14.0",
+              {
+                packageLocation:
+                  "./.yarn/cache/@babel-runtime-npm-7.14.0-fba2a32266-ab6653f2f8.zip/node_modules/@babel/runtime/",
+                packageDependencies: [
+                  ["@babel/runtime", "npm:7.14.0"],
+                  ["regenerator-runtime", "npm:0.13.8"],
+                ],
+                linkType: "HARD",
+              },
+            ],
           ],
         ],
         [
@@ -1923,6 +1936,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                 packageLocation: "./",
                 packageDependencies: [
                   ["@italodeandra/pijama", "workspace:."],
+                  ["@babel/runtime", "npm:7.14.0"],
                   [
                     "@emotion/babel-plugin",
                     "virtual:a8801b19dc760a5142986b7b69f1cb94f1fe9201848d7eb7ec6112081187271028c3df86ec2babf3719f4dc190d5afadefa6f04c9beccea30c989d474bcceaaf#npm:11.3.0",
