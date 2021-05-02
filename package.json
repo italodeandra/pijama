@@ -90,15 +90,7 @@
     "valtio": "1.0.4"
   },
   "devDependencies": {
-    "@babel/core": "7.13.16",
-    "@babel/runtime": "^7.13.17",
     "@iconify/icons-heroicons-outline": "1.1.2",
-    "@storybook/addon-actions": "6.2.9",
-    "@storybook/addon-docs": "6.2.9",
-    "@storybook/addon-essentials": "6.2.9",
-    "@storybook/addon-links": "6.2.9",
-    "@storybook/react": "6.2.9",
-    "babel-loader": "8.2.2",
     "fast-glob": "^3.2.5"
   }
 }
