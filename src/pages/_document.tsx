@@ -6,9 +6,7 @@ export default class MyDocument extends Document {
     // noinspection HtmlRequiredTitleElement
     return (
       <Html lang="en">
-        <Head>
-          <title>Pijama</title>
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
