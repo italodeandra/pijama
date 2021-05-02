@@ -22,7 +22,7 @@ const tooltipStyles = withTheme((theme, sh) =>
       p: [1, 2],
       position: "absolute",
       whiteSpace: "nowrap",
-      zIndex: 1
+      zIndex: 2,
     })
   )
 )
