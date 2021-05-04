@@ -1,6 +1,7 @@
 import { Box } from "./Box"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const BoxDemo = () => {
   const { children } = useDocumentation(
     {

@@ -2,6 +2,7 @@ import { Box } from "../Box/Box"
 import { LinearProgress } from "./LinearProgress"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const LinearProgressDemo = () => {
   const { value, ...props } = useDocumentation(
     {

@@ -1,4 +1,4 @@
-import { appDrawerState } from "../../../src/components/AppDrawer/AppDrawer.state"
+import { appDrawerState } from "../../../src/components"
 import { InlineIcon } from "@iconify/react"
 import menuIcon from "@iconify/icons-heroicons-outline/menu"
 import { useDocumentation } from "../../hooks"
@@ -19,12 +19,14 @@ export const DrawerDemo = () => {
   The content should be here
 </Drawer>`
   )
+
   useEffect(() => {
     appDrawerState.placement = placement
     return () => {
       appDrawerState.placement = "left"
     }
   }, [placement])
+
   return (
     <>
       The component is on the {placement}. You can open it on while clicking on

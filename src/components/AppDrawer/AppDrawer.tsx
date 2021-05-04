@@ -10,12 +10,15 @@ import Icon from "@iconify/react"
 import menuIcon from "@iconify/icons-heroicons-outline/menu"
 import NextLink from "next/link"
 import { useQuery } from "react-query"
+import examples from "../../examples"
 
 export const AppDrawer: FC = ({ children }) => {
   const { width, isOpen } = useSnapshot(drawerState)
   const { placement } = useSnapshot(appDrawerState)
   const isScreenSm = useBreakpoint("sm")
-  const { data: components } = useQuery<string[]>(["/api/listComponentsDemos"])
+  let { data: components, isLoading } = useQuery<string[]>([
+    "/api/listComponentsDemos",
+  ])
 
   useEffect(() => {
     const localStorageDrawerIsOpen = JSON.parse(
@@ -36,10 +39,19 @@ export const AppDrawer: FC = ({ children }) => {
               <Link>Home</Link>
             </NextLink>
           </Box>
+          {!components?.length && isLoading && <Box>Loading...</Box>}
           {components?.map((component) => (
             <Box key={component} sh={{ mb: 1 }}>
               <NextLink href={`/components/${component}`} passHref>
                 <Link>{component}</Link>
+              </NextLink>
+            </Box>
+          ))}
+          <Box sh={{ m: [2, 0, 2, 0] }} />
+          {Object.keys(examples).map((example) => (
+            <Box key={example} sh={{ mb: 1 }}>
+              <NextLink href={`/examples/${example}`} passHref>
+                <Link>{example.replace(/-/g, " ")}</Link>
               </NextLink>
             </Box>
           ))}

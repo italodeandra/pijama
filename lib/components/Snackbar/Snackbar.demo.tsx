@@ -2,6 +2,7 @@ import { Button } from "../Button/Button"
 import { notify } from "./snackbarState"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const SnackbarDemo = () => {
   const { message } = useDocumentation(
     {

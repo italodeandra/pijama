@@ -2,6 +2,7 @@ import { Button } from "../Button/Button"
 import { nprogress } from "./nprogressState"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const NProgressDemo = () => {
   useDocumentation(
     {

@@ -11,16 +11,17 @@ import { render } from "react-dom"
 import { useCopyToClipboard } from "./useCopyToClipboard"
 import { useRouter } from "next/router"
 
-const getComponentName = () => window.location.pathname.split("/").pop()
+const getComponentName = () =>
+  window.location.pathname.split("/").pop().replace(/-/g, " ")
 
 export type UseDocumentation = <
   P extends {
     [key: string]: {
-      value: any
-      options?: any[]
       description: string
-      readOnly?: boolean
       disabled?: boolean
+      options?: any[]
+      readOnly?: boolean
+      value: any
     }
   }
 >(
@@ -50,7 +51,7 @@ export const useDocumentation: UseDocumentation = (
   }, [snap])
 
   useMount(() => {
-    const { component, ...newQueries } = router.query
+    const { component, example, ...newQueries } = router.query
     try {
       Object.keys(newQueries).forEach((k) => {
         if (

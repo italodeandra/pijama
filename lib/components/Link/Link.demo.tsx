@@ -1,6 +1,7 @@
 import { Link } from "./Link"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const LinkDemo = () => {
   const { children, icon, ...props } = useDocumentation(
     {

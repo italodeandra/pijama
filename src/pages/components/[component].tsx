@@ -10,6 +10,7 @@ const Component = () => {
 
   const loading = <span>Loading demo...</span>
 
+  // noinspection JSUnusedGlobalSymbols
   const Demo = useMemo(
     () =>
       dynamic(

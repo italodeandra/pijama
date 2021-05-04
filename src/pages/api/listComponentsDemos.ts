@@ -11,4 +11,5 @@ const listComponentsDemos: NextApiHandler = async (req, res) => {
   res.send(sortBy((await listComponentDemos()) || []))
 }
 
+// noinspection JSUnusedGlobalSymbols
 export default listComponentsDemos

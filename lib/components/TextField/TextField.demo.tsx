@@ -1,6 +1,7 @@
 import { TextField } from "./TextField"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const TextFieldDemo = () => {
   const { sh, type, ...props } = useDocumentation(
     {
@@ -79,20 +80,20 @@ export const TextFieldDemo = () => {
       },
     },
     ({
-       as,
-       color,
-       defaultValue,
-       disabled,
-       error,
-       helperText,
-       id,
-       label,
-       name,
-       placeholder,
-       readOnly,
-       type,
-       value,
-     }) => {
+      as,
+      color,
+      defaultValue,
+      disabled,
+      error,
+      helperText,
+      id,
+      label,
+      name,
+      placeholder,
+      readOnly,
+      type,
+      value,
+    }) => {
       const properties = `${
         as
           ? `

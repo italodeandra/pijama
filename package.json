@@ -26,8 +26,6 @@
     "demo:dev": "next dev",
     "demo:build": "next build",
     "demo:start": "next start",
-    "storybook:start": "start-storybook -p 6006",
-    "storybook:build": "build-storybook",
     "pre-commit": "lint-staged",
     "pre-push": "yarn test"
   },
