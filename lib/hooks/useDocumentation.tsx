@@ -26,7 +26,7 @@ export type UseDocumentation = <
   }
 >(
   properties: P,
-  example: (values: { [key: string]: any }) => string,
+  example?: (values: { [key: string]: any }) => string,
   description?: string
 ) => any
 
@@ -98,26 +98,28 @@ export const useDocumentation: UseDocumentation = (
         >
           <Box sh={{ display: "flex", p: 2 }}>
             {getComponentName()}{" "}
-            <Box sh={{ m: "-6px -6px -7px auto" }}>
-              <Tooltip
-                title={
-                  clipboard.error
-                    ? clipboard.error.message
-                    : clipboard.value
-                    ? "Example copied"
-                    : "Copy component example"
-                }
-              >
-                <Button
-                  icon
-                  onClick={() => copyToClipboard(example(snap))}
-                  size="small"
-                  variant="text"
+            {!!example && (
+              <Box sh={{ m: "-6px -6px -7px auto" }}>
+                <Tooltip
+                  title={
+                    clipboard.error
+                      ? clipboard.error.message
+                      : clipboard.value
+                      ? "Example copied"
+                      : "Copy component example"
+                  }
                 >
-                  <Icon icon={clipboardCopy} />
-                </Button>
-              </Tooltip>
-            </Box>
+                  <Button
+                    icon
+                    onClick={() => copyToClipboard(example(snap))}
+                    size="small"
+                    variant="text"
+                  >
+                    <Icon icon={clipboardCopy} />
+                  </Button>
+                </Tooltip>
+              </Box>
+            )}
           </Box>
           {description && (
             <Box sh={{ color: "textSecondary", m: [0, 2, 2, 2] }}>
