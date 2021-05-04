@@ -27,12 +27,15 @@ export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
 
       try {
         if (color === "inherit") {
-          styles.push({
-            "&:focus, &:hover": {
-              textDecoration: "underline",
-            },
-            color: "inherit",
-          })
+          const colorInheritStyles = css(
+            sh({
+              "&:focus, &:hover": {
+                textDecoration: "underline",
+              },
+              color: "inherit",
+            })
+          )
+          styles.push(colorInheritStyles)
         } else {
           const linkColor = !!theme.color[color]
             ? Color(theme.color[color])
@@ -54,6 +57,18 @@ export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
             },
             color: linkColor.hex(),
           })
+
+          if (window.location.pathname === href) {
+            const activeColor = isDark
+              ? linkColor.darken(0.7)
+              : linkColor.lighten(0.7)
+            const activeStyles = css(
+              sh({
+                color: activeColor.hex(),
+              })
+            )
+            styles.push(activeStyles)
+          }
         }
       } catch (e) {
         console.error(e)
@@ -62,6 +77,7 @@ export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
       styles.unshift(
         sh({
           textDecoration: "none",
+          outline: "none",
         })
       )
 
