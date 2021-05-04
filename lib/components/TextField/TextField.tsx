@@ -99,6 +99,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
       onFocus,
       onChangeValue,
       readOnly,
+      required,
       value = "",
       sh,
       ...props
@@ -211,7 +212,12 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
 
     return (
       <Box as={as} css={textFieldStyles} sh={sh}>
-        {label && <label htmlFor={id}>{label}</label>}
+        {label && (
+          <label htmlFor={id}>
+            {label}
+            {required ? " *" : ""}
+          </label>
+        )}
         <Box sh={{ position: "relative" }}>
           <InputComponent
             autoComplete={autoComplete}
@@ -232,13 +238,17 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
               setFocused(true)
             }}
             readOnly={readOnly}
+            required={required}
             type={type !== "select" ? type : undefined}
             value={innerValue.toString()}
             {...props}
             ref={ref}
           />
           {type === "select" ? (
-            <Box as="span" sh={{ pos: ["9px", "9px", "", ""], pointerEvents: "none" }}>
+            <Box
+              as="span"
+              sh={{ pos: ["9px", "9px", "", ""], pointerEvents: "none" }}
+            >
               <Icon icon={chevronDown} />
             </Box>
           ) : null}

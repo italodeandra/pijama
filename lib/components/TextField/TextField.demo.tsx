@@ -65,6 +65,11 @@ export const TextFieldDemo = () => {
         options: [true, false],
         value: false,
       },
+      required: {
+        description: "If the input should be required.",
+        options: [true, false],
+        value: false,
+      },
       sh: {
         description: "Styles shorthand.",
         value: undefined,
@@ -91,6 +96,7 @@ export const TextFieldDemo = () => {
       name,
       placeholder,
       readOnly,
+      required,
       type,
       value,
     }) => {
@@ -132,6 +138,11 @@ export const TextFieldDemo = () => {
         readOnly
           ? `
   readOnly`
+          : ""
+      }${
+        required
+          ? `
+  required`
           : ""
       }
   type="${type}"${
