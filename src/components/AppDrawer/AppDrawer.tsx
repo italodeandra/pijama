@@ -1,4 +1,12 @@
-import { Box, Button, Drawer, Gray, Link, useBreakpoint } from "../../../lib"
+import {
+  Box,
+  Button,
+  Drawer,
+  Gray,
+  Link,
+  Skeleton,
+  useBreakpoint,
+} from "../../../lib"
 import {
   drawerState,
   toggleDrawer,
@@ -6,11 +14,11 @@ import {
 import { FC, useEffect } from "react"
 import { subscribe, useSnapshot } from "valtio"
 import { appDrawerState } from "./AppDrawer.state"
+import examples from "../../examples"
 import Icon from "@iconify/react"
 import menuIcon from "@iconify/icons-heroicons-outline/menu"
 import NextLink from "next/link"
 import { useQuery } from "react-query"
-import examples from "../../examples"
 
 export const AppDrawer: FC = ({ children }) => {
   const { width, isOpen } = useSnapshot(drawerState)
@@ -39,7 +47,7 @@ export const AppDrawer: FC = ({ children }) => {
               <Link>Home</Link>
             </NextLink>
           </Box>
-          {!components?.length && isLoading && <Box>Loading...</Box>}
+          {!components?.length && isLoading && <Skeleton />}
           {components?.map((component) => (
             <Box key={component} sh={{ mb: 1 }}>
               <NextLink href={`/components/${component}`} passHref>

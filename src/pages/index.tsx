@@ -1,11 +1,11 @@
-import { Box, Link } from "../../lib"
+import { Box, Link, Skeleton } from "../../lib"
+import examples from "../examples"
 import Head from "next/head"
 import NextLink from "next/link"
 import { useQuery } from "react-query"
-import examples from "../examples"
 
 const Home = () => {
-  const { data: components, isLoading } = useQuery<string[]>([
+  let { data: components, isLoading } = useQuery<string[]>([
     "/api/listComponentsDemos",
   ])
 
@@ -15,7 +15,7 @@ const Home = () => {
         <title>Pijama</title>
       </Head>
       <Box sh={{ fontWeight: 500, mb: 2 }}>Components</Box>
-      {!components?.length && isLoading && <Box>Loading...</Box>}
+      {!components?.length && isLoading && <Skeleton width={20} />}
       {components?.map((component) => (
         <Box key={component} sh={{ mb: 1 }}>
           <NextLink href={`/components/${component}`} passHref>
