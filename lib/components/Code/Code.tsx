@@ -1,6 +1,7 @@
 import { Box } from "../Box/Box"
 import { ReactNode, VFC } from "react"
-import { Gray } from "../../styles"
+import { Gray, Theme } from "../../styles"
+import { CSSInterpolation } from "@emotion/serialize"
 
 export const Code: VFC<{
   /**
@@ -11,10 +12,14 @@ export const Code: VFC<{
    * The content of the code.
    */
   children?: ReactNode
-}> = ({ block, children }) => (
+  /**
+   * Styles shorthand.
+   */
+  sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
+}> = ({ block, children, sh }) => (
   <Box
     as={block ? "pre" : "code"}
-    sh={{
+    sh={(theme) => ({
       bgColor: Gray.N100,
       br: 0.5,
       color: Gray.N600,
@@ -22,7 +27,12 @@ export const Code: VFC<{
       m: 0,
       mt: block ? 0 : "-2px",
       p: block ? 2 : [0.25, 0.5],
-    }}
+      ...(typeof sh === "function"
+        ? sh(theme)
+        : typeof sh === "object"
+        ? (sh as {})
+        : {}),
+    })}
   >
     {children}
   </Box>
