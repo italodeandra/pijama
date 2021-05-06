@@ -1,7 +1,7 @@
 {
   "name": "@italodeandra/pijama",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "main": "lib/index.ts",
   "author": {
     "name": "Ítalo Andrade",
