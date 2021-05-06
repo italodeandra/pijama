@@ -1,7 +1,7 @@
 import { Box, Code, useDocumentation } from "../../lib"
 
 export const ShorthandExample = () => {
-  useDocumentation({})
+  useDocumentation()
 
   return (
     <>

@@ -25,7 +25,7 @@ export type UseDocumentation = <
     }
   }
 >(
-  properties: P,
+  properties?: P,
   example?: (values: { [key: string]: any }) => string,
   description?: string
 ) => any
@@ -35,6 +35,7 @@ export const useDocumentation: UseDocumentation = (
   example,
   description
 ) => {
+  properties = properties || ({} as typeof properties)
   const router = useRouter()
   const modalRef = useRef(document.createElement("div"))
   const state = useRef(
