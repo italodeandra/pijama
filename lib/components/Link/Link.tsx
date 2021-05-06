@@ -3,6 +3,7 @@ import { forwardRef, ReactNode, VFC } from "react"
 import { Box } from "../Box/Box"
 import Color from "color"
 import { css } from "@emotion/react"
+import { isBrowser } from "../../utils"
 
 export type LinkProps = {
   /**
@@ -58,7 +59,7 @@ export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
             color: linkColor.hex(),
           })
 
-          if (window.location.pathname === href) {
+          if (isBrowser && window.location.pathname === href) {
             const activeColor = isDark
               ? linkColor.darken(0.7)
               : linkColor.lighten(0.7)
