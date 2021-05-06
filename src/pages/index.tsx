@@ -1,13 +1,12 @@
-import { Box, Link, Skeleton } from "../../lib"
-import examples from "../examples"
+import { Box, Link } from "../../lib"
+import demoList from "../demos"
+import exampleList from "../examples"
 import Head from "next/head"
 import NextLink from "next/link"
-import { useQuery } from "react-query"
 
 const Home = () => {
-  let { data: components, isLoading } = useQuery<string[]>([
-    "/api/listComponentsDemos",
-  ])
+  const components = Object.keys(demoList)
+  const examples = Object.keys(exampleList)
 
   return (
     <Box sh={{ p: 2 }}>
@@ -15,8 +14,7 @@ const Home = () => {
         <title>Pijama</title>
       </Head>
       <Box sh={{ fontWeight: 500, mb: 2 }}>Components</Box>
-      {!components?.length && isLoading && <Skeleton width={20} />}
-      {components?.map((component) => (
+      {components.map((component) => (
         <Box key={component} sh={{ mb: 1 }}>
           <NextLink href={`/components/${component}`} passHref>
             <Link>{component}</Link>
@@ -24,7 +22,7 @@ const Home = () => {
         </Box>
       ))}
       <Box sh={{ fontWeight: 500, m: [2, 0, 2, 0] }}>Examples</Box>
-      {Object.keys(examples).map((example) => (
+      {examples.map((example) => (
         <Box key={example} sh={{ mb: 1 }}>
           <NextLink href={`/examples/${example}`} passHref>
             <Link>{example.replace(/-/g, " ")}</Link>

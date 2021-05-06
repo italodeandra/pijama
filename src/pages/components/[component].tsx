@@ -1,42 +1,33 @@
 import { Box } from "../../../lib"
-import dynamic from "next/dynamic"
+import demos from "../../demos"
 import Head from "next/head"
-import { useMemo } from "react"
+import { useMount } from "react-use"
 import { useRouter } from "next/router"
 
 const Component = () => {
   const router = useRouter()
   const { component } = router.query
 
-  const loading = <span>Loading demo...</span>
+  const Demo = demos[component as string]
 
-  // noinspection JSUnusedGlobalSymbols
-  const Demo = useMemo(
-    () =>
-      dynamic(
-        () =>
-          import(`../../../lib/components/${component}/${component}.demo`).then(
-            (mod) => mod[`${component}Demo`]
-          ),
-        {
-          loading: () => loading,
-          ssr: false,
-        }
-      ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [component]
-  )
+  useMount(() => {
+    if (!Demo) {
+      void router.replace("/")
+    }
+  })
+
+  if (!Demo) {
+    return null
+  }
 
   return (
     <Box sh={{ p: 2 }}>
       <Head>
         <title>{component || "Pijama"}</title>
       </Head>
-      {Demo ? <Demo /> : loading}
+      <Demo />
     </Box>
   )
 }
 
-export default dynamic(() => Promise.resolve(Component), {
-  ssr: false,
-})
+export default Component

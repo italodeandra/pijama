@@ -1,28 +1,19 @@
-import {
-  Box,
-  Button,
-  Drawer,
-  Gray,
-  Link,
-  Skeleton,
-  useBreakpoint,
-} from "../../../lib"
+import { Box, Button, Drawer, Gray, Link, useBreakpoint } from "../../../lib"
 import { FC, useEffect } from "react"
 import { subscribe, useSnapshot } from "valtio"
 import { appDrawerState } from "./AppDrawer.state"
-import examples from "../../examples"
+import demoList from "../../demos"
+import exampleList from "../../examples"
 import Icon from "@iconify/react"
 import menuIcon from "@iconify/icons-heroicons-outline/menu"
 import NextLink from "next/link"
-import { useQuery } from "react-query"
 
 export const AppDrawer: FC = ({ children }) => {
   const { width, isOpen, toggleDrawer } = useSnapshot(appDrawerState)
   const { placement } = useSnapshot(appDrawerState)
   const isScreenSm = useBreakpoint("sm")
-  let { data: components, isLoading } = useQuery<string[]>([
-    "/api/listComponentsDemos",
-  ])
+  const components = Object.keys(demoList)
+  const examples = Object.keys(exampleList)
 
   useEffect(() => {
     const localStorageDrawerIsOpen = JSON.parse(
@@ -47,8 +38,7 @@ export const AppDrawer: FC = ({ children }) => {
               <Link>Home</Link>
             </NextLink>
           </Box>
-          {!components?.length && isLoading && <Skeleton />}
-          {components?.map((component) => (
+          {components.map((component) => (
             <Box key={component} sh={{ mb: 1 }}>
               <NextLink href={`/components/${component}`} passHref>
                 <Link>{component}</Link>
@@ -56,7 +46,7 @@ export const AppDrawer: FC = ({ children }) => {
             </Box>
           ))}
           <Box sh={{ m: [2, 0, 2, 0] }} />
-          {Object.keys(examples).map((example) => (
+          {examples.map((example) => (
             <Box key={example} sh={{ mb: 1 }}>
               <NextLink href={`/examples/${example}`} passHref>
                 <Link>{example.replace(/-/g, " ")}</Link>
