@@ -1,6 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from "next/document"
-import React from "react"
 import { defaultTheme } from "../../lib"
+import React from "react"
 
 // noinspection JSUnusedGlobalSymbols
 export default class MyDocument extends Document {

@@ -1,5 +1,6 @@
 import { MouseEvent } from "react"
 
+// noinspection JSUnusedGlobalSymbols
 export const goToIdSmoothly = (
   event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
 ) => {

@@ -1,6 +1,6 @@
 import fg from "fast-glob"
-import { sortBy } from "lodash"
 import { NextApiHandler } from "next"
+import { sortBy } from "lodash"
 
 const listComponentDemos = () =>
   fg("**/*.demo.tsx", { objectMode: true }).then((res) =>

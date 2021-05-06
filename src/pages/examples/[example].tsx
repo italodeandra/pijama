@@ -1,8 +1,8 @@
 import { Box } from "../../../lib"
 import dynamic from "next/dynamic"
+import examples from "../../examples"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import examples from "../../examples"
 
 const Example = () => {
   const router = useRouter()

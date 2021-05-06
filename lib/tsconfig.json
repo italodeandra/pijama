@@ -11,7 +11,9 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    "../src/setupTests.ts"
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "**/*.demo.tsx"
   ]
 }

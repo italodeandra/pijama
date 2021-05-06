@@ -1,10 +1,10 @@
 import {
   ENTERED,
-  ENTERING,
   EnterHandler,
+  ENTERING,
   ExitHandler,
 } from "react-transition-group/Transition"
-import { ReactElement, Ref, VFC, useRef } from "react"
+import { ReactElement, Ref, useRef, VFC } from "react"
 import { Transition, TransitionStatus } from "react-transition-group"
 import { useTheme, withTheme } from "../../styles"
 import { css } from "@emotion/react"

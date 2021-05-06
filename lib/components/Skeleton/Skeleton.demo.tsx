@@ -1,6 +1,7 @@
 import { Skeleton } from "./Skeleton"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const SkeletonDemo = () => {
   const props = useDocumentation(
     {

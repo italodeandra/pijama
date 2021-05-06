@@ -3,6 +3,7 @@ import homeIcon from "@iconify/icons-heroicons-outline/home"
 import Icon from "@iconify/react"
 import { useDocumentation } from "../../hooks"
 
+// noinspection JSUnusedGlobalSymbols
 export const ButtonDemo = () => {
   const { children, icon, ...props } = useDocumentation(
     {

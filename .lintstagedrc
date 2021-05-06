@@ -1,4 +1,4 @@
 {
-  "*.{js,ts,tsx}": "yarn eslint --cache --fix",
-  "*.{js,ts,tsx,css,md}": "yarn prettier --write"
+  "*.{js,ts,tsx}": "eslint --cache --fix",
+  "*.{js,ts,tsx,css,md}": "prettier --write"
 }

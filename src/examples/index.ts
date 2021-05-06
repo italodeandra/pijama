@@ -1,7 +1,9 @@
 import { FormAndValidationExample } from "./Form-and-Validation"
 import { ShorthandExample } from "./Shorthand"
 
-export default {
+const examples = {
   "Form-and-Validation": FormAndValidationExample,
   Shorthand: ShorthandExample,
 }
+
+export default examples

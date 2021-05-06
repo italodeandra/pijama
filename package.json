@@ -2,32 +2,28 @@
   "name": "@italodeandra/pijama",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "lib/index.ts",
   "author": {
     "name": "Ítalo Andrade",
     "email": "italodeandra@gmail.com",
     "url": "https://italodeandra.de"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "main": "dist/index.ts",
+    "typings": "dist/index.d.ts"
   },
   "scripts": {
     "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable",
     "prebuild": "shx rm -rf dist",
-    "build": "tsc --build lib/tsconfig.json",
-    "postbuild": "shx cp package.json readme.md jest.config.js tsconfig.json next.config.js .eslintrc babel.config.js .lintstagedrc dist",
-    "pre-publish": "yarn build && cd dist && json -I -f package.json -e \"this.private=false; this.devDependencies=undefined; this.scripts=undefined; this['lint-staged']=undefined;\"",
-    "github:publish": "yarn pre-publish && cd dist && yarn publish",
-    "yalc:publish": "yarn pre-publish && cd dist && yalc publish --private",
+    "build": "pnpm prebuild && tsc --build lib/tsconfig.json",
+    "yalc:publish": "pnpm build && yalc publish --private",
     "test": "jest",
-    "demo:dev": "next dev",
-    "demo:build": "next build",
-    "demo:start": "next start",
+    "doc:dev": "next dev",
+    "doc:build": "next build",
+    "doc:start": "next start",
     "pre-commit": "lint-staged",
-    "pre-push": "npm run test"
+    "pre-push": "pnpm test"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",

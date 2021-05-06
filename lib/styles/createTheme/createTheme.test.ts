@@ -1,5 +1,5 @@
-import { Gray } from "../colors"
 import { createTheme } from "./createTheme"
+import { Gray } from "../colors"
 
 describe("createTheme", () => {
   test("should reuse existing theme utility", () => {

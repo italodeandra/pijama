@@ -76,8 +76,8 @@ export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
 
       styles.unshift(
         sh({
-          textDecoration: "none",
           outline: "none",
+          textDecoration: "none",
         })
       )
 

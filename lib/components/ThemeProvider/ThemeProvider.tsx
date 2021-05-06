@@ -1,3 +1,4 @@
+import { createTheme, Theme, withTheme } from "../../styles"
 import {
   css,
   Global as EmotionGlobal,
@@ -6,7 +7,6 @@ import {
 import { ReactNode, VFC } from "react"
 import { NProgress } from "../NProgress"
 import { Snackbar } from "../index"
-import { createTheme, Theme, withTheme } from "../../styles"
 
 export type ThemeProviderProps = {
   /**

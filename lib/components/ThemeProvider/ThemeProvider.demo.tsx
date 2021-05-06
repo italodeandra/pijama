@@ -1,6 +1,6 @@
-import { useDocumentation } from "../../hooks"
-import { ThemeProvider } from "./ThemeProvider"
 import { createTheme } from "../../styles"
+import { ThemeProvider } from "./ThemeProvider"
+import { useDocumentation } from "../../hooks"
 
 // noinspection JSUnusedGlobalSymbols
 export const ThemeProviderDemo = () => {

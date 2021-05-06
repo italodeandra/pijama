@@ -1,7 +1,7 @@
 import { CSSInterpolation, SerializedStyles } from "@emotion/serialize"
-import { Theme } from "./Theme"
 import { createTheme } from "./createTheme/createTheme"
 import { shorthandValue } from "./shorthand/shorthand"
+import { Theme } from "./Theme"
 
 export const withTheme = (
   styles: (

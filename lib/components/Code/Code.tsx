@@ -1,6 +1,6 @@
-import { Box } from "../Box/Box"
-import { ReactNode, VFC } from "react"
 import { Gray, Theme } from "../../styles"
+import { ReactNode, VFC } from "react"
+import { Box } from "../Box/Box"
 import { CSSInterpolation } from "@emotion/serialize"
 
 export const Code: VFC<{

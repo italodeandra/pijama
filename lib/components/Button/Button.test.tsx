@@ -1,4 +1,4 @@
-import { Gray, LightBlue, createTheme } from "../../styles"
+import { createTheme, Gray, LightBlue } from "../../styles"
 import { render, screen } from "@testing-library/react"
 import { Button } from "./Button"
 import Color from "color"

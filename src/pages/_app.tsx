@@ -1,12 +1,12 @@
 import "@fontsource/inter/variable-full.css"
 import { AppDrawer } from "../components"
 import { AppProps } from "next/app"
+import { DefaultSeo } from "next-seo"
+import Head from "next/head"
 import { Hydrate } from "react-query/hydration"
 import { QueryClientProvider } from "react-query"
 import { ThemeProvider } from "../../lib"
 import useQueryClientRef from "../queryClient"
-import Head from "next/head"
-import { DefaultSeo } from "next-seo"
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryClientRef = useQueryClientRef()
@@ -18,10 +18,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         openGraph={{
           images: [
             {
-              url: "/icons/android-chrome-512x512.png",
-              height: 512,
-              width: 512,
               alt: "Majapinho",
+              height: 512,
+              url: "/icons/android-chrome-512x512.png",
+              width: 512,
             },
           ],
         }}

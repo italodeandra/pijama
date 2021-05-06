@@ -1,4 +1,4 @@
-import { ReactElement, VFC, useState } from "react"
+import { ReactElement, useState, VFC } from "react"
 import { useIsomorphicLayoutEffect } from "react-use"
 
 export type DisableSsrProps = {
@@ -8,6 +8,7 @@ export type DisableSsrProps = {
   children: ReactElement
 }
 
+// noinspection JSUnusedGlobalSymbols
 export const DisableSsr: VFC<DisableSsrProps> = ({ children }) => {
   const [mountedState, setMountedState] = useState(false)
 
