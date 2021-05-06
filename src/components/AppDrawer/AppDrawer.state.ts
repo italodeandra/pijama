@@ -1,5 +1,3 @@
-import { proxy } from "valtio"
+import { createDrawerState } from "../../../lib"
 
-export const appDrawerState = proxy({
-  placement: "left" as "left" | "right",
-})
+export const appDrawerState = createDrawerState()

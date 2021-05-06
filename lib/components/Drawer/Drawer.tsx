@@ -1,7 +1,7 @@
-import { drawerState, toggleDrawer } from "./drawerState"
-import { ReactNode, useEffect, VFC } from "react"
+import { ReactNode, useEffect, useMemo, VFC } from "react"
 import { useBreakpoint, withTheme } from "../../styles"
 import { Box } from "../Box/Box"
+import { createDrawerState } from "./drawerState"
 import { css } from "@emotion/react"
 import { Fade } from "../Fade/Fade"
 import { Portal } from "../Portal/Portal"
@@ -18,25 +18,35 @@ export type DrawerProps = {
    * @default left
    */
   placement?: "left" | "right"
+  /**
+   * Use an external state instead of creating one internally.
+   */
+  state?: ReturnType<typeof createDrawerState>
 }
 
-const DarkOverlay = () => (
-  <Box
-    onClick={() => toggleDrawer(false)}
-    sh={{ bgColor: "rgba(0,0,0,.4)", pos: 0 }}
-  />
-)
-
-export const Drawer: VFC<DrawerProps> = ({ children, placement = "left" }) => {
-  const { isOpen, isRendering } = useSnapshot(drawerState)
+export const Drawer: VFC<DrawerProps> = ({
+  children,
+  placement = "left",
+  state,
+}) => {
+  const drawerState = useMemo(() => state || createDrawerState(), [state])
+  const { isOpen, isRendering, toggleDrawer } = useSnapshot(drawerState)
   const isScreenSm = useBreakpoint("sm")
+
+  const DarkOverlay = () => (
+    <Box
+      onClick={() => toggleDrawer(false)}
+      sh={{ bgColor: "rgba(0,0,0,.4)", pos: 0 }}
+    />
+  )
 
   const [drawerContentRef, { width }] = useMeasure()
   useEffect(() => {
     drawerState.width = width
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width])
 
-  useDrawerTouchHandlers(placement)
+  useDrawerTouchHandlers(drawerState, placement)
 
   const drawerStyles = withTheme((theme, sh) =>
     css(
@@ -69,22 +79,27 @@ export const Drawer: VFC<DrawerProps> = ({ children, placement = "left" }) => {
   )
 }
 
-const conditions = {
-  left: {
-    false: () => !drawerState.isOpen && drawerState.startPosition < 40,
-    true: () =>
-      drawerState.isOpen && drawerState.startPosition < drawerState.width + 40,
-  },
-  right: {
-    false: () =>
-      !drawerState.isOpen && drawerState.startPosition > window.innerWidth - 40,
-    true: () =>
-      drawerState.isOpen &&
-      drawerState.startPosition > window.innerWidth - drawerState.width - 40,
-  },
-}
+const useDrawerTouchHandlers = (
+  drawerState: ReturnType<typeof createDrawerState>,
+  placement: "left" | "right"
+) => {
+  const conditions = {
+    left: {
+      false: () => !drawerState.isOpen && drawerState.startPosition < 40,
+      true: () =>
+        drawerState.isOpen &&
+        drawerState.startPosition < drawerState.width + 40,
+    },
+    right: {
+      false: () =>
+        !drawerState.isOpen &&
+        drawerState.startPosition > window.innerWidth - 40,
+      true: () =>
+        drawerState.isOpen &&
+        drawerState.startPosition > window.innerWidth - drawerState.width - 40,
+    },
+  }
 
-const useDrawerTouchHandlers = (placement: "left" | "right") => {
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       const { clientX } = e.targetTouches[0]

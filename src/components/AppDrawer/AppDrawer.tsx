@@ -7,10 +7,6 @@ import {
   Skeleton,
   useBreakpoint,
 } from "../../../lib"
-import {
-  drawerState,
-  toggleDrawer,
-} from "../../../lib/components/Drawer/drawerState"
 import { FC, useEffect } from "react"
 import { subscribe, useSnapshot } from "valtio"
 import { appDrawerState } from "./AppDrawer.state"
@@ -21,7 +17,7 @@ import NextLink from "next/link"
 import { useQuery } from "react-query"
 
 export const AppDrawer: FC = ({ children }) => {
-  const { width, isOpen } = useSnapshot(drawerState)
+  const { width, isOpen, toggleDrawer } = useSnapshot(appDrawerState)
   const { placement } = useSnapshot(appDrawerState)
   const isScreenSm = useBreakpoint("sm")
   let { data: components, isLoading } = useQuery<string[]>([
@@ -33,14 +29,18 @@ export const AppDrawer: FC = ({ children }) => {
       localStorage.getItem("drawer.isOpen") || "false"
     )
     toggleDrawer(localStorageDrawerIsOpen)
-    return subscribe(drawerState, () =>
-      localStorage.setItem("drawer.isOpen", JSON.stringify(drawerState.isOpen))
+    return subscribe(appDrawerState, () =>
+      localStorage.setItem(
+        "drawer.isOpen",
+        JSON.stringify(appDrawerState.isOpen)
+      )
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
-      <Drawer placement={placement}>
+      <Drawer placement={placement} state={appDrawerState}>
         <Box sh={{ p: 2, pb: 0 }}>
           <Box sh={{ mb: 2 }}>
             <NextLink href={`/`} passHref>
