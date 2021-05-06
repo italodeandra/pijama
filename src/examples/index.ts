@@ -1,5 +1,5 @@
-import { FormAndValidationExample } from "./Form-and-Validation"
-import { ShorthandExample } from "./Shorthand"
+import { FormAndValidationExample } from "./Form-and-Validation.example"
+import { ShorthandExample } from "./Shorthand.example"
 
 const examples = {
   "Form-and-Validation": FormAndValidationExample,
