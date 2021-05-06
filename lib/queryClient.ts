@@ -23,12 +23,10 @@ export const createQueryClient = () =>
     },
   })
 
-const useQueryClientRef = () => {
+export const useQueryClientRef = () => {
   const queryClientRef = useRef() as MutableRefObject<QueryClient>
   if (!queryClientRef.current) {
     queryClientRef.current = createQueryClient()
   }
   return queryClientRef
 }
-
-export default useQueryClientRef

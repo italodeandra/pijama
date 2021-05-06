@@ -1,16 +1,16 @@
 import "@fontsource/inter/variable-full.css"
+import { defaultTheme, ThemeProvider, useQueryClientRef } from "../../lib"
 import { AppDrawer } from "../components"
 import { AppProps } from "next/app"
 import { DefaultSeo } from "next-seo"
 import Head from "next/head"
 import { Hydrate } from "react-query/hydration"
 import { QueryClientProvider } from "react-query"
-import { ThemeProvider } from "../../lib"
-import useQueryClientRef from "../queryClient"
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const queryClientRef = useQueryClientRef()
 
+  // noinspection HtmlRequiredTitleElement
   return (
     <ThemeProvider>
       <DefaultSeo
@@ -28,8 +28,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         title="Pijama"
       />
       <Head>
-        <title>Pijama</title>
         <meta content="initial-scale=1, width=device-width" name="viewport" />
+        <meta content={defaultTheme.color.primary} name="theme-color" />
         <link
           href={"/icons/apple-touch-icon.png"}
           rel="apple-touch-icon"
