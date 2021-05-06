@@ -163,7 +163,7 @@ export const Button: VFC<ButtonProps> = forwardRef(
                     minH: 3,
                   }
                 : {
-                    fontSize: 20,
+                    fontSize: 16,
                     minH: 4,
                     minW: 4,
                   }
