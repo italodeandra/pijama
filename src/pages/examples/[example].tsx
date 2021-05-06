@@ -1,7 +1,7 @@
 import { Box } from "../../../lib"
-import dynamic from "next/dynamic"
 import examples from "../../examples"
 import Head from "next/head"
+import { useMount } from "react-use"
 import { useRouter } from "next/router"
 
 const Example = () => {
@@ -9,6 +9,16 @@ const Example = () => {
   const { example } = router.query
 
   const Demo = examples[example as string] || (() => null)
+
+  useMount(() => {
+    if (!Demo) {
+      void router.replace("/")
+    }
+  })
+
+  if (!Demo) {
+    return null
+  }
 
   return (
     <Box sh={{ p: 2 }}>
@@ -20,7 +30,4 @@ const Example = () => {
   )
 }
 
-// noinspection JSUnusedGlobalSymbols
-export default dynamic(() => Promise.resolve(Example), {
-  ssr: false,
-})
+export default Example
