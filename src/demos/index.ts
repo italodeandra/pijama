@@ -11,6 +11,8 @@ import { NProgressDemo } from "../../lib/components/NProgress/NProgress.demo"
 import { PortalDemo } from "../../lib/components/Portal/Portal.demo"
 import { SkeletonDemo } from "../../lib/components/Skeleton/Skeleton.demo"
 import { SnackbarDemo } from "../../lib/components/Snackbar/Snackbar.demo"
+import { TextFieldDemo } from "../../lib/components/TextField/TextField.demo"
+import { TooltipDemo } from "../../lib/components/Tooltip/Tooltip.demo"
 
 const demos = {
   Box: BoxDemo,
@@ -26,6 +28,8 @@ const demos = {
   Portal: PortalDemo,
   Skeleton: SkeletonDemo,
   Snackbar: SnackbarDemo,
+  TextField: TextFieldDemo,
+  Tooltip: TooltipDemo,
 }
 
 export default demos
