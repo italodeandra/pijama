@@ -1,5 +1,5 @@
-import { createRef, Ref } from "react"
 import { proxy, ref } from "valtio"
+import { createRef } from "react"
 
 export const createDrawerState = () => {
   const drawerState = proxy({
@@ -7,7 +7,7 @@ export const createDrawerState = () => {
     isOpen: false,
     isRendering: false,
     placement: "left" as "left" | "right",
-    ref: ref(createRef()) as Ref<HTMLDivElement> & ReturnType<typeof ref>,
+    ref: ref(createRef<HTMLDivElement>()),
     startPosition: 0,
     toggleDrawer(state?: boolean) {
       const newState = state !== undefined ? state : !drawerState.isOpen

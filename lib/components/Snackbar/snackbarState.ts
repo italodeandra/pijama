@@ -6,7 +6,7 @@ import { uuid } from "../../utils"
 export type IMessage = {
   id: string
   content: string
-  nodeRef: Ref<HTMLDivElement> & ReturnType<typeof ref>
+  nodeRef: Ref<HTMLDivElement>
 }
 
 export const snackbarState = proxy({
