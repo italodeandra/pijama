@@ -18,7 +18,7 @@ import Icon from "@iconify/react"
 import { useMeasure } from "react-use"
 import { useSnapshot } from "valtio"
 import { VFC } from "react"
-import xIcon from "./icons/x"
+import xIcon from "@iconify/icons-heroicons-outline/x"
 
 export type SnackbarProps = {}
 

@@ -33,6 +33,7 @@
     "@emotion/serialize": "^1.0.2",
     "@emotion/server": "^11.0.0",
     "@fontsource/inter": "^4.2.2",
+    "@iconify/icons-heroicons-outline": "^1.1.2",
     "@iconify/react": "^1.1.4",
     "@next/eslint-plugin-next": "^10.2.0",
     "@testing-library/dom": "^7.30.4",
@@ -86,7 +87,6 @@
     "valtio": "1.0.3"
   },
   "devDependencies": {
-    "@iconify/icons-heroicons-outline": "^1.1.2",
     "fast-glob": "^3.2.5",
     "json": "^11.0.0",
     "react-syntax-highlighter": "^15.4.3"
