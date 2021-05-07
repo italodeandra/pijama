@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "prebuild": "shx rm -rf dist",
     "build": "tsc --build lib/tsconfig.json",
-    "postbuild": "shx cp package.json readme.md jest.config.js tsconfig.json next.config.js .eslintrc babel.config.js .lintstagedrc .prettierrc.js dist",
+    "postbuild": "shx cp package.json readme.md jest.config.js tsconfig.json next.config.js .eslintrc babel.config.js .lintstagedrc.js .prettierrc.js dist",
     "pre-publish": "npm run build && cd dist && json -I -f package.json -e \"this.private=false; this.devDependencies=undefined; this.scripts=undefined;\"",
     "github:publish": "npm run pre-publish && cd dist && npm publish",
     "yalc:publish": "npm run pre-publish && cd dist && yalc publish --private",
