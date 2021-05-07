@@ -88,7 +88,8 @@
   "devDependencies": {
     "@iconify/icons-heroicons-outline": "^1.1.2",
     "fast-glob": "^3.2.5",
-    "json": "^11.0.0"
+    "json": "^11.0.0",
+    "react-syntax-highlighter": "^15.4.3"
   },
   "author": {
     "name": "Ítalo Andrade",

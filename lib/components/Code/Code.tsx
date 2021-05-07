@@ -20,6 +20,11 @@ export const Code: VFC<{
   <Box
     as={block ? "pre" : "code"}
     sh={(theme) => ({
+      "& pre": {
+        backgroundColor: "transparent !important",
+        m: "0px !important",
+        p: "0px !important",
+      },
       bgColor: Gray.N100,
       br: 0.5,
       color: Gray.N600,
