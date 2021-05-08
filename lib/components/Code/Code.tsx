@@ -1,9 +1,8 @@
-import { Gray, Theme } from "../../styles"
+import { ComponentShorthandProps, Gray } from "../../styles"
 import { ReactNode, VFC } from "react"
 import { Box } from "../Box/Box"
-import { CSSInterpolation } from "@emotion/serialize"
 
-export const Code: VFC<{
+export type CodeProps = {
   /**
    * If the code is a block.
    */
@@ -12,11 +11,9 @@ export const Code: VFC<{
    * The content of the code.
    */
   children?: ReactNode
-  /**
-   * Styles shorthand.
-   */
-  sh?: CSSInterpolation | ((theme: Theme) => CSSInterpolation)
-}> = ({ block, children, sh }) => (
+} & ComponentShorthandProps
+
+export const Code: VFC<CodeProps> = ({ block, children, sh, ...props }) => (
   <Box
     as={block ? "pre" : "code"}
     sh={(theme) => ({
@@ -38,6 +35,7 @@ export const Code: VFC<{
         ? (sh as {})
         : {}),
     })}
+    {...props}
   >
     {children}
   </Box>
