@@ -7,6 +7,7 @@ import { DateDistanceNowDemo } from "../../lib/components/DateDistanceNow/DateDi
 import { DateFormatDemo } from "../../lib/components/DateFormat/DateFormat.demo"
 import { DrawerDemo } from "../../lib/components/Drawer/Drawer.demo"
 import { FadeDemo } from "../../lib/components/Fade/Fade.demo"
+import { JsonDemo } from "../../lib/components/Json/Json.demo"
 import { LinearProgressDemo } from "../../lib/components/LinearProgress/LinearProgress.demo"
 import { LinkDemo } from "../../lib/components/Link/Link.demo"
 import { NProgressDemo } from "../../lib/components/NProgress/NProgress.demo"
@@ -26,6 +27,7 @@ const demos = {
   DateFormat: DateFormatDemo,
   Drawer: DrawerDemo,
   Fade: FadeDemo,
+  Json: JsonDemo,
   LinearProgress: LinearProgressDemo,
   Link: LinkDemo,
   NProgress: NProgressDemo,
