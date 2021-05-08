@@ -28,6 +28,7 @@ export const Code: VFC<CodeProps> = ({ block, children, sh, ...props }) => (
       display: block ? "block" : "inline-block",
       m: 0,
       mt: block ? 0 : "-2px",
+      overflowX: "auto",
       p: block ? 2 : [0.25, 0.5],
       ...(typeof sh === "function"
         ? sh(theme)
