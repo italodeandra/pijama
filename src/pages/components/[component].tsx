@@ -1,7 +1,7 @@
 import { Box } from "../../../lib"
 import demos from "../../demos"
 import Head from "next/head"
-import { useMount } from "react-use"
+import { useEffect } from "react"
 import { useRouter } from "next/router"
 
 const Component = () => {
@@ -10,11 +10,12 @@ const Component = () => {
 
   const Demo = demos[component as string]
 
-  useMount(() => {
-    if (!Demo) {
+  useEffect(() => {
+    if (component && !Demo) {
       void router.replace("/")
     }
-  })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [component])
 
   if (!Demo) {
     return null
