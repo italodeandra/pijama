@@ -2,6 +2,7 @@ import { BoxDemo } from "../../lib/components/Box/Box.demo"
 import { ButtonDemo } from "../../lib/components/Button/Button.demo"
 import { CodeDemo } from "../../lib/components/Code/Code.demo"
 import { CollapseDemo } from "../../lib/components/Collapse/Collapse.demo"
+import { ComposeDemo } from "../../lib/components/Compose/Compose.demo"
 import { DateFormatDemo } from "../../lib/components/DateFormat/DateFormat.demo"
 import { DrawerDemo } from "../../lib/components/Drawer/Drawer.demo"
 import { FadeDemo } from "../../lib/components/Fade/Fade.demo"
@@ -19,6 +20,7 @@ const demos = {
   Button: ButtonDemo,
   Code: CodeDemo,
   Collapse: CollapseDemo,
+  Compose: ComposeDemo,
   DateFormat: DateFormatDemo,
   Drawer: DrawerDemo,
   Fade: FadeDemo,
