@@ -1,7 +1,8 @@
 {
   "extends": [
     "react-app",
-    "plugin:@next/next/recommended"
+    "plugin:@next/next/recommended",
+    "plugin:valtio/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
