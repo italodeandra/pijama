@@ -17,7 +17,7 @@ import { CSSInterpolation } from "@emotion/serialize"
 import Icon from "@iconify/react"
 import { useUpdateEffect } from "react-use"
 
-export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
+export type FieldProps<V = unknown, E = HTMLInputElement> = {
   /**
    * Change which HTML element or React component the field should be.
    * @default div
@@ -80,7 +80,7 @@ export type TextFieldProps<V = unknown, E = HTMLInputElement> = {
   ref?: Ref<HTMLInputElement>
 } & InputHTMLAttributes<HTMLInputElement>
 
-export const TextField: VFC<TextFieldProps> = forwardRef(
+export const Field: VFC<FieldProps> = forwardRef(
   (
     {
       autoComplete = "new-password",
@@ -112,7 +112,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
     const [isFocused, setFocused] = useState(false)
     const [innerValue, setInnerValue] = useState(value || defaultValue)
 
-    const textFieldStyles = withTheme((theme, sh) => {
+    const fieldStyles = withTheme((theme, sh) => {
       let styles = []
 
       try {
@@ -211,7 +211,7 @@ export const TextField: VFC<TextFieldProps> = forwardRef(
     const InputComponent: any = type !== "select" ? "input" : "select"
 
     return (
-      <Box as={as} css={textFieldStyles} sh={sh}>
+      <Box as={as} css={fieldStyles} sh={sh}>
         {label && (
           <label htmlFor={id}>
             {label}

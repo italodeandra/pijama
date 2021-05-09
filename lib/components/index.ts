@@ -1,6 +1,6 @@
 export * from "./Button/Button"
 export * from "./DisableSsr/DisableSsr"
-export * from "./TextField/TextField"
+export * from "./Field/Field"
 export * from "./LinearProgress/LinearProgress"
 export * from "./Snackbar/Snackbar"
 export * from "./Collapse/Collapse"

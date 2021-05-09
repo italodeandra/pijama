@@ -1,4 +1,6 @@
-import { Box, Button, TextField, Tooltip } from "../components"
+/* eslint-disable valtio/state-snapshot-rule */
+
+import { Box, Button, Field, Tooltip } from "../components"
 import { proxy, useSnapshot } from "valtio"
 import { useEffect, useRef } from "react"
 import { useMount, useUnmount, useUpdateEffect } from "react-use"
@@ -135,7 +137,7 @@ export const useDocumentation: UseDocumentation = (
               }}
             >
               {keys.map((key) => (
-                <TextField
+                <Field
                   key={key}
                   label={
                     <Tooltip title={properties[key].description}>
@@ -167,7 +169,7 @@ export const useDocumentation: UseDocumentation = (
                       {typeof o === "boolean" ? (o ? "True" : "False") : o}
                     </option>
                   ))}
-                </TextField>
+                </Field>
               ))}
             </Box>
           )}

@@ -1,4 +1,4 @@
-import { Box, Button, Code, TextField, useDocumentation } from "../../lib"
+import { Box, Button, Code, Field, useDocumentation } from "../../lib"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { useForm } from "react-hook-form"
 
@@ -18,7 +18,7 @@ const example = `const FormAndValidationExample = () => {
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
-        <TextField
+        <Field
           label="Field not required"
           defaultValue="test"
           {...register("example")}
@@ -26,7 +26,7 @@ const example = `const FormAndValidationExample = () => {
 
         {/* include validation with required or other standard HTML validation rules */}
         {/* errors will return when field validation fails  */}
-        <TextField
+        <Field
           label="Field required"
           required
           {...register("exampleRequired", {
@@ -63,7 +63,7 @@ export const FormAndValidationExample = () => {
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* register your input into the hook by invoking the "register" function */}
-          <TextField
+          <Field
             defaultValue="test"
             label="Field not required"
             {...register("example")}
@@ -71,7 +71,7 @@ export const FormAndValidationExample = () => {
 
           {/* include validation with required or other standard HTML validation rules */}
           {/* errors will return when field validation fails  */}
-          <TextField
+          <Field
             label="Field required"
             required
             {...register("exampleRequired", {

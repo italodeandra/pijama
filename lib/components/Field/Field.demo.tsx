@@ -1,8 +1,8 @@
-import { TextField } from "./TextField"
+import { Field } from "./Field"
 import { useDocumentation } from "../../hooks"
 
 // noinspection JSUnusedGlobalSymbols
-export const TextFieldDemo = () => {
+export const FieldDemo = () => {
   const { sh, type, ...props } = useDocumentation(
     {
       as: {
@@ -153,12 +153,12 @@ export const TextFieldDemo = () => {
       }
 `
       return type !== "select"
-        ? `<TextField${properties}/>`
-        : `<TextField${properties}>
+        ? `<Field${properties}/>`
+        : `<Field${properties}>
   <option>Option 1</option>
   <option>Option 2</option>
   <option>Option 3</option>
-</TextField>`
+</Field>`
     }
   )
 
@@ -171,7 +171,7 @@ export const TextFieldDemo = () => {
   }
 
   return (
-    <TextField {...props} sh={{ width: 20, ...tryParseJson(sh) }} type={type}>
+    <Field {...props} sh={{ width: 20, ...tryParseJson(sh) }} type={type}>
       {type === "select" ? (
         <>
           <option>Option 1</option>
@@ -179,6 +179,6 @@ export const TextFieldDemo = () => {
           <option>Option 3</option>
         </>
       ) : null}
-    </TextField>
+    </Field>
   )
 }

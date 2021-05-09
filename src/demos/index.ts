@@ -7,6 +7,7 @@ import { DateDistanceNowDemo } from "../../lib/components/DateDistanceNow/DateDi
 import { DateFormatDemo } from "../../lib/components/DateFormat/DateFormat.demo"
 import { DrawerDemo } from "../../lib/components/Drawer/Drawer.demo"
 import { FadeDemo } from "../../lib/components/Fade/Fade.demo"
+import { FieldDemo } from "../../lib/components/Field/Field.demo"
 import { JsonDemo } from "../../lib/components/Json/Json.demo"
 import { LinearProgressDemo } from "../../lib/components/LinearProgress/LinearProgress.demo"
 import { LinkDemo } from "../../lib/components/Link/Link.demo"
@@ -14,7 +15,6 @@ import { NProgressDemo } from "../../lib/components/NProgress/NProgress.demo"
 import { PortalDemo } from "../../lib/components/Portal/Portal.demo"
 import { SkeletonDemo } from "../../lib/components/Skeleton/Skeleton.demo"
 import { SnackbarDemo } from "../../lib/components/Snackbar/Snackbar.demo"
-import { TextFieldDemo } from "../../lib/components/TextField/TextField.demo"
 import { TooltipDemo } from "../../lib/components/Tooltip/Tooltip.demo"
 
 const demos = {
@@ -27,6 +27,7 @@ const demos = {
   DateFormat: DateFormatDemo,
   Drawer: DrawerDemo,
   Fade: FadeDemo,
+  Field: FieldDemo,
   Json: JsonDemo,
   LinearProgress: LinearProgressDemo,
   Link: LinkDemo,
@@ -34,7 +35,6 @@ const demos = {
   Portal: PortalDemo,
   Skeleton: SkeletonDemo,
   Snackbar: SnackbarDemo,
-  TextField: TextFieldDemo,
   Tooltip: TooltipDemo,
 }
 
