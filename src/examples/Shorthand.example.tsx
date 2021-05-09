@@ -1,5 +1,5 @@
-import { Box, Code, useDocumentation } from "../../lib"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { Box, useDocumentation } from "../../lib"
+import { Code } from "../components"
 
 export const ShorthandExample = () => {
   useDocumentation()
@@ -16,15 +16,13 @@ export const ShorthandExample = () => {
           This text will have the secondary text color
         </Box>
 
-        <Code block sh={{ mt: 2 }}>
-          <SyntaxHighlighter language="jsx">
-            {`<Box sh={{ color: "textPrimary" }}>
+        <Code>
+          {`<Box sh={{ color: "textPrimary" }}>
   This text will have the primary text color
 </Box>
 <Box sh={{ color: "textSecondary" }}>
   This text will have the secondary text color
 </Box>`}
-          </SyntaxHighlighter>
         </Code>
       </Box>
 
@@ -40,9 +38,8 @@ export const ShorthandExample = () => {
           <Box sh={{ m: 2, p: 1, shadow: "xxl" }}>shadow: xxl</Box>
         </Box>
 
-        <Code block sh={{ mt: 2 }}>
-          <SyntaxHighlighter language="jsx">
-            {`<Box sh={{ shadow: "xs" }}>
+        <Code>
+          {`<Box sh={{ shadow: "xs" }}>
   shadow: xs
 </Box>
 <Box sh={{ shadow: "sm" }}>
@@ -60,7 +57,6 @@ export const ShorthandExample = () => {
 <Box sh={{ shadow: "xxl" }}>
   shadow: xxl
 </Box>`}
-          </SyntaxHighlighter>
         </Code>
       </Box>
     </>

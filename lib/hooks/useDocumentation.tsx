@@ -146,8 +146,13 @@ export const useDocumentation: UseDocumentation = (
                   }
                   name={key}
                   onChangeValue={(value) => {
-                    value =
-                      typeof snap[key] === "boolean" ? value === "true" : value
+                    value = !!properties[key].options
+                      ? value === "true"
+                        ? true
+                        : value === "false"
+                        ? false
+                        : value
+                      : value
                     // @ts-ignore
                     return (state.current[key] = value)
                   }}

@@ -1,5 +1,5 @@
-import { Box, Button, Code, Field, useDocumentation } from "../../lib"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { Box, Button, Field, useDocumentation } from "../../lib"
+import { Code } from "../components"
 import { useForm } from "react-hook-form"
 
 const example = `const FormAndValidationExample = () => {
@@ -87,9 +87,7 @@ export const FormAndValidationExample = () => {
         </form>
       </Box>
 
-      <Code block sh={{ mt: 2 }}>
-        <SyntaxHighlighter language="jsx">{example}</SyntaxHighlighter>
-      </Code>
+      <Code>{example}</Code>
     </Box>
   )
 }
