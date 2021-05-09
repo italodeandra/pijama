@@ -4,6 +4,16 @@ export const isServer = !isBrowser
 // noinspection JSUnusedGlobalSymbols
 export const isTouchDevice =
   isBrowser &&
-  ("ontouchstart" in window ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0)
+  (!!(
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window ||
+      // @ts-ignore
+      (window.DocumentTouch &&
+        typeof document !== "undefined" &&
+        // @ts-ignore
+        document instanceof window.DocumentTouch))
+  ) ||
+    !!(
+      typeof navigator !== "undefined" &&
+      (navigator.maxTouchPoints || navigator.msMaxTouchPoints)
+    ))
