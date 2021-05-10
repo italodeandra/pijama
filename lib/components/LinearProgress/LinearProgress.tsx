@@ -16,6 +16,13 @@ export type LinearProgressProps = {
   transitionDuration?: number
 } & ComponentShorthandProps
 
+/**
+ * A linear progress bar.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Json)
+ *
+ * @example <LinearProgress value={20} />
+ */
 export const LinearProgress: VFC<LinearProgressProps> = ({
   value,
   transitionDuration,

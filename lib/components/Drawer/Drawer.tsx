@@ -24,6 +24,18 @@ export type DrawerProps = {
   state?: ReturnType<typeof createDrawerState>
 }
 
+/**
+ * A responsive side drawer. It uses a state created by the function
+ * `createDrawerState`, on this state you can tell the drawer to open or close
+ * (you need to link it with the component by using the component property
+ * `state`).
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Drawer)
+ *
+ * @example <Drawer placement="right">
+ *   The content should be here
+ * </Drawer>
+ */
 export const Drawer: VFC<DrawerProps> = ({
   children,
   placement = "left",

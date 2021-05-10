@@ -1,6 +1,11 @@
 import { proxy, ref } from "valtio"
 import { createRef } from "react"
 
+/**
+ * Creates a drawer state to use with the Drawer component.
+ * You need to link it with the component by using the component property
+ * `state`.
+ */
 export const createDrawerState = () => {
   const drawerState = proxy({
     currentPosition: 0,

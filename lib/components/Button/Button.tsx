@@ -48,6 +48,13 @@ export type ButtonProps = {
   variant?: "contained" | "outlined" | "text"
 } & ComponentShorthandProps
 
+/**
+ * A button.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Button)
+ *
+ * @example <Button>Click me</Button>
+ */
 export const Button: VFC<ButtonProps> = forwardRef(
   (
     {

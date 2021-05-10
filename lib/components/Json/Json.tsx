@@ -7,7 +7,7 @@ import {
   Purple,
 } from "../../styles"
 import React, { VFC } from "react"
-import { Code } from "../Code/Code"
+import { Text } from "../Text/Text"
 
 export type JsonProps = {
   /**
@@ -20,11 +20,19 @@ export type JsonProps = {
   label?: string
 } & ComponentShorthandProps
 
+/**
+ * Show a JSON object formatted and colored. Useful for debugging.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Json)
+ *
+ * @example <Json json='{ "number": 1 }' />
+ */
 export const Json: VFC<JsonProps> = ({ json, label, style, sh, ...props }) => {
   if (typeof json !== "undefined") {
     return (
-      <Code
+      <Text
         block
+        code
         dangerouslySetInnerHTML={{ __html: syntaxHighlight(json, label) }}
         sh={(theme) => ({
           "& .boolean": {

@@ -61,6 +61,17 @@ export type FadeProps = {
   onExiting?: ExitHandler<HTMLDivElement>
 }
 
+/**
+ * A fade transition.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Fade)
+ *
+ * @example <Fade in>
+ *   <Box sh={{ bgColor: Gray.N100 }}>
+ *     The content should be here
+ *   </Box>
+ * </Fade>
+ */
 export const Fade: VFC<FadeProps> = ({
   children,
   in: inProp,

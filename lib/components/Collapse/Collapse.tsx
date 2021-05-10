@@ -74,6 +74,17 @@ export type CollapseProps = {
   onExiting?: ExitHandler<HTMLDivElement>
 }
 
+/**
+ * A collapse transition.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Collapse)
+ *
+ * @example <Collapse in>
+ *   <Box sh={{ bgColor: Gray.N100 }}>
+ *     The content should be here
+ *   </Box>
+ * </Collapse>
+ */
 export const Collapse: VFC<CollapseProps> = ({
   children,
   in: inProp,

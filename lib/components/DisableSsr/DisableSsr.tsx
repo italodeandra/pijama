@@ -9,6 +9,13 @@ export type DisableSsrProps = {
 }
 
 // noinspection JSUnusedGlobalSymbols
+/**
+ * Makes a component render only on the client side, disabling the SSR.
+ *
+ * @example <DisableSsr>
+ *   <Window />
+ * </DisableSsr>
+ */
 export const DisableSsr: VFC<DisableSsrProps> = ({ children }) => {
   const [mountedState, setMountedState] = useState(false)
 

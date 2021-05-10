@@ -80,6 +80,13 @@ export type FieldProps<V = unknown, E = HTMLInputElement> = {
   ref?: Ref<HTMLInputElement>
 } & InputHTMLAttributes<HTMLInputElement>
 
+/**
+ * A field for writing text, select options, etc.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Field)
+ *
+ * @example <Field label="Name" />
+ */
 export const Field: VFC<FieldProps> = forwardRef(
   (
     {
