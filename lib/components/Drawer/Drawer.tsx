@@ -44,7 +44,7 @@ export const Drawer: VFC<DrawerProps> = ({
   useEffect(() => {
     drawerState.width = width
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width])
+  }, [width, drawerState])
 
   useDrawerTouchHandlers(drawerState, placement)
 
@@ -164,5 +164,5 @@ const useDrawerTouchHandlers = (
       window.removeEventListener("touchcancel", handleTouchEnd)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [placement])
+  }, [drawerState, placement])
 }

@@ -9,8 +9,7 @@ import menuIcon from "@iconify/icons-heroicons-outline/menu"
 import NextLink from "next/link"
 
 export const AppDrawer: FC = ({ children }) => {
-  const { width, isOpen, toggleDrawer } = useSnapshot(appDrawerState)
-  const { placement } = useSnapshot(appDrawerState)
+  const { width, isOpen, toggleDrawer, placement } = useSnapshot(appDrawerState)
   const isScreenSm = useBreakpoint("sm")
   const components = Object.keys(demoList)
   const examples = Object.keys(exampleList)
@@ -27,7 +26,7 @@ export const AppDrawer: FC = ({ children }) => {
       )
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [appDrawerState])
 
   return (
     <>
