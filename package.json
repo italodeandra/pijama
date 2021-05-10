@@ -87,6 +87,7 @@
     "valtio": "1.0.3"
   },
   "devDependencies": {
+    "@types/react-syntax-highlighter": "^13.5.0",
     "json": "^11.0.0",
     "react-syntax-highlighter": "^15.4.3"
   },
