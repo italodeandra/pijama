@@ -1,6 +1,5 @@
 export * from "./Box/Box"
 export * from "./Button/Button"
-export * from "./Code/Code"
 export * from "./Collapse/Collapse"
 export * from "./Compose/Compose"
 export * from "./DateDistanceNow/DateDistanceNow"

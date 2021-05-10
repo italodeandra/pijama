@@ -1,6 +1,5 @@
 import { BoxDemo } from "../../lib/components/Box/Box.demo"
 import { ButtonDemo } from "../../lib/components/Button/Button.demo"
-import { CodeDemo } from "../../lib/components/Code/Code.demo"
 import { CollapseDemo } from "../../lib/components/Collapse/Collapse.demo"
 import { ComposeDemo } from "../../lib/components/Compose/Compose.demo"
 import { DateDistanceNowDemo } from "../../lib/components/DateDistanceNow/DateDistanceNow.demo"
@@ -21,7 +20,6 @@ import { TooltipDemo } from "../../lib/components/Tooltip/Tooltip.demo"
 const demos = {
   Box: BoxDemo,
   Button: ButtonDemo,
-  Code: CodeDemo,
   Collapse: CollapseDemo,
   Compose: ComposeDemo,
   DateDistanceNow: DateDistanceNowDemo,

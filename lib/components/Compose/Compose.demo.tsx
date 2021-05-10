@@ -1,8 +1,7 @@
 import { Box } from "../Box/Box"
 import { Button } from "../Button/Button"
-import { Code } from "../Code/Code"
+import { Code } from "../../../src/components"
 import { Compose } from "./Compose"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { useDocumentation } from "../../hooks"
 
 const example = `<Compose components={[Box, Button]}>
@@ -20,9 +19,7 @@ export const ComposeDemo = () => {
   return (
     <>
       <Compose components={[Box, Button]}>Content of the compose</Compose>
-      <Code block sh={{ mt: 2 }}>
-        <SyntaxHighlighter language="jsx">{example}</SyntaxHighlighter>
-      </Code>
+      <Code>{example}</Code>
     </>
   )
 }
