@@ -6,7 +6,7 @@ import {
 } from "@emotion/react"
 import { ReactNode, VFC } from "react"
 import { NProgress } from "../NProgress"
-import { Snackbar } from "../index"
+import { Snackbar } from "../Snackbar"
 
 export type ThemeProviderProps = {
   /**

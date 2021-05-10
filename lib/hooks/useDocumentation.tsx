@@ -1,5 +1,3 @@
-/* eslint-disable valtio/state-snapshot-rule */
-
 import { Box, Button, Field, Tooltip } from "../components"
 import { proxy, useSnapshot } from "valtio"
 import { useEffect, useRef } from "react"
@@ -12,9 +10,6 @@ import qs from "qs"
 import { render } from "react-dom"
 import { useCopyToClipboard } from "./useCopyToClipboard"
 import { useRouter } from "next/router"
-
-const getComponentName = () =>
-  window.location.pathname.split("/").pop().replace(/-/g, " ")
 
 export type UseDocumentation = <
   P extends {
@@ -32,6 +27,11 @@ export type UseDocumentation = <
   description?: string
 ) => any
 
+/**
+ * Shows a GUI for handling a component documentation demo. It let's you change
+ * the properties value, show their description and let you copy a code example
+ * of only the properties you changed.
+ */
 export const useDocumentation: UseDocumentation = (
   properties,
   example,
@@ -192,3 +192,6 @@ export const useDocumentation: UseDocumentation = (
 
   return snap
 }
+
+const getComponentName = () =>
+  window.location.pathname.split("/").pop().replace(/-/g, " ")

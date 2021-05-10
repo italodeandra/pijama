@@ -9,6 +9,15 @@ export type BoxProps = {
   children?: ReactNode
 } & ComponentShorthandProps
 
+/**
+ * Creates an element using the shorthand. It is a "div" by default.
+ * Useful for making layout elements and add styles with the availability of the
+ * shorthand.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Box)
+ *
+ * @example <Box sh={{ mt: 1 }}>Box content</Box>
+ */
 export const Box: VFC<BoxProps> = forwardRef(
   ({ children, sh, as, ...props }, ref) => {
     const Component: ElementType = as || "div"

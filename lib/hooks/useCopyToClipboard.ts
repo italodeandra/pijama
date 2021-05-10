@@ -8,6 +8,13 @@ export interface CopyToClipboardState {
   error?: Error
 }
 
+/**
+ * Copy text to a user's clipboard.
+ * This hook returns an array with:
+ * 1 - the clipboard state with three properties: "error", "noUserInteraction" and "value".
+ * 2 - the function that is called with the value that should be copied.
+ * 3 - the function that should be called to reset the clipboard state
+ */
 export const useCopyToClipboard = (): [
   CopyToClipboardState,
   (value: string) => void,

@@ -6,6 +6,9 @@ import { shorthandValue } from "../shorthand/shorthand"
 import { spacing } from "./spacing"
 import { Theme } from "../Theme"
 
+/**
+ * Creates a theme.
+ */
 export const createTheme = (theme?: DeepPartial<Theme>) => {
   theme = merge({}, defaultTheme, theme)
   theme.color.textPrimary =

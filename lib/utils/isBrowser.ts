@@ -1,7 +1,16 @@
+/**
+ * Tells if the current scope is a browser.
+ */
 export const isBrowser = typeof window !== "undefined"
 // noinspection JSUnusedGlobalSymbols
+/**
+ * Tells if the current scope is a server.
+ */
 export const isServer = !isBrowser
 // noinspection JSUnusedGlobalSymbols
+/**
+ * Tells if the current scope is a touch device.
+ */
 export const isTouchDevice =
   isBrowser &&
   (!!(

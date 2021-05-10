@@ -1,6 +1,10 @@
 import { MouseEvent } from "react"
 
 // noinspection JSUnusedGlobalSymbols
+/**
+ * It scrolls smoothly to an element that the id is taken from the target of the
+ * click event.
+ */
 export const goToIdSmoothly = (
   event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
 ) => {
