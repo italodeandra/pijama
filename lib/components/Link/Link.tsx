@@ -21,7 +21,15 @@ export type LinkProps = {
   href?: string
 } & ComponentShorthandProps
 
-export const Link: VFC<LinkProps> = forwardRef<HTMLAnchorElement, LinkProps>(
+/**
+ * A link.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Link)
+ *
+ * @example
+ * <Link href="https://pijama.majapi.com.br">Click me</Button>
+ */
+export const Link: VFC<LinkProps> = forwardRef(
   ({ as = "a", children, color = "primary", href, ...props }, ref) => {
     const linkStyles = withTheme((theme, sh) => {
       let styles = []

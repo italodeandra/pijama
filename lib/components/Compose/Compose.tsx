@@ -17,7 +17,8 @@ export type ComposeProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Compose)
  *
- * @example <Compose components={[Box, Button]}>
+ * @example
+ * <Compose components={[Box, Button]}>
  *   Content of the compose
  * </Compose>
  */

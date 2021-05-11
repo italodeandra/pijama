@@ -132,6 +132,12 @@ const Message: VFC<{
   )
 }
 
+/**
+ * A snackbar that shows up in the top right of the page. The messages are
+ * created by using it's API `notify` or `removeNotification`.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Snackbar)
+ */
 export const Snackbar: VFC<SnackbarProps> = () => {
   const { messages } = useSnapshot(snackbarState)
   const theme = useTheme()

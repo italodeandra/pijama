@@ -22,7 +22,8 @@ export type DateFormatProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/DateFormat)
  *
- * @example <DateFormat date="2021-05-10T14:47:10.954Z" />
+ * @example
+ * <DateFormat date="2021-05-10T14:47:10.954Z" />
  */
 export const DateFormat: VFC<DateFormatProps> = memo(
   ({ date, format = "Pp", ...props }) => {

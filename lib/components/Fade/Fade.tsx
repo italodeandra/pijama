@@ -66,7 +66,8 @@ export type FadeProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Fade)
  *
- * @example <Fade in>
+ * @example
+ * <Fade in>
  *   <Box sh={{ bgColor: Gray.N100 }}>
  *     The content should be here
  *   </Box>

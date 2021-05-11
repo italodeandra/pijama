@@ -32,7 +32,8 @@ export type DrawerProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Drawer)
  *
- * @example <Drawer placement="right">
+ * @example
+ * <Drawer placement="right">
  *   The content should be here
  * </Drawer>
  */

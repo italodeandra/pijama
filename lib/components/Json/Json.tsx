@@ -25,7 +25,8 @@ export type JsonProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Json)
  *
- * @example <Json json='{ "number": 1 }' />
+ * @example
+ * <Json json='{ "number": 1 }' />
  */
 export const Json: VFC<JsonProps> = ({ json, label, style, sh, ...props }) => {
   if (typeof json !== "undefined") {

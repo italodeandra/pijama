@@ -21,7 +21,8 @@ export type LinearProgressProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Json)
  *
- * @example <LinearProgress value={20} />
+ * @example
+ * <LinearProgress value={20} />
  */
 export const LinearProgress: VFC<LinearProgressProps> = ({
   value,

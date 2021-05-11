@@ -22,11 +22,17 @@ const nprogressStyles = withTheme((theme, sh) =>
       },
       pos: [0, 0, "", 0],
       position: "fixed",
-      zIndex: 3
+      zIndex: 3,
     })
   )
 )
 
+/**
+ * A progress bar that shows up on the top of the page. Automatically
+ * integrated with NextJS router but can also be accessed from it's API `nprogress`.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/NProgress)
+ */
 export const NProgress = () => {
   const { progress } = useSnapshot(nprogressState)
 

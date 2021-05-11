@@ -12,7 +12,8 @@ export type DisableSsrProps = {
 /**
  * Makes a component render only on the client side, disabling the SSR.
  *
- * @example <DisableSsr>
+ * @example
+ * <DisableSsr>
  *   <Window />
  * </DisableSsr>
  */

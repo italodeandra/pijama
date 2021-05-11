@@ -85,7 +85,8 @@ export type FieldProps<V = unknown, E = HTMLInputElement> = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Field)
  *
- * @example <Field label="Name" />
+ * @example
+ * <Field label="Name" />
  */
 export const Field: VFC<FieldProps> = forwardRef(
   (

@@ -16,7 +16,8 @@ export type BoxProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Box)
  *
- * @example <Box sh={{ mt: 1 }}>Box content</Box>
+ * @example
+ * <Box sh={{ mt: 1 }}>Box content</Box>
  */
 export const Box: VFC<BoxProps> = forwardRef(
   ({ children, sh, as, ...props }, ref) => {

@@ -4,8 +4,19 @@ import { Box } from "../Box/Box"
 import { VFC } from "react"
 
 export type SkeletonProps = {
+  /**
+   * The skeleton height.
+   *
+   * @default 1.2em
+   */
   height?: number | string
+  /**
+   * If the skeleton should be for a text.
+   */
   text?: boolean
+  /**
+   * The skeleton width.
+   */
   width?: number | string
 } & ComponentShorthandProps
 
@@ -22,6 +33,14 @@ const pulse = keyframes({
   },
 })
 
+/**
+ * Renders a skeleton for a component that is still loading.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Skeleton)
+ *
+ * @example
+ * <Skeleton text />
+ */
 export const Skeleton: VFC<SkeletonProps> = ({
   as,
   height,

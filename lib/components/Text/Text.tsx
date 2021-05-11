@@ -55,6 +55,14 @@ export type TextProps = {
   children?: ReactNode
 } & ComponentShorthandProps
 
+/**
+ * Style for texts.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Text)
+ *
+ * @example
+ * <Text header>This is a header</Text>
+ */
 export const Text: VFC<TextProps> = forwardRef(
   (
     {

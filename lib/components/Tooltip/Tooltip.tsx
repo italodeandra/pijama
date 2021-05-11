@@ -43,6 +43,16 @@ export type TooltipProps = {
   title?: string
 }
 
+/**
+ * Show a tooltip when hovering the children.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/Tooltip)
+ *
+ * @example
+ * <Tooltip title="This is the tooltip">
+ *   <Box>Hover me</Box>
+ * </Tooltip>
+ */
 export const Tooltip: VFC<TooltipProps> = ({
   children,
   placement = "bottom",

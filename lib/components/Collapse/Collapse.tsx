@@ -79,7 +79,8 @@ export type CollapseProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Collapse)
  *
- * @example <Collapse in>
+ * @example
+ * <Collapse in>
  *   <Box sh={{ bgColor: Gray.N100 }}>
  *     The content should be here
  *   </Box>

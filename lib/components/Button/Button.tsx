@@ -53,7 +53,8 @@ export type ButtonProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/Button)
  *
- * @example <Button>Click me</Button>
+ * @example
+ * <Button>Click me</Button>
  */
 export const Button: VFC<ButtonProps> = forwardRef(
   (

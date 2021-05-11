@@ -27,6 +27,11 @@ export type ThemeProviderProps = {
   theme?: Theme
 }
 
+/**
+ * The theme provider.
+ *
+ * [Demo](https://pijama.majapi.com.br/components/ThemeProvider)
+ */
 export const ThemeProvider: VFC<ThemeProviderProps> = ({
   children,
   disableNProgress,

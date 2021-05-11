@@ -11,7 +11,7 @@ export const SkeletonDemo = () => {
         value: false,
       },
     },
-    ({ text }) => `<Skeleton${text ? ` block` : ""} />`
+    ({ text }) => `<Skeleton${text ? ` text` : ""} />`
   )
 
   return <Skeleton {...props} />

@@ -29,7 +29,8 @@ export type DateDistanceNowProps = {
  *
  * [Demo](https://pijama.majapi.com.br/components/DateDistanceNow)
  *
- * @example <DateDistanceNow date="2021-05-10T14:47:10.954Z" />
+ * @example
+ * <DateDistanceNow date="2021-05-10T14:47:10.954Z" />
  */
 export const DateDistanceNow: VFC<DateDistanceNowProps> = ({
   date,
