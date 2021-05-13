@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { Box } from "./Box"
+import { defaultTheme } from "../../styles"
 
 describe("Box", () => {
   test("should render a div", () => {
@@ -14,5 +15,18 @@ describe("Box", () => {
     const box = screen.getByTestId("box")
 
     expect(box).toHaveStyle("width: 8px")
+  })
+
+  test("should have background with primary color", () => {
+    render(
+      <Box
+        data-testid="box"
+        sh={(theme) => ({ bgColor: theme.color.primary })}
+      />
+    )
+
+    const box = screen.getByTestId("box")
+
+    expect(box).toHaveStyle(`background-color: ${defaultTheme.color.primary}`)
   })
 })

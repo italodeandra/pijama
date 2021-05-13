@@ -23,4 +23,12 @@ describe("DateFormat", () => {
 
     expect(screen.getByText("Invalid date")).toBeInTheDocument()
   })
+
+  test('when using "as" property should print date formatted', () => {
+    const date = "1997-03-22 07:50"
+
+    render(<DateFormat as="span" date={date} />)
+
+    expect(screen.getByText("03/22/1997, 7:50 AM")).toBeInTheDocument()
+  })
 })

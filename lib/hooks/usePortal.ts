@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import { isBrowser } from "../utils"
 
 const createRootElement = (id: string) => {
   const rootContainer = document.createElement("div")
@@ -9,7 +10,7 @@ const createRootElement = (id: string) => {
 const addRootElement = (rootElem: Element) => {
   document.body.insertBefore(
     rootElem,
-    document.body.lastElementChild!.nextElementSibling
+    document.body.lastElementChild?.nextElementSibling
   )
 }
 
@@ -44,7 +45,7 @@ export const usePortal = (id: string): HTMLElement => {
 
   const getRootElem = () => {
     if (!rootElemRef.current) {
-      rootElemRef.current = document.createElement("div")
+      rootElemRef.current = isBrowser ? document.createElement("div") : null
     }
     return rootElemRef.current
   }

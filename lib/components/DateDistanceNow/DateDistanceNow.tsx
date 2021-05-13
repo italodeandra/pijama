@@ -44,12 +44,11 @@ export const DateDistanceNow: VFC<DateDistanceNowProps> = ({
     delete props.as
     delete props.sh
   }
-  if (typeof date === "string") {
+  if (typeof date === "string" && date !== "") {
     date = new Date(date)
   }
   const update = useUpdate()
   useInterval(update, date ? (includeSeconds ? 4 : 59) * 1000 : null)
-
   if (!date) {
     return null
   }

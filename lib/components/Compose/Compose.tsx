@@ -22,7 +22,7 @@ export type ComposeProps = {
  *   Content of the compose
  * </Compose>
  */
-export const Compose: VFC<ComposeProps> = ({ components = [], children }) => (
+export const Compose: VFC<ComposeProps> = ({ components, children }) => (
   <>
     {components.reduceRight((acc, Comp) => {
       return <Comp>{acc}</Comp>

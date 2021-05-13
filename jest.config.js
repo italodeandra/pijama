@@ -7,6 +7,7 @@ module.exports = {
     "<rootDir>/.yalc/",
     "<rootDir>/dist/",
   ],
+  testRunner: "jest-circus/runner",
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
   },

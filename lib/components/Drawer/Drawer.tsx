@@ -4,8 +4,10 @@ import { Box } from "../Box/Box"
 import { createDrawerState } from "./drawerState"
 import { css } from "@emotion/react"
 import { Fade } from "../Fade/Fade"
+import { isBrowser } from "../../utils"
 import { Portal } from "../Portal/Portal"
 import { useMeasure } from "react-use"
+import { usePortal } from "../../hooks"
 import { useSnapshot } from "valtio"
 
 export type DrawerProps = {
@@ -45,9 +47,11 @@ export const Drawer: VFC<DrawerProps> = ({
   const drawerState = useMemo(() => state || createDrawerState(), [state])
   const { isOpen, isRendering, toggleDrawer } = useSnapshot(drawerState)
   const isScreenSm = useBreakpoint("sm")
+  const portalElement = usePortal("drawer")
 
   const DarkOverlay = () => (
     <Box
+      data-testid="dark-overlay"
       onClick={() => toggleDrawer(false)}
       sh={{ bgColor: "rgba(0,0,0,.4)", pos: 0 }}
     />
@@ -79,7 +83,7 @@ export const Drawer: VFC<DrawerProps> = ({
   )
 
   return (
-    <Portal>
+    <Portal container={portalElement}>
       <Fade in={isRendering}>
         <div>
           {!isScreenSm && <DarkOverlay />}
@@ -129,12 +133,10 @@ const useDrawerTouchHandlers = (
           drawerState.currentPosition = clientX
           if (placement === "right") {
             let movement = clientX - startPosition + (isOpen ? -width : 0)
-            movement = movement > 0 ? 0 : movement
             movement = movement < -width ? -width : movement
             ref.current.style.transform = `translateX(${width + movement}px)`
           } else {
             let movement = clientX - startPosition + (isOpen ? width : 0)
-            movement = movement < 0 ? 0 : movement
             movement = movement > width ? width : movement
             ref.current.style.transform = `translateX(${movement - width}px)`
           }
@@ -145,8 +147,11 @@ const useDrawerTouchHandlers = (
     const handleTouchEnd = () => {
       const { startPosition, currentPosition, width, isOpen, ref } = drawerState
       if (conditions[placement][isOpen.toString()]()) {
-        ref.current.style.transition = ""
-        ref.current.style.transform = ""
+        /* istanbul ignore next */
+        if (isBrowser) {
+          ref.current.style.transition = ""
+          ref.current.style.transform = ""
+        }
         let movement = currentPosition - startPosition
         if (placement === "right") {
           if (movement < -(width / 2)) {
