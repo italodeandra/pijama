@@ -68,7 +68,6 @@ export const Text: VFC<TextProps> = forwardRef(
     {
       children,
       as,
-      sh,
 
       paragraph,
       subheader,
@@ -92,10 +91,10 @@ export const Text: VFC<TextProps> = forwardRef(
     if (!as) {
       if (paragraph || header || subheader) {
         as = "div"
-      } else if (code) {
-        as = "code"
       } else if (code && block) {
         as = "pre"
+      } else if (code) {
+        as = "code"
       }
     }
 

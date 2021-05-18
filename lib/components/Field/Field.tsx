@@ -125,7 +125,7 @@ export const Field: VFC<FieldProps> = forwardRef(
 
       try {
         const labelColor = Color(theme.color.textPrimary)
-        const focusColor = ["primary", "secondary"].includes(color)
+        const focusColor = !!theme.color[color]
           ? Color(theme.color[color])
           : Color(color)
 
@@ -171,9 +171,7 @@ export const Field: VFC<FieldProps> = forwardRef(
           },
           color: labelColor.hex(),
         })
-      } catch (e) {
-        console.error(e)
-      }
+      } catch (e) {}
       styles.unshift(
         sh({
           "& > div > input, & > div > select": {
