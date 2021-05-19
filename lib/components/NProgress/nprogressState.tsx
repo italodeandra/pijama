@@ -16,9 +16,7 @@ export const nprogress = {
    * End the progress.
    */
   end() {
-    if (nprogressState.progress >= 0) {
-      nprogressState.progress = 100
-    }
+    nprogressState.progress = 100
   },
   /**
    * Set an specific progress percentage.

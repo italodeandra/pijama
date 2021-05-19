@@ -48,8 +48,6 @@ export const NProgress = () => {
           newProgress = progress + 2
         } else if (progress >= 80 && progress < 99) {
           newProgress = progress + 0.5
-        } else if (progress >= 99 && progress < 100) {
-          newProgress = 99
         }
         nprogress.set(newProgress)
       }
@@ -60,9 +58,9 @@ export const NProgress = () => {
 
   return (
     <Fade in={progress !== null && progress < 100}>
-      <div css={nprogressStyles}>
+      <div css={nprogressStyles} data-testid="nprogress">
         <LinearProgress
-          transitionDuration={progress !== 100 ? 6 * 300 : undefined}
+          transitionDuration={!progress || progress < 100 ? 6 * 300 : undefined}
           value={progress !== null ? progress : 100}
         />
       </div>

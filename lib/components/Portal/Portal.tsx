@@ -24,4 +24,5 @@ export type PortalProps = {
  * <Portal>This will be rendered outside of the div</Portal>
  */
 export const Portal: VFC<PortalProps> = ({ children, container }) =>
+  /* istanbul ignore next */
   isBrowser ? createPortal(children, container || window.document.body) : null
