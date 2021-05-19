@@ -11,7 +11,7 @@ describe("LinearProgress", () => {
   })
 
   test("should show a progress with 0% when passing empty string", () => {
-    render(<LinearProgress value={("" as unknown) as number} />)
+    render(<LinearProgress value={"" as unknown as number} />)
 
     const bar = screen.getByTestId("bar")
 
@@ -24,5 +24,13 @@ describe("LinearProgress", () => {
     const bar = screen.getByTestId("bar")
 
     expect(bar).toHaveStyle("width: 100%")
+  })
+
+  test("using a different transition duration", () => {
+    render(<LinearProgress transitionDuration={500} value={50} />)
+
+    const bar = screen.getByTestId("bar")
+
+    expect(bar).toHaveStyle("transition-duration: 500ms")
   })
 })

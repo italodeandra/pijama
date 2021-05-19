@@ -1,4 +1,9 @@
-import { ComponentShorthandProps, ThemeColors, withTheme } from "../../styles"
+import {
+  ComponentShorthandProps,
+  Gray,
+  ThemeColors,
+  withTheme,
+} from "../../styles"
 import { forwardRef, ReactNode, VFC } from "react"
 import { Box } from "../Box/Box"
 import Color from "color"
@@ -80,7 +85,13 @@ export const Link: VFC<LinkProps> = forwardRef(
           }
         }
       } catch (e) {
-        console.error(e)
+        const linkColor = Color(Gray.N300)
+        const colorStyles = css(
+          sh({
+            color: linkColor.hex(),
+          })
+        )
+        styles.push(colorStyles)
       }
 
       styles.unshift(
