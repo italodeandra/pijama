@@ -8,7 +8,7 @@ import Icon from "@iconify/react"
 import { mapValues } from "lodash"
 import qs from "qs"
 import { render } from "react-dom"
-import { useCopyToClipboard } from "./useCopyToClipboard"
+import { useCopyToClipboard } from "./useCopyToClipboard/useCopyToClipboard"
 import { useRouter } from "next/router"
 
 export type UseDocumentation = <

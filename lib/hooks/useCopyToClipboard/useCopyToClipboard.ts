@@ -39,7 +39,6 @@ export const useCopyToClipboard = (): [
         const error = new Error(
           `Cannot copy typeof ${typeof value} to clipboard, must be a string`
         )
-        if (process.env.NODE_ENV === "development") console.error(error)
         setState({
           error,
           noUserInteraction: true,
@@ -50,7 +49,6 @@ export const useCopyToClipboard = (): [
       // empty strings are also considered invalid
       else if (value === "") {
         const error = new Error(`Cannot copy empty string to clipboard.`)
-        if (process.env.NODE_ENV === "development") console.error(error)
         setState({
           error,
           noUserInteraction: true,
