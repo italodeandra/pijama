@@ -120,6 +120,7 @@ const Message: VFC<{
           <Button
             color={Gray.N500}
             css={closeButtonStyles}
+            data-testid="remove"
             icon
             onClick={() => removeNotification(message.id)}
             variant={"text"}
