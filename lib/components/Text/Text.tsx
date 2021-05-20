@@ -101,7 +101,7 @@ export const Text: VFC<TextProps> = forwardRef(
     const textStyles = withTheme((theme, sh) => {
       let styles = []
       try {
-        if (paragraph || subheader || code || header || (code && block)) {
+        if (paragraph || subheader || code || header) {
           const autoSpacingStyles = css(
             sh({
               "& + &.header": header
@@ -263,32 +263,7 @@ export const Text: VFC<TextProps> = forwardRef(
     })
 
     return (
-      <Box
-        as={as}
-        css={textStyles}
-        // sh={(theme) => ({
-        //   "& pre": {
-        //     backgroundColor: "transparent !important",
-        //     m: "0px !important",
-        //     p: "0px !important",
-        //   },
-        //   bgColor: Gray.N100,
-        //   br: 0.5,
-        //   color: Gray.N600,
-        //   display: block ? "block" : "inline-block",
-        //   m: 0,
-        //   mt: block ? 0 : "-2px",
-        //   overflowX: "auto",
-        //   p: block ? 2 : [0.25, 0.5],
-        //   ...(typeof sh === "function"
-        //     ? sh(theme)
-        //     : typeof sh === "object"
-        //     ? (sh as {})
-        //     : {}),
-        // })}
-        {...props}
-        ref={ref}
-      >
+      <Box as={as} css={textStyles} {...props} ref={ref}>
         {children}
       </Box>
     )
