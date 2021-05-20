@@ -44,9 +44,9 @@ const pulse = keyframes({
 export const Skeleton: VFC<SkeletonProps> = ({
   as,
   height,
-  sh,
   text,
   width,
+  ...props
 }) => {
   const skeletonStyles = withTheme((theme, sh) => {
     let styles = []
@@ -84,5 +84,5 @@ export const Skeleton: VFC<SkeletonProps> = ({
     return css(styles)
   })
 
-  return <Box as={as || "span"} css={skeletonStyles} sh={sh} />
+  return <Box as={as || "span"} css={skeletonStyles} {...props} />
 }
