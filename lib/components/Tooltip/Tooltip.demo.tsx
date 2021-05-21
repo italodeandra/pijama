@@ -2,7 +2,6 @@ import { Box } from "../Box/Box"
 import { Tooltip } from "./Tooltip"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const TooltipDemo = () => {
   useDocumentation(
     {},

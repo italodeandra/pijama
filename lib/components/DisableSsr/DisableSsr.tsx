@@ -8,7 +8,6 @@ export type DisableSsrProps = {
   children: ReactElement
 }
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * Makes a component render only on the client side, disabling the SSR.
  *

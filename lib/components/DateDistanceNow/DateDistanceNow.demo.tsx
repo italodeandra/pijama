@@ -1,7 +1,6 @@
 import { DateDistanceNow } from "./DateDistanceNow"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const DateDistanceNowDemo = () => {
   const { date, ...props } = useDocumentation(
     {

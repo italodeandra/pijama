@@ -4,7 +4,6 @@ import menuIcon from "@iconify/icons-heroicons-outline/menu"
 import { useDocumentation } from "../../hooks"
 import { useEffect } from "react"
 
-// noinspection JSUnusedGlobalSymbols
 export const DrawerDemo = () => {
   const { placement } = useDocumentation(
     {

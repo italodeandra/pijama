@@ -3,7 +3,6 @@ import { Collapse } from "./Collapse"
 import { Gray } from "../../styles"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const CollapseDemo = () => {
   const { in: inProp, ...props } = useDocumentation(
     {

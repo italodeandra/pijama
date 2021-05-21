@@ -1,7 +1,6 @@
 import { Field } from "./Field"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const FieldDemo = () => {
   const { sh, type, ...props } = useDocumentation(
     {

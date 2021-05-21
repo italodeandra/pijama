@@ -3,7 +3,6 @@ import { Fade } from "./Fade"
 import { Gray } from "../../styles"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const FadeDemo = () => {
   const { in: inProp, ...props } = useDocumentation(
     {

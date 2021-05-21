@@ -1,7 +1,6 @@
 import { Text } from "./Text"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const TextDemo = () => {
   const { children, icon, ...props } = useDocumentation(
     {

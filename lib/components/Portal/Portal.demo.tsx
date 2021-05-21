@@ -1,7 +1,6 @@
 import { Portal } from "./Portal"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const PortalDemo = () => {
   useDocumentation(
     {},

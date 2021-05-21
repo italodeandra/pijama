@@ -33,5 +33,4 @@ const Home = () => {
   )
 }
 
-// noinspection JSUnusedGlobalSymbols
 export default Home

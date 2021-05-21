@@ -1,7 +1,6 @@
 import ConfigCors, { CorsOptions } from "cors"
 import { NextMiddleware } from "next-api-middleware"
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * The CORS middleware.
  */

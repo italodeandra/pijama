@@ -1,7 +1,6 @@
 import { Json } from "./Json"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const JsonDemo = () => {
   const props = useDocumentation(
     {

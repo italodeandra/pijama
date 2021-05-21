@@ -8,7 +8,6 @@ const example = `<Compose components={[Box, Button]}>
   Content of the compose
 </Compose>`
 
-// noinspection JSUnusedGlobalSymbols
 export const ComposeDemo = () => {
   useDocumentation(
     {},

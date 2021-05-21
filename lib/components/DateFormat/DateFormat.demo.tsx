@@ -1,7 +1,6 @@
 import { DateFormat } from "./DateFormat"
 import { useDocumentation } from "../../hooks"
 
-// noinspection JSUnusedGlobalSymbols
 export const DateFormatDemo = () => {
   const { date, ...props } = useDocumentation(
     {
