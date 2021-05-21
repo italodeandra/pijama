@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Blue } from "./Blue"
 import { Gray } from "./Gray"
 import { Green } from "./Green"

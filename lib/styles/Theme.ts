@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Color } from "./colors"
 import { CSSInterpolation } from "@emotion/serialize"
 import { CSSProperties } from "react"

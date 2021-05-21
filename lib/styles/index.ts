@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export * from "./Theme"
 export * from "./createTheme/createTheme"
 export * from "./withTheme"

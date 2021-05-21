@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export enum Blue {
   N50 = "#EFF6FF",
   N100 = "#DBEAFE",

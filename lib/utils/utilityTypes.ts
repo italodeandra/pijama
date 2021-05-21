@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * Makes the type Partial (all properties optional) deeply (recursively on all
  * children, children of the children and so on)

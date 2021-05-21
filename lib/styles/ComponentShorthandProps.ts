@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { AllHTMLAttributes, ElementType, Ref, RefObject } from "react"
 import { CSSInterpolation } from "@emotion/serialize"
 import { Theme } from "./index"

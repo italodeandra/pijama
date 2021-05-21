@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export * from "./camelCaseToDash/camelCaseToDash"
 export * from "./emailRegExp"
 export * from "./getInitials"

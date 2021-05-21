@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export * from "./Box/Box"
 export * from "./Button/Button"
 export * from "./Collapse/Collapse"

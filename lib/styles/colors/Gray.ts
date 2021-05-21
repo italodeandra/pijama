@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export enum Gray {
   N50 = "#F9FAFB",
   N100 = "#F4F4F5",
