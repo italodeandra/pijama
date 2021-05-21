@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * Tells if the current scope is a browser.
  */
