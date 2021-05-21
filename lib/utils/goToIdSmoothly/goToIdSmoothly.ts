@@ -18,7 +18,7 @@ export const goToIdSmoothly = (
     currentTarget?.getAttribute("href") ||
     parentNode?.getAttribute("href") ||
     parentParentNode?.getAttribute("href")
-  const id = hash?.replace(/^.*#/, "")
+  const id = hash?.startsWith("#") ? hash.replace(/^.*#/, "") : null
   const target = id && hash ? document.querySelector(hash) : document.body
   if (target && id) {
     target.id = `${id}-tmp`
@@ -26,7 +26,7 @@ export const goToIdSmoothly = (
   if (hash) {
     window.location.hash = hash
   }
-  if (target && id) {
+  if (target) {
     target.scrollIntoView({
       behavior: "smooth",
     })
