@@ -4,15 +4,9 @@ import { Fade } from "../Fade/Fade"
 import { LinearProgress } from "../LinearProgress/LinearProgress"
 import { Router } from "next/router"
 import { useDebounce } from "react-use"
+import { useEffect } from "react"
 import { useSnapshot } from "valtio"
 import { withTheme } from "../../styles"
-
-const handleRouteChangeStart = () => nprogress.start()
-const handleRouteChangeComplete = () => nprogress.end()
-
-Router.events.on("routeChangeStart", handleRouteChangeStart)
-Router.events.on("routeChangeComplete", handleRouteChangeComplete)
-Router.events.on("routeChangeError", handleRouteChangeComplete)
 
 const nprogressStyles = withTheme((theme, sh) =>
   css(
@@ -35,6 +29,21 @@ const nprogressStyles = withTheme((theme, sh) =>
  */
 export const NProgress = () => {
   const { progress } = useSnapshot(nprogressState)
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => nprogress.start()
+    const handleRouteChangeComplete = () => nprogress.end()
+
+    Router.events.on("routeChangeStart", handleRouteChangeStart)
+    Router.events.on("routeChangeComplete", handleRouteChangeComplete)
+    Router.events.on("routeChangeError", handleRouteChangeComplete)
+
+    return () => {
+      Router.events.off("routeChangeStart", handleRouteChangeStart)
+      Router.events.off("routeChangeComplete", handleRouteChangeComplete)
+      Router.events.off("routeChangeError", handleRouteChangeComplete)
+    }
+  }, [])
 
   useDebounce(
     () => {
