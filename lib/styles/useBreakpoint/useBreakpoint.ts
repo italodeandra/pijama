@@ -1,6 +1,6 @@
-import { Theme } from "./Theme"
+import { Theme } from "../Theme"
 import { useMedia } from "react-use"
-import { useTheme } from "./useTheme"
+import { useTheme } from "../useTheme"
 
 /**
  * Hook that checks the media query based on predefined breakpoints.

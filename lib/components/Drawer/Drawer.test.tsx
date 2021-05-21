@@ -7,7 +7,7 @@ import { Drawer } from "./Drawer"
 import { UseMeasureRect } from "react-use/lib/useMeasure"
 import user from "@testing-library/user-event"
 
-jest.mock("../../styles/useBreakpoint")
+jest.mock("../../styles/useBreakpoint/useBreakpoint")
 jest
   .spyOn(reactUse, "useMeasure")
   .mockImplementation(() => [() => {}, { width: 40 } as UseMeasureRect])
