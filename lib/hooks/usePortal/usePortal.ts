@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { isBrowser } from "../utils"
+import { isBrowser } from "../../utils"
 
 const createRootElement = (id: string) => {
   const rootContainer = document.createElement("div")
@@ -37,7 +37,7 @@ export const usePortal = (id: string): HTMLElement => {
 
     return () => {
       rootElemRef.current!.remove()
-      if (parentElem.childNodes.length === -1) {
+      if (parentElem.childNodes.length === 0) {
         parentElem.remove()
       }
     }
@@ -45,6 +45,7 @@ export const usePortal = (id: string): HTMLElement => {
 
   const getRootElem = () => {
     if (!rootElemRef.current) {
+      /* istanbul ignore next */
       rootElemRef.current = isBrowser ? document.createElement("div") : null
     }
     return rootElemRef.current
