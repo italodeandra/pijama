@@ -1,14 +1,14 @@
-import { Box, Button, Field, Tooltip } from "../components"
+import { Box, Button, Field, Tooltip } from "../../components"
 import { proxy, useSnapshot } from "valtio"
 import { useEffect, useRef } from "react"
 import { useMount, useUnmount, useUpdateEffect } from "react-use"
 import clipboardCopy from "@iconify/icons-heroicons-outline/clipboard-copy"
-import { Gray } from "../styles"
+import { Gray } from "../../styles"
 import Icon from "@iconify/react"
 import { mapValues } from "lodash"
 import qs from "qs"
 import { render } from "react-dom"
-import { useCopyToClipboard } from "./useCopyToClipboard/useCopyToClipboard"
+import { useCopyToClipboard } from "../useCopyToClipboard/useCopyToClipboard"
 import { useRouter } from "next/router"
 
 export type UseDocumentation = <
@@ -55,22 +55,18 @@ export const useDocumentation: UseDocumentation = (
 
   useMount(() => {
     const { component, example, ...newQueries } = router.query
-    try {
-      Object.keys(newQueries).forEach((k) => {
-        if (
-          typeof newQueries[k] === "string" &&
-          typeof state.current[k] === "boolean"
-        ) {
-          // @ts-ignore
-          state.current[k] = newQueries[k] === "true"
-        } else {
-          // @ts-ignore
-          state.current[k] = newQueries[k]
-        }
-      })
-    } catch (e) {
-      void router.replace(window.location.pathname)
-    }
+    Object.keys(newQueries).forEach((k) => {
+      if (
+        typeof newQueries[k] === "string" &&
+        typeof state.current[k] === "boolean"
+      ) {
+        // @ts-ignore
+        state.current[k] = newQueries[k] === "true"
+      } else {
+        // @ts-ignore
+        state.current[k] = newQueries[k]
+      }
+    })
   })
 
   useEffect(() => {
@@ -86,6 +82,7 @@ export const useDocumentation: UseDocumentation = (
 
       return (
         <Box
+          data-testid="documentation"
           onMouseLeave={resetClipboard}
           sh={(theme) => ({
             bgColor: "white",
@@ -113,6 +110,7 @@ export const useDocumentation: UseDocumentation = (
                   }
                 >
                   <Button
+                    data-testid="example-copy-button"
                     icon
                     onClick={() => copyToClipboard(example(snap))}
                     size="small"

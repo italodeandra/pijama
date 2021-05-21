@@ -1,3 +1,3 @@
 export * from "./useCopyToClipboard/useCopyToClipboard"
-export * from "./useDocumentation"
+export * from "./useDocumentation/useDocumentation"
 export * from "./usePortal"

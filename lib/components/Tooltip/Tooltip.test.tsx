@@ -3,10 +3,6 @@ import { Button } from "../Button/Button"
 import { Tooltip } from "./Tooltip"
 import user from "@testing-library/user-event"
 
-Object.assign(window, {
-  visualViewport: { height: window.innerHeight, width: window.innerWidth },
-})
-
 describe("Tooltip", () => {
   test("should show a tooltip when hovering", async () => {
     render(
