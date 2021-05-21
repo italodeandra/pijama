@@ -15,6 +15,7 @@ import { PortalDemo } from "../../lib/components/Portal/Portal.demo"
 import { SkeletonDemo } from "../../lib/components/Skeleton/Skeleton.demo"
 import { SnackbarDemo } from "../../lib/components/Snackbar/Snackbar.demo"
 import { TextDemo } from "../../lib/components/Text/Text.demo"
+import { ThemeProviderDemo } from "../../lib/components/ThemeProvider/ThemeProvider.demo"
 import { TooltipDemo } from "../../lib/components/Tooltip/Tooltip.demo"
 
 const demos = {
@@ -35,6 +36,7 @@ const demos = {
   Skeleton: SkeletonDemo,
   Snackbar: SnackbarDemo,
   Text: TextDemo,
+  ThemeProvider: ThemeProviderDemo,
   Tooltip: TooltipDemo,
 }
 
