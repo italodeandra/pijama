@@ -22,7 +22,7 @@ const shorthands = {
   shadow: "boxShadow",
 }
 
-const shadows = {
+export const shadows = {
   /* eslint-disable sort-keys */
   xs: "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
   sm: "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
@@ -64,9 +64,9 @@ export const shorthandValue = (theme: Theme, css: CSSInterpolation) => {
     } else if (key === "fontSize") {
       css[key] = theme.rem(value)
     } else if (
+      key === "borderRadius" ||
       key === "margin" ||
-      key === "padding" ||
-      key === "borderRadius"
+      key === "padding"
     ) {
       if (Array.isArray(value)) {
         const values = value as number[]
