@@ -28,6 +28,10 @@ export const TextDemo = () => {
         options: [true, false],
         value: false,
       },
+      color: {
+        description: "The color of the text.",
+        value: "",
+      },
       ellipsis: {
         description: "If the text should have ellipsis when too big.",
         options: [true, false],

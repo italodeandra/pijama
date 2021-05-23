@@ -1,6 +1,12 @@
-import { ComponentShorthandProps, Gray, withTheme } from "../../styles"
+import {
+  ComponentShorthandProps,
+  Gray,
+  ThemeColors,
+  withTheme,
+} from "../../styles"
 import { forwardRef, ReactNode, VFC } from "react"
 import { Box } from "../Box/Box"
+import Color from "color"
 import { css } from "@emotion/react"
 
 export type TextProps = {
@@ -20,6 +26,10 @@ export type TextProps = {
    * If the text should be a code.
    */
   code?: boolean
+  /**
+   * The color of the text.
+   */
+  color?: ThemeColors | string
   /**
    * If the text should have ellipsis when too big.
    */
@@ -68,6 +78,7 @@ export const Text: VFC<TextProps> = forwardRef(
     {
       children,
       as,
+      color,
 
       paragraph,
       subheader,
@@ -100,6 +111,7 @@ export const Text: VFC<TextProps> = forwardRef(
 
     const textStyles = withTheme((theme, sh) => {
       let styles = []
+      let textColor: string
       try {
         if (paragraph || subheader || code || header) {
           const autoSpacingStyles = css(
@@ -249,10 +261,15 @@ export const Text: VFC<TextProps> = forwardRef(
           )
           styles.push(justifyStyles)
         }
+        if (color) {
+          textColor = (
+            !!theme.color[color] ? Color(theme.color[color]) : Color(color)
+          ).hex()
+        }
       } catch (e) {}
       styles.unshift(
         sh({
-          color: "rgba(0, 0, 0, 0.76)",
+          color: textColor,
           cursor: "text",
           display: "inline-block",
           position: "relative",

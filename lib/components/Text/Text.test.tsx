@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react"
+import { defaultTheme } from "../../styles"
 import { Text } from "./Text"
 
 describe("Text", () => {
@@ -49,6 +50,26 @@ describe("Text", () => {
   test("should render a block", () => {
     render(<Text block>Test</Text>)
     expect(screen.getByText("Test")).toBeInTheDocument()
+  })
+  test("should render a code block", () => {
+    render(
+      <Text block code>
+        Test
+      </Text>
+    )
+    expect(screen.getByText("Test")).toBeInTheDocument()
+  })
+  test("should render a primary colored text", () => {
+    render(<Text color="primary">Test</Text>)
+    const text = screen.getByText("Test")
+    expect(text).toBeInTheDocument()
+    expect(text).toHaveStyle(`color: ${defaultTheme.color.primary}`)
+  })
+  test("should render a custom hex color text", () => {
+    render(<Text color="#fff">Test</Text>)
+    const text = screen.getByText("Test")
+    expect(text).toBeInTheDocument()
+    expect(text).toHaveStyle(`color: #fff`)
   })
   test("should render a button", () => {
     render(<Text as="button">Test</Text>)
