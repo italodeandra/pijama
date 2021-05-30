@@ -4,7 +4,7 @@ import {
   ThemeColors,
   withTheme,
 } from "../../styles"
-import { forwardRef, MouseEventHandler, ReactNode, VFC } from "react"
+import { forwardRef, MouseEventHandler, ReactNode, useMemo, VFC } from "react"
 import { Box } from "../Box/Box"
 import Color from "color"
 import { css } from "@emotion/react"
@@ -65,6 +65,7 @@ export const Button: VFC<ButtonProps> = forwardRef(
       icon,
       size = "normal",
       variant = "contained",
+      sh: shProp,
       ...props
     },
     ref
@@ -81,154 +82,167 @@ export const Button: VFC<ButtonProps> = forwardRef(
       delete props.type
     }
 
-    const buttonStyles = withTheme((theme, sh) => {
-      let styles = []
+    const buttonStyles = useMemo(
+      () =>
+        withTheme((theme, sh) => {
+          let styles = []
 
-      try {
-        const buttonColor = !!theme.color[color]
-          ? Color(theme.color[color])
-          : Color(color)
-        const isDark = Color(buttonColor).isDark()
-        const contrastColor = isDark ? Color("white") : Color("black")
+          try {
+            const buttonColor = !!theme.color[color]
+              ? Color(theme.color[color])
+              : Color(color)
+            const isDark = Color(buttonColor).isDark()
+            const contrastColor = isDark ? Color("white") : Color("black")
 
-        if (variant === "contained") {
-          const containedStyles = css(
-            sh({
-              "&:hover": {
-                bgColor: (isDark
-                  ? buttonColor.lighten(0.1)
-                  : buttonColor.darken(0.1)
-                ).hex(),
+            if (variant === "contained") {
+              const containedStyles = css(
+                sh({
+                  "&:hover": {
+                    bgColor: (isDark
+                      ? buttonColor.lighten(0.1)
+                      : buttonColor.darken(0.1)
+                    ).hex(),
+                  },
+                  bgColor: buttonColor.hex(),
+                  color: contrastColor.hex(),
+                })
+              )
+              styles.push(containedStyles)
+            } else if (variant === "outlined") {
+              const hoverColor = isDark
+                ? buttonColor.darken(0.2)
+                : buttonColor.lighten(0.2)
+              const outlinedStyles = css(
+                sh({
+                  "&::after": {
+                    border: "1px solid",
+                    borderColor: buttonColor.hex(),
+                  },
+                  "&:hover": {
+                    color: hoverColor.hex(),
+                  },
+                  "&:hover::after": {
+                    borderColor: hoverColor.hex(),
+                  },
+                  bgColor: "transparent",
+                  color: buttonColor.hex(),
+                })
+              )
+              styles.push(outlinedStyles)
+            } else {
+              /* istanbul ignore next */
+              if (variant === "text") {
+                const hoverColor = isDark
+                  ? buttonColor.darken(0.2)
+                  : buttonColor.lighten(0.2)
+                const textStyles = css(
+                  sh({
+                    "&:hover": {
+                      bgColor: buttonColor.alpha(0.1).rgb().toString(),
+                      color: hoverColor.hex(),
+                    },
+                    "&:hover::after": {
+                      borderColor: hoverColor.hex(),
+                    },
+                    bgColor: "transparent",
+                    color: buttonColor.hex(),
+                  })
+                )
+                styles.push(textStyles)
+              }
+            }
+
+            if (icon) {
+              const iconStyles = css(
+                sh({
+                  fontSize: 24,
+                  lineHeight: 0,
+                  minH: 6,
+                  minW: 6,
+                  p: 0,
+                })
+              )
+              styles.push(iconStyles)
+            }
+
+            if (size === "small") {
+              const smallStyles = css(
+                sh(
+                  !icon
+                    ? {
+                        fontSize: 11,
+                        minH: 3,
+                      }
+                    : {
+                        fontSize: 16,
+                        minH: 4,
+                        minW: 4,
+                      }
+                )
+              )
+              styles.push(smallStyles)
+            }
+
+            styles.unshift({
+              "&:focus::after": {
+                boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor
+                  .alpha(0.3)
+                  .rgb()}`,
               },
-              bgColor: buttonColor.hex(),
-              color: contrastColor.hex(),
             })
-          )
-          styles.push(containedStyles)
-        } else if (variant === "outlined") {
-          const hoverColor = isDark
-            ? buttonColor.darken(0.2)
-            : buttonColor.lighten(0.2)
-          const outlinedStyles = css(
-            sh({
-              "&::after": {
-                border: "1px solid",
-                borderColor: buttonColor.hex(),
-              },
-              "&:hover": {
-                color: hoverColor.hex(),
-              },
-              "&:hover::after": {
-                borderColor: hoverColor.hex(),
-              },
-              bgColor: "transparent",
-              color: buttonColor.hex(),
-            })
-          )
-          styles.push(outlinedStyles)
-        } else {
-          /* istanbul ignore next */
-          if (variant === "text") {
-            const hoverColor = isDark
-              ? buttonColor.darken(0.2)
-              : buttonColor.lighten(0.2)
-            const textStyles = css(
+          } catch (e) {
+            const buttonColor = Color(Gray.N300)
+            const contrastColor = Color("black")
+            const colorStyles = css(
               sh({
+                "&:focus::after": {
+                  boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor
+                    .alpha(0.3)
+                    .rgb()}`,
+                },
                 "&:hover": {
-                  bgColor: buttonColor.alpha(0.1).rgb().toString(),
-                  color: hoverColor.hex(),
+                  bgColor: buttonColor.darken(0.1).hex(),
                 },
-                "&:hover::after": {
-                  borderColor: hoverColor.hex(),
-                },
-                bgColor: "transparent",
-                color: buttonColor.hex(),
+                bgColor: buttonColor.hex(),
+                color: contrastColor.hex(),
               })
             )
-            styles.push(textStyles)
+            styles.push(colorStyles)
           }
-        }
 
-        if (icon) {
-          const iconStyles = css(
+          styles.unshift(
             sh({
-              fontSize: 24,
-              lineHeight: 0,
-              minH: 6,
-              minW: 6,
-              p: 0,
+              "&::after": {
+                br: "inherit",
+                pos: 0,
+                transition: "boxShadow",
+              },
+              border: "none",
+              boxSizing: "border-box",
+              br: theme.spacing(0.5),
+              display: "inline-block",
+              fontFamily: theme.typography.fontFamily,
+              fontSize: 13,
+              fontWeight: 500,
+              minH: 4,
+              outline: "none",
+              p: [1, 2],
+              position: "relative",
+              textDecoration: "none",
+              transition: ["backgroundColor", "color"],
             })
           )
-          styles.push(iconStyles)
-        }
 
-        if (size === "small") {
-          const smallStyles = css(
-            sh(
-              !icon
-                ? {
-                    fontSize: 11,
-                    minH: 3,
-                  }
-                : {
-                    fontSize: 16,
-                    minH: 4,
-                    minW: 4,
-                  }
+          if (shProp) {
+            styles.push(
+              typeof shProp === "function" ? sh(shProp(theme)) : sh(shProp)
             )
-          )
-          styles.push(smallStyles)
-        }
+          }
 
-        styles.unshift({
-          "&:focus::after": {
-            boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor.alpha(0.3).rgb()}`,
-          },
-        })
-      } catch (e) {
-        const buttonColor = Color(Gray.N300)
-        const contrastColor = Color("black")
-        const colorStyles = css(
-          sh({
-            "&:focus::after": {
-              boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor
-                .alpha(0.3)
-                .rgb()}`,
-            },
-            "&:hover": {
-              bgColor: buttonColor.darken(0.1).hex(),
-            },
-            bgColor: buttonColor.hex(),
-            color: contrastColor.hex(),
-          })
-        )
-        styles.push(colorStyles)
-      }
-
-      styles.unshift(
-        sh({
-          "&::after": {
-            br: "inherit",
-            pos: 0,
-            transition: "boxShadow",
-          },
-          border: "none",
-          boxSizing: "border-box",
-          br: theme.spacing(0.5),
-          display: "inline-block",
-          fontFamily: theme.typography.fontFamily,
-          fontSize: 13,
-          fontWeight: 500,
-          minH: 4,
-          outline: "none",
-          p: [1, 2],
-          position: "relative",
-          textDecoration: "none",
-          transition: ["backgroundColor", "color"],
-        })
-      )
-      return css(styles)
-    })
+          return css(styles)
+        }),
+      [color, icon, shProp, size, variant]
+    )
 
     return (
       <Box as={as} css={buttonStyles} {...props} ref={ref}>

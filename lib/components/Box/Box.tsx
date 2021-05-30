@@ -1,5 +1,5 @@
 import { ComponentShorthandProps, withTheme } from "../../styles"
-import React, { ElementType, forwardRef, ReactNode, VFC } from "react"
+import React, { ElementType, forwardRef, ReactNode, useMemo, VFC } from "react"
 import { css } from "@emotion/react"
 
 export type BoxProps = {
@@ -22,11 +22,14 @@ export type BoxProps = {
 export const Box: VFC<BoxProps> = forwardRef(
   ({ children, sh, as, ...props }, ref) => {
     const Component: ElementType = as || "div"
-    const boxStyles =
-      sh &&
-      withTheme((theme, shorthand) =>
-        css(typeof sh === "function" ? shorthand(sh(theme)) : shorthand(sh))
-      )
+    const boxStyles = useMemo(
+      () =>
+        sh &&
+        withTheme((theme, shorthand) =>
+          css(typeof sh === "function" ? shorthand(sh(theme)) : shorthand(sh))
+        ),
+      [sh]
+    )
     return (
       <Component css={boxStyles} {...props} ref={ref}>
         {children}

@@ -4,7 +4,7 @@ import {
   ThemeColors,
   withTheme,
 } from "../../styles"
-import { forwardRef, ReactNode, VFC } from "react"
+import { forwardRef, ReactNode, useMemo, VFC } from "react"
 import { Box } from "../Box/Box"
 import Color from "color"
 import { css } from "@emotion/react"
@@ -36,73 +36,77 @@ export type LinkProps = {
  */
 export const Link: VFC<LinkProps> = forwardRef(
   ({ as = "a", children, color = "primary", href, ...props }, ref) => {
-    const linkStyles = withTheme((theme, sh) => {
-      let styles = []
+    const linkStyles = useMemo(
+      () =>
+        withTheme((theme, sh) => {
+          let styles = []
 
-      try {
-        if (color === "inherit") {
-          const colorInheritStyles = css(
-            sh({
-              "&:focus, &:hover": {
-                textDecoration: "underline",
-              },
-              color: "inherit",
-            })
-          )
-          styles.push(colorInheritStyles)
-        } else {
-          const linkColor = !!theme.color[color]
-            ? Color(theme.color[color])
-            : Color(color)
-          const isDark = Color(linkColor).isDark()
-          const hoverColor = isDark
-            ? linkColor.darken(0.2)
-            : linkColor.lighten(0.2)
-          const focusColor = isDark
-            ? linkColor.darken(0.4)
-            : linkColor.lighten(0.4)
+          try {
+            if (color === "inherit") {
+              const colorInheritStyles = css(
+                sh({
+                  "&:focus, &:hover": {
+                    textDecoration: "underline",
+                  },
+                  color: "inherit",
+                })
+              )
+              styles.push(colorInheritStyles)
+            } else {
+              const linkColor = !!theme.color[color]
+                ? Color(theme.color[color])
+                : Color(color)
+              const isDark = Color(linkColor).isDark()
+              const hoverColor = isDark
+                ? linkColor.darken(0.2)
+                : linkColor.lighten(0.2)
+              const focusColor = isDark
+                ? linkColor.darken(0.4)
+                : linkColor.lighten(0.4)
 
-          styles.push({
-            "&:focus": {
-              color: focusColor.hex(),
-            },
-            "&:hover": {
-              color: hoverColor.hex(),
-            },
-            color: linkColor.hex(),
-          })
+              styles.push({
+                "&:focus": {
+                  color: focusColor.hex(),
+                },
+                "&:hover": {
+                  color: hoverColor.hex(),
+                },
+                color: linkColor.hex(),
+              })
 
-          if (isBrowser && window.location.pathname === href) {
-            const activeColor = isDark
-              ? linkColor.darken(0.7)
-              : linkColor.lighten(0.7)
-            const activeStyles = css(
+              if (isBrowser && window.location.pathname === href) {
+                const activeColor = isDark
+                  ? linkColor.darken(0.7)
+                  : linkColor.lighten(0.7)
+                const activeStyles = css(
+                  sh({
+                    color: activeColor.hex(),
+                  })
+                )
+                styles.push(activeStyles)
+              }
+            }
+          } catch (e) {
+            const linkColor = Color(Gray.N300)
+            const colorStyles = css(
               sh({
-                color: activeColor.hex(),
+                color: linkColor.hex(),
               })
             )
-            styles.push(activeStyles)
+            styles.push(colorStyles)
           }
-        }
-      } catch (e) {
-        const linkColor = Color(Gray.N300)
-        const colorStyles = css(
-          sh({
-            color: linkColor.hex(),
-          })
-        )
-        styles.push(colorStyles)
-      }
 
-      styles.unshift(
-        sh({
-          outline: "none",
-          textDecoration: "none",
-        })
-      )
+          styles.unshift(
+            sh({
+              outline: "none",
+              textDecoration: "none",
+            })
+          )
 
-      return css(styles)
-    })
+          return css(styles)
+        }),
+      [color, href]
+    )
 
     return (
       <Box as={as} css={linkStyles} href={href} {...props} ref={ref}>

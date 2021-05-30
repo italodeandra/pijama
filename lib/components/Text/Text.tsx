@@ -4,7 +4,7 @@ import {
   ThemeColors,
   withTheme,
 } from "../../styles"
-import { forwardRef, ReactNode, VFC } from "react"
+import { forwardRef, ReactNode, useMemo, VFC } from "react"
 import { Box } from "../Box/Box"
 import Color from "color"
 import { css } from "@emotion/react"
@@ -79,6 +79,7 @@ export const Text: VFC<TextProps> = forwardRef(
       children,
       as,
       color,
+      sh: shProp,
 
       paragraph,
       subheader,
@@ -109,175 +110,198 @@ export const Text: VFC<TextProps> = forwardRef(
       }
     }
 
-    const textStyles = withTheme((theme, sh) => {
-      let styles = []
-      let textColor: string
-      try {
-        if (paragraph || subheader || code || header) {
-          const autoSpacingStyles = css(
+    const textStyles = useMemo(
+      () =>
+        withTheme((theme, sh) => {
+          let styles = []
+          let textColor: string
+          try {
+            if (paragraph || subheader || code || header) {
+              const autoSpacingStyles = css(
+                sh({
+                  "& + &.header": header
+                    ? {
+                        mt: 4,
+                      }
+                    : {},
+                  "& + &.subheader": subheader
+                    ? {
+                        mt: 2,
+                      }
+                    : {},
+                  "&:first-of-type": {
+                    mt: 0,
+                  },
+                  "&:last-of-type": {
+                    mb: 0,
+                  },
+                  m: !paragraph ? [1, 0] : undefined,
+                })
+              )
+              styles.push(autoSpacingStyles)
+            }
+            if (paragraph || subheader || header || block) {
+              const blockStyles = css(
+                sh({
+                  display: "block",
+                  width: "100%",
+                })
+              )
+              styles.push(blockStyles)
+            }
+            if (subheader) {
+              const subheaderStyles = css(
+                sh({
+                  fontWeight: 600,
+                })
+              )
+              styles.push(subheaderStyles)
+            }
+            if (header) {
+              const subheaderStyles = css(
+                sh({
+                  fontSize: 18,
+                  fontWeight: 600,
+                })
+              )
+              styles.push(subheaderStyles)
+            }
+            if (code) {
+              const codeStyles = css(
+                sh({
+                  bgColor: Gray.N100,
+                  boxSizing: "border-box",
+                  br: 0.5,
+                  color: Gray.N600,
+                  fontFamily:
+                    'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
+                })
+              )
+              styles.push(codeStyles)
+            }
+            if (code && !block) {
+              const codeStyles = css(
+                sh({
+                  maxWidth: "100%",
+                  overflow: "auto",
+                  p: [0.5, 0.75],
+                  verticalAlign: "middle",
+                })
+              )
+              styles.push(codeStyles)
+            }
+            if (code && block) {
+              const codeBlockStyles = css(
+                sh({
+                  "& pre": {
+                    backgroundColor: "transparent !important",
+                    border: "none !important",
+                    m: "0px !important",
+                    p: "0px !important",
+                  },
+                  overflow: "auto",
+                  p: [0.75, 1],
+                })
+              )
+              styles.push(codeBlockStyles)
+            }
+            if (italic) {
+              const italicStyles = css(
+                sh({
+                  fontStyle: "italic",
+                })
+              )
+              styles.push(italicStyles)
+            }
+            if (bold) {
+              const boldStyles = css(
+                sh({
+                  fontWeight: 500,
+                })
+              )
+              styles.push(boldStyles)
+            }
+            if (center) {
+              const centerStyles = css(
+                sh({
+                  textAlign: "center",
+                })
+              )
+              styles.push(centerStyles)
+            }
+            if (!select) {
+              const noSelectStyles = css(
+                sh({
+                  cursor: "default",
+                  userSelect: "none",
+                })
+              )
+              styles.push(noSelectStyles)
+            }
+            if (select === "all") {
+              const selectAllStyles = css(
+                sh({
+                  userSelect: "all",
+                })
+              )
+              styles.push(selectAllStyles)
+            }
+            if (ellipsis) {
+              const ellipsisStyles = css(
+                sh({
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                })
+              )
+              styles.push(ellipsisStyles)
+            }
+            if (justify) {
+              const justifyStyles = css(
+                sh({
+                  textAlign: "justify",
+                })
+              )
+              styles.push(justifyStyles)
+            }
+            if (color) {
+              textColor = (
+                !!theme.color[color] ? Color(theme.color[color]) : Color(color)
+              ).hex()
+            }
+          } catch (e) {}
+          styles.unshift(
             sh({
-              "& + &.header": header
-                ? {
-                    mt: 4,
-                  }
-                : {},
-              "& + &.subheader": subheader
-                ? {
-                    mt: 2,
-                  }
-                : {},
-              "&:first-of-type": {
-                mt: 0,
-              },
-              "&:last-of-type": {
-                mb: 0,
-              },
-              m: !paragraph ? [1, 0] : undefined,
+              color: textColor,
+              cursor: "text",
+              display: "inline-block",
+              position: "relative",
+              userSelect: "text",
             })
           )
-          styles.push(autoSpacingStyles)
-        }
-        if (paragraph || subheader || header || block) {
-          const blockStyles = css(
-            sh({
-              display: "block",
-              width: "100%",
-            })
-          )
-          styles.push(blockStyles)
-        }
-        if (subheader) {
-          const subheaderStyles = css(
-            sh({
-              fontWeight: 600,
-            })
-          )
-          styles.push(subheaderStyles)
-        }
-        if (header) {
-          const subheaderStyles = css(
-            sh({
-              fontSize: 18,
-              fontWeight: 600,
-            })
-          )
-          styles.push(subheaderStyles)
-        }
-        if (code) {
-          const codeStyles = css(
-            sh({
-              bgColor: Gray.N100,
-              boxSizing: "border-box",
-              br: 0.5,
-              color: Gray.N600,
-              fontFamily:
-                'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
-            })
-          )
-          styles.push(codeStyles)
-        }
-        if (code && !block) {
-          const codeStyles = css(
-            sh({
-              maxWidth: "100%",
-              overflow: "auto",
-              p: [0.5, 0.75],
-              verticalAlign: "middle",
-            })
-          )
-          styles.push(codeStyles)
-        }
-        if (code && block) {
-          const codeBlockStyles = css(
-            sh({
-              "& pre": {
-                backgroundColor: "transparent !important",
-                border: "none !important",
-                m: "0px !important",
-                p: "0px !important",
-              },
-              overflow: "auto",
-              p: [0.75, 1],
-            })
-          )
-          styles.push(codeBlockStyles)
-        }
-        if (italic) {
-          const italicStyles = css(
-            sh({
-              fontStyle: "italic",
-            })
-          )
-          styles.push(italicStyles)
-        }
-        if (bold) {
-          const boldStyles = css(
-            sh({
-              fontWeight: 500,
-            })
-          )
-          styles.push(boldStyles)
-        }
-        if (center) {
-          const centerStyles = css(
-            sh({
-              textAlign: "center",
-            })
-          )
-          styles.push(centerStyles)
-        }
-        if (!select) {
-          const noSelectStyles = css(
-            sh({
-              cursor: "default",
-              userSelect: "none",
-            })
-          )
-          styles.push(noSelectStyles)
-        }
-        if (select === "all") {
-          const selectAllStyles = css(
-            sh({
-              userSelect: "all",
-            })
-          )
-          styles.push(selectAllStyles)
-        }
-        if (ellipsis) {
-          const ellipsisStyles = css(
-            sh({
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            })
-          )
-          styles.push(ellipsisStyles)
-        }
-        if (justify) {
-          const justifyStyles = css(
-            sh({
-              textAlign: "justify",
-            })
-          )
-          styles.push(justifyStyles)
-        }
-        if (color) {
-          textColor = (
-            !!theme.color[color] ? Color(theme.color[color]) : Color(color)
-          ).hex()
-        }
-      } catch (e) {}
-      styles.unshift(
-        sh({
-          color: textColor,
-          cursor: "text",
-          display: "inline-block",
-          position: "relative",
-          userSelect: "text",
-        })
-      )
-      return css(styles)
-    })
+          if (shProp) {
+            styles.push(
+              typeof shProp === "function" ? sh(shProp(theme)) : sh(shProp)
+            )
+          }
+          return css(styles)
+        }),
+      [
+        block,
+        bold,
+        center,
+        code,
+        color,
+        ellipsis,
+        header,
+        italic,
+        justify,
+        paragraph,
+        select,
+        shProp,
+        subheader,
+      ]
+    )
 
     return (
       <Box as={as} css={textStyles} {...props} ref={ref}>

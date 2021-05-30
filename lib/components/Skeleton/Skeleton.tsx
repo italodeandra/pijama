@@ -1,7 +1,7 @@
 import { ComponentShorthandProps, withTheme } from "../../styles"
 import { css, keyframes } from "@emotion/react"
+import { useMemo, VFC } from "react"
 import { Box } from "../Box/Box"
-import { VFC } from "react"
 
 export type SkeletonProps = {
   /**
@@ -48,41 +48,45 @@ export const Skeleton: VFC<SkeletonProps> = ({
   width,
   ...props
 }) => {
-  const skeletonStyles = withTheme((theme, sh) => {
-    let styles = []
+  const skeletonStyles = useMemo(
+    () =>
+      withTheme((theme, sh) => {
+        let styles = []
 
-    try {
-      if (text) {
-        const textStyles = css(
+        try {
+          if (text) {
+            const textStyles = css(
+              sh({
+                height: "auto",
+                mb: 0,
+                mt: 0,
+                transform: "scale(1, 0.60)",
+                transformOrigin: "0 60%",
+                "&:empty:before": {
+                  content: "'\\00a0'",
+                },
+              })
+            )
+            styles.push(textStyles)
+          }
+        } catch (e) {}
+
+        styles.unshift(
           sh({
-            height: "auto",
-            mb: 0,
-            mt: 0,
-            transform: "scale(1, 0.60)",
-            transformOrigin: "0 60%",
-            "&:empty:before": {
-              content: "'\\00a0'",
-            },
+            animation: `${pulse} 1.5s ease-in-out 0.5s infinite`,
+            bgColor: theme.color.darkMode
+              ? "rgba(255, 255, 255, 0.13)"
+              : "rgba(0, 0, 0, 0.13)",
+            br: 0.5,
+            display: "block",
+            height: height || "1.2em",
+            width,
           })
         )
-        styles.push(textStyles)
-      }
-    } catch (e) {}
-
-    styles.unshift(
-      sh({
-        animation: `${pulse} 1.5s ease-in-out 0.5s infinite`,
-        bgColor: theme.color.darkMode
-          ? "rgba(255, 255, 255, 0.13)"
-          : "rgba(0, 0, 0, 0.13)",
-        br: 0.5,
-        display: "block",
-        height: height || "1.2em",
-        width,
-      })
-    )
-    return css(styles)
-  })
+        return css(styles)
+      }),
+    [height, text, width]
+  )
 
   return <Box as={as || "span"} css={skeletonStyles} {...props} />
 }

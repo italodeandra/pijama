@@ -5,6 +5,7 @@ import {
   InputHTMLAttributes,
   ReactNode,
   Ref,
+  useMemo,
   useState,
   VFC,
 } from "react"
@@ -17,7 +18,7 @@ import { CSSInterpolation } from "@emotion/serialize"
 import Icon from "@iconify/react"
 import { useUpdateEffect } from "react-use"
 
-export type FieldProps<V = unknown, E = HTMLInputElement> = {
+export type FieldProps<E = HTMLInputElement> = {
   /**
    * Change which HTML element or React component the field should be.
    * @default div
@@ -31,7 +32,7 @@ export type FieldProps<V = unknown, E = HTMLInputElement> = {
   /**
    * The default value of the input.
    */
-  defaultValue?: V
+  defaultValue?: string
   /**
    * If should show error color.
    */
@@ -56,7 +57,7 @@ export type FieldProps<V = unknown, E = HTMLInputElement> = {
   /**
    * Change value event handler.
    */
-  onChangeValue?: (value: V, event: ChangeEvent<E>) => void
+  onChangeValue?: (value: string, event: ChangeEvent<E>) => void
   /**
    * Placeholder of the input.
    */
@@ -73,7 +74,7 @@ export type FieldProps<V = unknown, E = HTMLInputElement> = {
   /**
    * The value of the input.
    */
-  value?: V
+  value?: string
   /**
    * Element ref.
    */
@@ -120,95 +121,102 @@ export const Field: VFC<FieldProps> = forwardRef(
     const [isFocused, setFocused] = useState(false)
     const [innerValue, setInnerValue] = useState(value || defaultValue)
 
-    const fieldStyles = withTheme((theme, sh) => {
-      let styles = []
+    const fieldStyles = useMemo(
+      () =>
+        withTheme((theme, sh) => {
+          let styles = []
 
-      try {
-        const labelColor = Color(theme.color.textPrimary)
-        const focusColor = !!theme.color[color]
-          ? Color(theme.color[color])
-          : Color(color)
+          try {
+            const labelColor = Color(theme.color.textPrimary)
+            const focusColor = !!theme.color[color]
+              ? Color(theme.color[color])
+              : Color(color)
 
-        if (error) {
-          const errorColor = Color(theme.color.error)
-          const errorStyled = css({
-            "& > div > input, & > div > select": {
-              /* eslint-disable sort-keys */
-              "&:hover": {
-                borderColor: errorColor.darken(0.2).hex(),
+            if (error) {
+              const errorColor = Color(theme.color.error)
+              const errorStyled = css({
+                "& > div > input, & > div > select": {
+                  /* eslint-disable sort-keys */
+                  "&:hover": {
+                    borderColor: errorColor.darken(0.2).hex(),
+                  },
+                  "&:focus": {
+                    borderColor: errorColor.hex(),
+                    boxShadow: `0 0 0 calc(1px + 2px) ${errorColor
+                      .alpha(0.3)
+                      .rgb()}`,
+                  },
+                  borderColor: errorColor.hex(),
+                },
+                color: errorColor.hex(),
+              })
+              styles.push(errorStyled)
+            } else if (isFocused) {
+              const focusedStyled = css({
+                "& > label": {
+                  color: focusColor.hex(),
+                },
+              })
+              styles.push(focusedStyled)
+            }
+
+            styles.unshift({
+              "& > div > input, & > div > select": {
+                /* eslint-disable sort-keys */
+                "&:hover": {
+                  borderColor: labelColor.lighten(1).hex(),
+                },
+                "&:focus": {
+                  borderColor: focusColor.hex(),
+                  boxShadow: `0 0 0 calc(1px + 2px) ${focusColor
+                    .alpha(0.3)
+                    .rgb()}`,
+                },
+                borderColor: labelColor.lighten(1.6).hex(),
               },
-              "&:focus": {
-                borderColor: errorColor.hex(),
-                boxShadow: `0 0 0 calc(1px + 2px) ${errorColor
-                  .alpha(0.3)
-                  .rgb()}`,
+              color: labelColor.hex(),
+            })
+          } catch (e) {}
+          styles.unshift(
+            sh({
+              "& > div > input, & > div > select": {
+                appearance: "none",
+                border: "1px solid",
+                borderRadius: theme.spacing(0.5),
+                boxShadow:
+                  "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+                boxSizing: "border-box",
+                display: "block",
+                fontFamily: theme.typography.fontFamily,
+                fontSize: 13,
+                outline: "none",
+                padding: 1,
+                mr: 5,
+                transition: ["boxShadow", "borderColor"],
+                width: "100%",
               },
-              borderColor: errorColor.hex(),
-            },
-            color: errorColor.hex(),
-          })
-          styles.push(errorStyled)
-        } else if (isFocused) {
-          const focusedStyled = css({
-            "& > label": {
-              color: focusColor.hex(),
-            },
-          })
-          styles.push(focusedStyled)
-        }
-
-        styles.unshift({
-          "& > div > input, & > div > select": {
-            /* eslint-disable sort-keys */
-            "&:hover": {
-              borderColor: labelColor.lighten(1).hex(),
-            },
-            "&:focus": {
-              borderColor: focusColor.hex(),
-              boxShadow: `0 0 0 calc(1px + 2px) ${focusColor.alpha(0.3).rgb()}`,
-            },
-            borderColor: labelColor.lighten(1.6).hex(),
-          },
-          color: labelColor.hex(),
-        })
-      } catch (e) {}
-      styles.unshift(
-        sh({
-          "& > div > input, & > div > select": {
-            appearance: "none",
-            border: "1px solid",
-            borderRadius: theme.spacing(0.5),
-            boxShadow:
-              "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
-            boxSizing: "border-box",
-            display: "block",
-            fontFamily: theme.typography.fontFamily,
-            fontSize: 13,
-            outline: "none",
-            padding: 1,
-            transition: ["boxShadow", "borderColor"],
-            width: "100%",
-          },
-          "& > label": {
-            display: "block",
-            fontFamily: theme.typography.fontFamily,
-            fontSize: 13,
-            fontWeight: 500,
-            marginBottom: 0.5,
-            transition: "color",
-          },
-          "& > span": {
-            display: "block",
-            fontFamily: theme.typography.fontFamily,
-            fontSize: 12,
-            marginTop: 0.5,
-            transition: "color",
-          },
-          pt: "3px",
-        })
-      )
-      return css(styles)
-    })
+              "& > label": {
+                display: "block",
+                fontFamily: theme.typography.fontFamily,
+                fontSize: 13,
+                fontWeight: 500,
+                marginBottom: 0.5,
+                transition: "color",
+              },
+              "& > span": {
+                display: "block",
+                fontFamily: theme.typography.fontFamily,
+                fontSize: 12,
+                marginTop: 0.5,
+                transition: "color",
+              },
+              pt: "3px",
+            })
+          )
+          return css(styles)
+        }),
+      [color, error, isFocused]
+    )
 
     useUpdateEffect(() => {
       setInnerValue(value)
