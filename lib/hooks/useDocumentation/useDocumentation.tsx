@@ -144,15 +144,14 @@ export const useDocumentation: UseDocumentation = (
                   }
                   name={key}
                   onChangeValue={(value) => {
-                    value = !!properties[key].options
+                    // @ts-ignore
+                    state.current[key] = !!properties[key].options
                       ? value === "true"
                         ? true
                         : value === "false"
                         ? false
                         : value
                       : value
-                    // @ts-ignore
-                    return (state.current[key] = value)
                   }}
                   readOnly={properties[key].readOnly}
                   sh={{ mb: 2 }}
