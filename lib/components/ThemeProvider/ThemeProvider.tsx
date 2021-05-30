@@ -8,6 +8,21 @@ import { ReactNode, VFC } from "react"
 import { NProgress } from "../NProgress"
 import { Snackbar } from "../Snackbar"
 
+const globalStyles = withTheme((theme, sh) =>
+  css(
+    sh({
+      "*": {
+        boxSizing: "border-box",
+      },
+      body: {
+        color: theme.color.textPrimary,
+        fontFamily: theme.typography.fontFamily,
+        m: 0,
+      },
+    })
+  )
+)
+
 export type ThemeProviderProps = {
   /**
    * The element hierarchy that will consume the theme from this provider.
@@ -37,24 +52,11 @@ export const ThemeProvider: VFC<ThemeProviderProps> = ({
   disableNProgress,
   disableSnackbar,
   theme = createTheme(),
-}) => {
-  const globalStyles = withTheme((theme, sh) =>
-    css(
-      sh({
-        body: {
-          fontFamily: theme.typography.fontFamily,
-          m: 0,
-        },
-      })
-    )
-  )
-
-  return (
-    <EmotionThemeProvider theme={theme}>
-      <EmotionGlobal styles={globalStyles(theme)} />
-      {!disableNProgress && <NProgress />}
-      {!disableSnackbar && <Snackbar />}
-      {children}
-    </EmotionThemeProvider>
-  )
-}
+}) => (
+  <EmotionThemeProvider theme={theme}>
+    <EmotionGlobal styles={globalStyles(theme)} />
+    {!disableNProgress && <NProgress />}
+    {!disableSnackbar && <Snackbar />}
+    {children}
+  </EmotionThemeProvider>
+)
