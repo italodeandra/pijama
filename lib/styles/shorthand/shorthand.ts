@@ -4,6 +4,9 @@ import { Theme } from "../Theme"
 
 const shorthands = {
   bgColor: "backgroundColor",
+  bgImage: "backgroundImage",
+  bgPosition: "backgroundPosition",
+  bgSize: "backgroundSize",
   br: "borderRadius",
   m: "margin",
   maxH: "maxHeight",
