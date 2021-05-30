@@ -9,6 +9,7 @@ import {
 } from "../../styles"
 import React, { VFC } from "react"
 import { css } from "@emotion/react"
+import { DisableSsr } from "../DisableSsr/DisableSsr"
 import { Text } from "../Text/Text"
 
 const jsonStyles = withTheme((theme, sh) =>
@@ -55,13 +56,15 @@ export type JsonProps = {
 export const Json: VFC<JsonProps> = ({ json, label, ...props }) => {
   if (typeof json !== "undefined") {
     return (
-      <Text
-        block
-        code
-        css={jsonStyles}
-        dangerouslySetInnerHTML={{ __html: syntaxHighlight(json, label) }}
-        {...props}
-      />
+      <DisableSsr>
+        <Text
+          block
+          code
+          css={jsonStyles}
+          dangerouslySetInnerHTML={{ __html: syntaxHighlight(json, label) }}
+          {...props}
+        />
+      </DisableSsr>
     )
   } else {
     return <></>
