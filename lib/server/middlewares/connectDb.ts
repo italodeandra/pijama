@@ -1,6 +1,39 @@
+import { MongoMemoryServer } from "mongodb-memory-server"
+import mongoose from "mongoose"
 import type { NextMiddleware } from "next-api-middleware"
 
-let existingConnect: Promise<typeof import("mongoose")>
+declare global {
+  namespace NodeJS {
+    // noinspection JSUnusedGlobalSymbols
+    interface Global {
+      existingConnect: Promise<typeof mongoose>
+    }
+  }
+}
+
+export const connect = async (databaseUrl?: string) => {
+  if (mongoose.connections[0].readyState) {
+    return
+  }
+
+  if (!global.existingConnect) {
+    if (!databaseUrl) {
+      const mongoMemoryServer = new MongoMemoryServer()
+      const uri = await mongoMemoryServer.getUri()
+      console.info(`Mongo Memory Server: ${uri}`)
+      databaseUrl = uri
+    }
+
+    global.existingConnect = mongoose.connect(databaseUrl, {
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+  }
+
+  await global.existingConnect
+}
 
 // noinspection JSUnusedGlobalSymbols
 /**
@@ -9,32 +42,13 @@ let existingConnect: Promise<typeof import("mongoose")>
  * create a mongodb memory server for testing purposes.
  */
 export const connectDb: (databaseUrl?: string) => NextMiddleware =
-  (databaseUrl = process.env.DATABASE_URL) =>
-  async (req, res, next) => {
-    const { default: mongoose } = await import("mongoose")
-    const { MongoMemoryServer } = await import("mongodb-memory-server")
+  (databaseUrl?: string) => async (req, res, next) => {
+    await withDb(next, databaseUrl)
+  }
 
-    if (mongoose.connections[0].readyState) {
-      return next()
-    }
-
-    if (!databaseUrl) {
-      const mongoMemoryServer = new MongoMemoryServer()
-      const uri = await mongoMemoryServer.getUri()
-      console.info(`Mongo Memory Server: ${uri}`)
-      databaseUrl = uri
-    }
-
-    if (!existingConnect) {
-      existingConnect = mongoose.connect(databaseUrl, {
-        useCreateIndex: true,
-        useFindAndModify: false,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-    }
-
-    await existingConnect
-
-    await next()
+export const withDb =
+  <T extends Function>(callback: T, databaseUrl = process.env.DATABASE_URL) =>
+  async (...props) => {
+    await connect(databaseUrl)
+    return callback(...props)
   }
