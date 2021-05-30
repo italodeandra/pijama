@@ -20,7 +20,7 @@ const tooltipStyles = withTheme((theme, sh) =>
       color: "white",
       fontSize: 12,
       p: [1, 2],
-      position: "absolute",
+      position: "fixed",
       whiteSpace: "nowrap",
       zIndex: 2,
     })
