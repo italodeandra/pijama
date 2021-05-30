@@ -9,7 +9,9 @@ describe("Snackbar", () => {
 
     const messageText = "This is a message"
 
-    await act(async () => notify(messageText))
+    await act(async () => {
+      notify(messageText)
+    })
 
     const message = await screen.findByText(messageText)
 

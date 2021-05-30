@@ -18,7 +18,15 @@ export const snackbarState = proxy({
  *
  * [Demo](https://pijama.majapi.com.br/components/Snackbar)
  */
-export const notify = (message: string) => {
+export const notify = (message: string, suppress?: boolean) => {
+  if (suppress) {
+    const existingMessage = snackbarState.messages.find(
+      (m) => m.content === message
+    )
+    if (existingMessage) {
+      return existingMessage.id
+    }
+  }
   const id = uuid()
   snackbarState.messages.push({
     content: message,
