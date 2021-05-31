@@ -3,9 +3,21 @@ import { Tooltip } from "./Tooltip"
 import { useDocumentation } from "../../hooks"
 
 export const TooltipDemo = () => {
-  useDocumentation(
-    {},
-    () => `<Tooltip title="This is the tooltip">
+  const props = useDocumentation(
+    {
+      placement: {
+        description: "Placement of the tooltip.",
+        options: ["bottom", "top"],
+        value: "bottom",
+      },
+      title: {
+        description: "Content of the tooltip.",
+        value: "This is the tooltip",
+      },
+    },
+    ({ placement, title }) => `<Tooltip${
+      placement !== "bottom" ? ` placement="${placement}"` : ""
+    } title="${title}">
   <span>Hover me</span>
 </Tooltip>`
   )
@@ -17,10 +29,10 @@ export const TooltipDemo = () => {
         height: `calc(100vh - ${theme.spacing(12)})`,
       })}
     >
-      <Tooltip title={"This is the tooltip"}>
+      <Tooltip {...props}>
         <Box sh={{ mb: "auto" }}>Hover me</Box>
       </Tooltip>
-      <Tooltip title={"This is the tooltip"}>
+      <Tooltip {...props}>
         <Box sh={{ ml: "auto", mt: "auto" }}>Hover me</Box>
       </Tooltip>
     </Box>
