@@ -10,6 +10,7 @@ import { FieldDemo } from "../../lib/components/Field/Field.demo"
 import { JsonDemo } from "../../lib/components/Json/Json.demo"
 import { LinearProgressDemo } from "../../lib/components/LinearProgress/LinearProgress.demo"
 import { LinkDemo } from "../../lib/components/Link/Link.demo"
+import { MenuDemo } from "../../lib/components/Menu/Menu.demo"
 import { NProgressDemo } from "../../lib/components/NProgress/NProgress.demo"
 import { PortalDemo } from "../../lib/components/Portal/Portal.demo"
 import { SkeletonDemo } from "../../lib/components/Skeleton/Skeleton.demo"
@@ -31,6 +32,7 @@ const demos = {
   Json: JsonDemo,
   LinearProgress: LinearProgressDemo,
   Link: LinkDemo,
+  Menu: MenuDemo,
   NProgress: NProgressDemo,
   Portal: PortalDemo,
   Skeleton: SkeletonDemo,
