@@ -218,7 +218,6 @@ export const Button: VFC<ButtonProps> = forwardRef(
                 transition: "boxShadow",
               },
               border: "none",
-              boxSizing: "border-box",
               br: theme.spacing(0.5),
               display: "inline-block",
               fontFamily: theme.typography.fontFamily,
