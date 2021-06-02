@@ -23,8 +23,14 @@ const menuItemStyles = withTheme((theme, sh) =>
       "&:focus": {
         bgColor: menuItemHoverColor.darken(0.05).hex(),
       },
+      border: "none",
+      cursor: "default",
+      display: "block",
+      fontFamily: theme.typography.fontFamily,
       outline: "none",
       p: [1, 2],
+      position: "relative",
+      textDecoration: "none",
     })
   )
 )
