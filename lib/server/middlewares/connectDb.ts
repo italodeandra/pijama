@@ -4,7 +4,6 @@ import type { NextMiddleware } from "next-api-middleware"
 
 declare global {
   namespace NodeJS {
-    // noinspection JSUnusedGlobalSymbols
     interface Global {
       existingConnect: Promise<typeof mongoose>
     }
@@ -35,7 +34,6 @@ export const connect = async (databaseUrl?: string) => {
   await global.existingConnect
 }
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * A middleware for connecting to the database. The database url if not passed
  * it uses the environment variable DATABASE_URL, but if it exists it will
@@ -43,7 +41,7 @@ export const connect = async (databaseUrl?: string) => {
  */
 export const connectDb: (databaseUrl?: string) => NextMiddleware =
   (databaseUrl?: string) => async (req, res, next) => {
-    await withDb(next, databaseUrl)
+    await withDb(next, databaseUrl)()
   }
 
 export const withDb =
