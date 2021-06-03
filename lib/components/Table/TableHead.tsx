@@ -1,4 +1,6 @@
 import { createContext, ReactNode, VFC } from "react"
+import { Gray, withTheme } from "../../styles"
+import { css } from "@emotion/react"
 
 export type TableHeadProps = {
   children: ReactNode
@@ -6,10 +8,18 @@ export type TableHeadProps = {
 
 export const TableHeadContext = createContext(false)
 
-export const TableHead: VFC<TableHeadProps> = ({ children }) => {
-  return (
-    <TableHeadContext.Provider value={true}>
-      <thead>{children}</thead>
-    </TableHeadContext.Provider>
+const tableHeadStyles = withTheme((theme, sh) =>
+  css(
+    sh({
+      tr: {
+        bgColor: Gray.N100,
+      },
+    })
   )
-}
+)
+
+export const TableHead: VFC<TableHeadProps> = ({ children }) => (
+  <TableHeadContext.Provider value={true}>
+    <thead css={tableHeadStyles}>{children}</thead>
+  </TableHeadContext.Provider>
+)

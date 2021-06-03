@@ -6,10 +6,16 @@ import { TableRow } from "./TableRow"
 import { useDocumentation } from "../../hooks"
 
 export const TableDemo = () => {
-  useDocumentation()
+  const props = useDocumentation({
+    size: {
+      description: "What size the table should be.",
+      options: ["normal", "small"],
+      value: "normal",
+    },
+  })
 
   return (
-    <Table>
+    <Table {...props}>
       <TableHead>
         <TableRow>
           <TableCell>Name</TableCell>
@@ -18,6 +24,11 @@ export const TableDemo = () => {
         </TableRow>
       </TableHead>
       <TableBody>
+        <TableRow>
+          <TableCell>Ítalo</TableCell>
+          <TableCell>italodeandra@gmail.com</TableCell>
+          <TableCell>Ranger</TableCell>
+        </TableRow>
         <TableRow>
           <TableCell>Ítalo</TableCell>
           <TableCell>italodeandra@gmail.com</TableCell>
