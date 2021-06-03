@@ -15,6 +15,7 @@ import { NProgressDemo } from "../../lib/components/NProgress/NProgress.demo"
 import { PortalDemo } from "../../lib/components/Portal/Portal.demo"
 import { SkeletonDemo } from "../../lib/components/Skeleton/Skeleton.demo"
 import { SnackbarDemo } from "../../lib/components/Snackbar/Snackbar.demo"
+import { TableDemo } from "../../lib/components/Table/Table.demo"
 import { TextDemo } from "../../lib/components/Text/Text.demo"
 import { ThemeProviderDemo } from "../../lib/components/ThemeProvider/ThemeProvider.demo"
 import { TooltipDemo } from "../../lib/components/Tooltip/Tooltip.demo"
@@ -37,6 +38,7 @@ const demos = {
   Portal: PortalDemo,
   Skeleton: SkeletonDemo,
   Snackbar: SnackbarDemo,
+  Table: TableDemo,
   Text: TextDemo,
   ThemeProvider: ThemeProviderDemo,
   Tooltip: TooltipDemo,
