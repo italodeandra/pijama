@@ -24,6 +24,7 @@
     "pre-push": "npm test"
   },
   "dependencies": {
+    "next-seo": "^4.24.0",
     "axios": "^0.21.1",
     "@emotion/react": "^11.4.0",
     "@emotion/serialize": "^1.0.2",
