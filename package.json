@@ -24,14 +24,14 @@
     "pre-push": "npm test"
   },
   "dependencies": {
-    "next-seo": "^4.24.0",
-    "axios": "^0.21.1",
     "@emotion/react": "^11.4.0",
     "@emotion/serialize": "^1.0.2",
     "@emotion/server": "^11.4.0",
     "@fontsource/inter": "^4.3.0",
     "@iconify/icons-heroicons-outline": "^1.1.2",
     "@iconify/react": "^1.1.4",
+    "@types/uuid": "^8.3.0",
+    "axios": "^0.21.1",
     "color": "^3.1.3",
     "copy-to-clipboard": "^3.3.1",
     "cors": "^2.8.5",
@@ -40,6 +40,7 @@
     "mongoose": "^5.12.10",
     "next": "^10.2.2",
     "next-api-middleware": "^0.7.1",
+    "next-seo": "^4.24.0",
     "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -69,8 +70,8 @@
     "@types/qs": "^6.9.6",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
+    "@types/react-syntax-highlighter": "^13.5.0",
     "@types/react-transition-group": "^4.4.1",
-    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "babel-jest": "^26.6.3",
@@ -85,14 +86,13 @@
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "jest-circus": "^26.6.3",
+    "json": "^11.0.0",
     "lint-staged": "^11.0.0",
     "mongodb-memory-server": "^6.9.6",
     "prettier": "^2.3.0",
+    "react-syntax-highlighter": "^15.4.3",
     "shx": "^0.3.3",
-    "typescript": "^4.2.4",
-    "@types/react-syntax-highlighter": "^13.5.0",
-    "json": "^11.0.0",
-    "react-syntax-highlighter": "^15.4.3"
+    "typescript": "^4.2.4"
   },
   "peerDependencies": {
     "@babel/eslint-parser": "^7.14.3",
@@ -120,7 +120,6 @@
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
     "@types/react-transition-group": "^4.4.1",
-    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
     "axios": "^0.21.1",
@@ -154,8 +153,8 @@
     "react-hook-form": "^7.6.4",
     "react-query": "^3.16.0",
     "typescript": "^4.2.4",
-    "valtio": "1.0.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "valtio": "1.0.3"
   },
   "author": {
     "name": "Ítalo Andrade",
