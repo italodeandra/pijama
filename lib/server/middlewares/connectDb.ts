@@ -1,4 +1,3 @@
-import { MongoMemoryServer } from "mongodb-memory-server"
 import mongoose from "mongoose"
 import type { NextMiddleware } from "next-api-middleware"
 
@@ -11,6 +10,7 @@ export const connect = async (databaseUrl?: string) => {
 
   if (!existingConnection) {
     if (!databaseUrl) {
+      const { MongoMemoryServer } = await import("mongodb-memory-server")
       const mongoMemoryServer = new MongoMemoryServer()
       const uri = await mongoMemoryServer.getUri()
       console.info(`Mongo Memory Server: ${uri}`)
