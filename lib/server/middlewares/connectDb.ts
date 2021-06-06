@@ -2,20 +2,14 @@ import { MongoMemoryServer } from "mongodb-memory-server"
 import mongoose from "mongoose"
 import type { NextMiddleware } from "next-api-middleware"
 
-declare global {
-  namespace NodeJS {
-    interface Global {
-      existingConnect: Promise<typeof mongoose>
-    }
-  }
-}
+let existingConnection: Promise<typeof mongoose> | undefined
 
 export const connect = async (databaseUrl?: string) => {
   if (mongoose.connections[0].readyState) {
     return
   }
 
-  if (!global.existingConnect) {
+  if (!existingConnection) {
     if (!databaseUrl) {
       const mongoMemoryServer = new MongoMemoryServer()
       const uri = await mongoMemoryServer.getUri()
@@ -23,7 +17,7 @@ export const connect = async (databaseUrl?: string) => {
       databaseUrl = uri
     }
 
-    global.existingConnect = mongoose.connect(databaseUrl, {
+    existingConnection = mongoose.connect(databaseUrl, {
       useCreateIndex: true,
       useFindAndModify: false,
       useNewUrlParser: true,
@@ -31,9 +25,10 @@ export const connect = async (databaseUrl?: string) => {
     })
   }
 
-  await global.existingConnect
+  await existingConnection
 }
 
+// noinspection JSUnusedGlobalSymbols
 /**
  * A middleware for connecting to the database. The database url if not passed
  * it uses the environment variable DATABASE_URL, but if it exists it will
