@@ -39,15 +39,18 @@ export const TableCell: VFC<TableCellProps> = ({
         } else {
           const tableHeadCellStyles = css(
             sh({
+              bgColor: Gray.N100,
               borderBottom: `1px solid ${Gray.N200}`,
               color: Gray.N500,
               fontSize: 12,
               fontWeight: 500,
               p: [1.5, 3],
+              position: "sticky",
               "table.small &": {
                 p: [1, 2],
               },
               textTransform: "uppercase",
+              top: 0,
             })
           )
           styles.push(tableHeadCellStyles)
