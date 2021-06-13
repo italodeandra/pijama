@@ -1,11 +1,10 @@
+import { Box, BoxProps } from "@material-ui/core"
 import { Fragment, memo, VFC } from "react"
-import { Box } from "../Box/Box"
-import { ComponentShorthandProps } from "../../styles"
 import { format as formatDate } from "date-fns"
 
 export type DateFormatProps = {
   /**
-   * The date to be formatted.
+   * The date to be formatted.bambo
    */
   date: string | number | Date | undefined
   /**
@@ -15,7 +14,7 @@ export type DateFormatProps = {
    * @default Pp
    */
   format?: string
-} & ComponentShorthandProps
+} & BoxProps
 
 /**
  * Format the date.
@@ -27,10 +26,9 @@ export type DateFormatProps = {
  */
 export const DateFormat: VFC<DateFormatProps> = memo(
   ({ date, format = "Pp", ...props }) => {
-    const Component = props.as ? Box : Fragment
-    if (!props.as) {
-      delete props.as
-      delete props.sh
+    const Component = props.component ? Box : Fragment
+    if (!props.component) {
+      props = {}
     }
     if (typeof date === "string") {
       date = new Date(date)

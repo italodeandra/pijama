@@ -34,7 +34,7 @@ describe("DateDistanceNow", () => {
     const date = new Date()
     date.setSeconds(date.getSeconds() - 10)
 
-    render(<DateDistanceNow as="span" date={date} />)
+    render(<DateDistanceNow component="span" date={date} />)
 
     expect(screen.getByText("less than a minute")).toBeInTheDocument()
   })

@@ -1,186 +1,36 @@
-import { ReactNode, useEffect, useMemo, VFC } from "react"
-import { useBreakpoint, withTheme } from "../../styles"
-import { Box } from "../Box/Box"
-import { createDrawerState } from "./drawerState"
-import { css } from "@emotion/react"
-import { Fade } from "../Fade/Fade"
-import { isBrowser } from "../../utils"
-import { Portal } from "../Portal/Portal"
-import { useMeasure } from "react-use"
-import { usePortal } from "../../hooks"
-import { useSnapshot } from "valtio"
+/* istanbul ignore file */
 
-export type DrawerProps = {
-  /**
-   * Content of the drawer.
-   */
-  children: ReactNode
-  /**
-   * Placement of the drawer.
-   * @default left
-   */
-  placement?: "left" | "right"
-  /**
-   * Use an external state instead of creating one internally.
-   */
-  state?: ReturnType<typeof createDrawerState>
-}
+import {
+  paperClasses,
+  styled,
+  SwipeableDrawer,
+  SwipeableDrawerProps,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core"
+import { Gray } from "../../styles"
+import { VFC } from "react"
 
-/**
- * A responsive side drawer. It uses a state created by the function
- * `createDrawerState`, on this state you can tell the drawer to open or close
- * (you need to link it with the component by using the component property
- * `state`).
- *
- * [Demo](https://pijama.majapi.com.br/components/Drawer)
- *
- * @example
- * <Drawer placement="right">
- *   The content should be here
- * </Drawer>
- */
-export const Drawer: VFC<DrawerProps> = ({
-  children,
-  placement = "left",
-  state,
-}) => {
-  const drawerState = useMemo(() => state || createDrawerState(), [state])
-  const { isOpen, isRendering, toggleDrawer } = useSnapshot(drawerState)
-  const isScreenSm = useBreakpoint("sm")
-  const portalElement = usePortal("drawer")
+const iOS =
+  typeof navigator !== "undefined" &&
+  /iPad|iPhone|iPod/.test(navigator.userAgent)
 
-  const DarkOverlay = () => (
-    <Box
-      data-testid="dark-overlay"
-      onClick={() => toggleDrawer(false)}
-      sh={{ bgColor: "rgba(0,0,0,.4)", pos: 0 }}
+export interface DrawerProps extends SwipeableDrawerProps {}
+
+export const Drawer = styled<VFC<DrawerProps>>((props) => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+  return (
+    <SwipeableDrawer
+      disableBackdropTransition={!iOS}
+      disableDiscovery={iOS}
+      variant={!isMobile ? "persistent" : "temporary"}
+      {...props}
     />
   )
-
-  const [drawerContentRef, { width }] = useMeasure()
-  useEffect(() => {
-    drawerState.width = width
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width, drawerState])
-
-  useDrawerTouchHandlers(drawerState, placement)
-
-  const drawerStyles = withTheme((theme, sh) =>
-    css(
-      sh({
-        bgColor: "white",
-        display: "flex",
-        pos: placement === "left" ? [0, "", 0, 0] : [0, 0, 0, ""],
-        position: "fixed",
-        shadow: "md",
-        transform: `translateX(${
-          (isOpen ? 0 : width) * (placement === "right" ? 1 : -1)
-        }px)`,
-        transition: ["transform"],
-        zIndex: 2,
-      })
-    )
-  )
-
-  return (
-    <Portal container={portalElement}>
-      <Fade in={isRendering}>
-        <div>
-          {!isScreenSm && <DarkOverlay />}
-          <Box css={drawerStyles} ref={drawerState.ref}>
-            <Box ref={drawerContentRef}>{children}</Box>
-          </Box>
-        </div>
-      </Fade>
-    </Portal>
-  )
-}
-
-const useDrawerTouchHandlers = (
-  drawerState: ReturnType<typeof createDrawerState>,
-  placement: "left" | "right"
-) => {
-  const conditions = {
-    left: {
-      false: () => !drawerState.isOpen && drawerState.startPosition < 40,
-      true: () =>
-        drawerState.isOpen &&
-        drawerState.startPosition < drawerState.width + 40,
-    },
-    right: {
-      false: () =>
-        !drawerState.isOpen &&
-        drawerState.startPosition > window.innerWidth - 40,
-      true: () =>
-        drawerState.isOpen &&
-        drawerState.startPosition > window.innerWidth - drawerState.width - 40,
-    },
-  }
-
-  useEffect(() => {
-    const handleTouchStart = (e: TouchEvent) => {
-      const { clientX } = e.targetTouches[0]
-      drawerState.startPosition = clientX
-    }
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const { startPosition, width, isOpen, ref } = drawerState
-      if (conditions[placement][isOpen.toString()]()) {
-        drawerState.isRendering = true
-        if (ref.current) {
-          ref.current.style.transition = "none"
-          const { clientX } = e.targetTouches[0]
-          drawerState.currentPosition = clientX
-          if (placement === "right") {
-            let movement = clientX - startPosition + (isOpen ? -width : 0)
-            movement = movement < -width ? -width : movement
-            ref.current.style.transform = `translateX(${width + movement}px)`
-          } else {
-            let movement = clientX - startPosition + (isOpen ? width : 0)
-            movement = movement > width ? width : movement
-            ref.current.style.transform = `translateX(${movement - width}px)`
-          }
-        }
-      }
-    }
-
-    const handleTouchEnd = () => {
-      const { startPosition, currentPosition, width, isOpen, ref } = drawerState
-      if (conditions[placement][isOpen.toString()]()) {
-        /* istanbul ignore next */
-        if (isBrowser) {
-          ref.current.style.transition = ""
-          ref.current.style.transform = ""
-        }
-        let movement = currentPosition - startPosition
-        if (placement === "right") {
-          if (movement < -(width / 2)) {
-            drawerState.isOpen = true
-          } else if (movement > width / 2) {
-            drawerState.isOpen = false
-          }
-        } else {
-          if (movement > width / 2) {
-            drawerState.isOpen = true
-          } else if (movement < -(width / 2)) {
-            drawerState.isOpen = false
-          }
-        }
-      }
-      drawerState.isRendering = drawerState.isOpen
-    }
-
-    window.addEventListener("touchstart", handleTouchStart)
-    window.addEventListener("touchmove", handleTouchMove)
-    window.addEventListener("touchend", handleTouchEnd)
-    window.addEventListener("touchcancel", handleTouchEnd)
-
-    return () => {
-      window.removeEventListener("touchstart", handleTouchStart)
-      window.removeEventListener("touchmove", handleTouchMove)
-      window.removeEventListener("touchend", handleTouchEnd)
-      window.removeEventListener("touchcancel", handleTouchEnd)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [drawerState, placement])
-}
+})(() => ({
+  [`& .${paperClasses.root}`]: {
+    backgroundColor: Gray.N50,
+    borderRight: "none",
+  },
+}))

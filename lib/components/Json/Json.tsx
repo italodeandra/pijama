@@ -1,38 +1,25 @@
-import {
-  Blue,
-  ComponentShorthandProps,
-  Gray,
-  Green,
-  Orange,
-  Purple,
-  withTheme,
-} from "../../styles"
+import { Blue, Gray, Green, Orange, Purple } from "../../styles"
+import { NoSsr, Typography, TypographyProps } from "@material-ui/core"
 import React, { VFC } from "react"
-import { css } from "@emotion/react"
-import { DisableSsr } from "../DisableSsr/DisableSsr"
-import { Text } from "../Text/Text"
+import { SxProps } from "@material-ui/system"
 
-const jsonStyles = withTheme((theme, sh) =>
-  css(
-    sh({
-      "& .boolean": {
-        color: Orange.N500,
-      },
-      "& .key": {
-        color: Purple.N500,
-      },
-      "& .null": {
-        color: Gray.N400,
-      },
-      "& .number": {
-        color: Blue.N500,
-      },
-      "& .string": {
-        color: Green.N500,
-      },
-    })
-  )
-)
+const jsonStyles: SxProps = {
+  "& .boolean": {
+    color: Orange.N500,
+  },
+  "& .key": {
+    color: Purple.N500,
+  },
+  "& .null": {
+    color: Gray.N400,
+  },
+  "& .number": {
+    color: Blue.N500,
+  },
+  "& .string": {
+    color: Green.N500,
+  },
+}
 
 export type JsonProps = {
   /**
@@ -43,7 +30,7 @@ export type JsonProps = {
    * A label to differentiate if more than one Json component.
    */
   label?: string
-} & ComponentShorthandProps
+} & Omit<TypographyProps, "children" | "sx" | "variant">
 
 /**
  * Show a JSON object formatted and colored. Useful for debugging.
@@ -56,15 +43,14 @@ export type JsonProps = {
 export const Json: VFC<JsonProps> = ({ json, label, ...props }) => {
   if (typeof json !== "undefined") {
     return (
-      <DisableSsr>
-        <Text
-          block
-          code
-          css={jsonStyles}
+      <NoSsr>
+        <Typography
           dangerouslySetInnerHTML={{ __html: syntaxHighlight(json, label) }}
           {...props}
+          sx={jsonStyles}
+          variant="codeBlock"
         />
-      </DisableSsr>
+      </NoSsr>
     )
   } else {
     return <></>

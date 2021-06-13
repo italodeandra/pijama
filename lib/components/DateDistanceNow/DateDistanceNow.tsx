@@ -1,7 +1,6 @@
+import { Box, BoxProps } from "@material-ui/core"
 import { Fragment, VFC } from "react"
 import { useInterval, useUpdate } from "react-use"
-import { Box } from "../Box/Box"
-import { ComponentShorthandProps } from "../../styles"
 import { formatDistance } from "date-fns"
 
 export type DateDistanceNowProps = {
@@ -17,11 +16,7 @@ export type DateDistanceNowProps = {
    * If should show the suffix.
    */
   addSuffix?: boolean
-  /**
-   * Which locale should be used.
-   */
-  locale?: Locale
-} & ComponentShorthandProps
+} & BoxProps
 
 /**
  * Shows how much time it passed since the passed date. Or how long it will
@@ -36,19 +31,18 @@ export const DateDistanceNow: VFC<DateDistanceNowProps> = ({
   date,
   includeSeconds,
   addSuffix,
-  locale,
   ...props
 }) => {
-  const Component = props.as ? Box : Fragment
-  if (!props.as) {
-    delete props.as
-    delete props.sh
+  const Component = props.component ? Box : Fragment
+  if (!props.component) {
+    props = {}
   }
   if (typeof date === "string" && date !== "") {
     date = new Date(date)
   }
   const update = useUpdate()
-  useInterval(update, date ? (includeSeconds ? 4 : 59) * 1000 : null)
+  let intervalSeconds = date && (includeSeconds ? 4 : 59)
+  useInterval(update, date ? intervalSeconds * 1000 : null)
   if (!date) {
     return null
   }
@@ -60,7 +54,6 @@ export const DateDistanceNow: VFC<DateDistanceNowProps> = ({
         : formatDistance(date, new Date(), {
             addSuffix,
             includeSeconds,
-            locale,
           })}
     </Component>
   )

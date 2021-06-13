@@ -1,252 +1,60 @@
-import {
-  ComponentShorthandProps,
-  Gray,
-  ThemeColors,
-  withTheme,
-} from "../../styles"
-import { forwardRef, MouseEventHandler, ReactNode, useMemo, VFC } from "react"
-import { Box } from "../Box/Box"
-import Color from "color"
-import { css } from "@emotion/react"
+/* istanbul ignore file */
 
-export type ButtonProps = {
+import {
+  alpha,
+  buttonClasses,
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps,
+  styled,
+} from "@material-ui/core"
+import { ButtonPropsVariantOverrides } from "@material-ui/core/Button/Button"
+import { OverridableStringUnion } from "@material-ui/types"
+import { VFC } from "react"
+
+export interface ButtonProps extends MuiButtonProps {
   /**
-   * The label or content.
+   * If `true`, no elevation is used.
+   * @default true
    */
-  children?: ReactNode
+  disableElevation?: boolean
   /**
-   * The color of the background when contained, color of the border when outlined, or color of the text.
-   * @default primary
-   */
-  color?: ThemeColors | string
-  /**
-   * Turn the button into a link.
-   */
-  href?: string
-  /**
-   * If should be shown with a square style for icons.
-   */
-  icon?: boolean
-  /**
-   * Click event handler.
-   */
-  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
-  /**
-   * Size of the button.
-   * @default normal
-   */
-  size?: "small" | "normal"
-  /**
-   * Type of the button.
-   * @default button
-   */
-  type?: "button" | "submit" | "reset"
-  /**
-   * The variant style.
+   * The variant to use.
    * @default contained
    */
-  variant?: "contained" | "outlined" | "text"
-} & ComponentShorthandProps
+  variant?: OverridableStringUnion<
+    "text" | "outlined" | "contained",
+    ButtonPropsVariantOverrides
+  >
+}
 
-/**
- * A button.
- *
- * [Demo](https://pijama.majapi.com.br/components/Button)
- *
- * @example
- * <Button>Click me</Button>
- */
-export const Button: VFC<ButtonProps> = forwardRef(
-  (
-    {
-      as,
-      children,
-      color = "primary",
-      icon,
-      size = "normal",
-      variant = "contained",
-      sh: shProp,
-      ...props
+export const Button = styled<VFC<ButtonProps>>(
+  ({ disableElevation = true, variant = "contained", ...props }) => (
+    <MuiButton
+      disableElevation={disableElevation}
+      variant={variant}
+      {...props}
+    />
+  )
+)(({ theme, color = "primary" }) => {
+  const ringColor = alpha(theme.palette[color].main, 0.3)
+  return {
+    [`&.${buttonClasses.focusVisible}`]: {
+      "&::after": {
+        boxShadow: `0 0 0 3px ${ringColor}`,
+      },
     },
-    ref
-  ) => {
-    as = as || "button"
-    if (as === "button" && props.href) {
-      as = "a"
-    } else {
-      delete props.href
-    }
-    if (as === "button") {
-      props.type = props.type || "button"
-    } else {
-      delete props.type
-    }
-
-    const buttonStyles = useMemo(
-      () =>
-        withTheme((theme, sh) => {
-          let styles = []
-
-          try {
-            const buttonColor = !!theme.color[color]
-              ? Color(theme.color[color])
-              : Color(color)
-            const isDark = Color(buttonColor).isDark()
-            const contrastColor = isDark ? Color("white") : Color("black")
-
-            if (variant === "contained") {
-              const containedStyles = css(
-                sh({
-                  "&:hover": {
-                    bgColor: (isDark
-                      ? buttonColor.lighten(0.1)
-                      : buttonColor.darken(0.1)
-                    ).hex(),
-                  },
-                  bgColor: buttonColor.hex(),
-                  color: contrastColor.hex(),
-                })
-              )
-              styles.push(containedStyles)
-            } else if (variant === "outlined") {
-              const hoverColor = isDark
-                ? buttonColor.darken(0.2)
-                : buttonColor.lighten(0.2)
-              const outlinedStyles = css(
-                sh({
-                  "&::after": {
-                    border: "1px solid",
-                    borderColor: buttonColor.hex(),
-                  },
-                  "&:hover": {
-                    color: hoverColor.hex(),
-                  },
-                  "&:hover::after": {
-                    borderColor: hoverColor.hex(),
-                  },
-                  bgColor: "transparent",
-                  color: buttonColor.hex(),
-                })
-              )
-              styles.push(outlinedStyles)
-            } else {
-              /* istanbul ignore next */
-              if (variant === "text") {
-                const hoverColor = isDark
-                  ? buttonColor.darken(0.2)
-                  : buttonColor.lighten(0.2)
-                const textStyles = css(
-                  sh({
-                    "&:hover": {
-                      bgColor: buttonColor.alpha(0.1).rgb().toString(),
-                      color: hoverColor.hex(),
-                    },
-                    "&:hover::after": {
-                      borderColor: hoverColor.hex(),
-                    },
-                    bgColor: "transparent",
-                    color: buttonColor.hex(),
-                  })
-                )
-                styles.push(textStyles)
-              }
-            }
-
-            if (icon) {
-              const iconStyles = css(
-                sh({
-                  fontSize: 24,
-                  lineHeight: 0,
-                  minH: 6,
-                  minW: 6,
-                  p: 0,
-                })
-              )
-              styles.push(iconStyles)
-            }
-
-            if (size === "small") {
-              const smallStyles = css(
-                sh(
-                  !icon
-                    ? {
-                        fontSize: 11,
-                        minH: 3,
-                      }
-                    : {
-                        fontSize: 16,
-                        minH: 4,
-                        minW: 4,
-                      }
-                )
-              )
-              styles.push(smallStyles)
-            }
-
-            styles.unshift({
-              "&:focus::after": {
-                boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor
-                  .alpha(0.3)
-                  .rgb()}`,
-              },
-            })
-          } catch (e) {
-            const buttonColor = Color(Gray.N300)
-            const contrastColor = Color("black")
-            const colorStyles = css(
-              sh({
-                "&:focus::after": {
-                  boxShadow: `0 0 0 calc(1px + 2px) ${buttonColor
-                    .alpha(0.3)
-                    .rgb()}`,
-                },
-                "&:hover": {
-                  bgColor: buttonColor.darken(0.1).hex(),
-                },
-                bgColor: buttonColor.hex(),
-                color: contrastColor.hex(),
-              })
-            )
-            styles.push(colorStyles)
-          }
-
-          styles.unshift(
-            sh({
-              "&::after": {
-                br: "inherit",
-                pos: 0,
-                transition: "boxShadow",
-              },
-              border: "none",
-              br: theme.spacing(0.5),
-              display: "inline-block",
-              fontFamily: theme.typography.fontFamily,
-              fontSize: 13,
-              fontWeight: 500,
-              minH: 4,
-              outline: "none",
-              p: [1, 2],
-              position: "relative",
-              textDecoration: "none",
-              transition: ["backgroundColor", "color"],
-            })
-          )
-
-          if (shProp) {
-            styles.push(
-              typeof shProp === "function" ? sh(shProp(theme)) : sh(shProp)
-            )
-          }
-
-          return css(styles)
-        }),
-      [color, icon, shProp, size, variant]
-    )
-
-    return (
-      <Box as={as} css={buttonStyles} {...props} ref={ref}>
-        {children}
-      </Box>
-    )
+    "&::after": {
+      borderRadius: "inherit",
+      bottom: 0,
+      content: '""',
+      left: 0,
+      position: "absolute",
+      right: 0,
+      top: 0,
+      transition: theme.transitions.create(["box-shadow"]),
+    },
+    fontWeight: 400,
+    padding: "4px 10px",
+    textTransform: "inherit",
   }
-)
+})
