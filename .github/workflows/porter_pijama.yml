@@ -25,7 +25,7 @@ jobs:
       run: |2
 
         sudo porter config set-host https://dashboard.getporter.dev
-        sudo porter auth login --token ${{secrets.PORTER_TOKEN_1250}}
+        sudo porter auth login --token ${{secrets.PORTER_TOKEN_1306}}
         sudo porter docker configure
     - name: Docker build, push
       id: docker_build_push
@@ -36,8 +36,8 @@ jobs:
         sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
         sudo apt-get update
         sudo apt-get install pack-cli
-        sudo pack build registry.digitalocean.com/majapi/pijama-porter:$(git rev-parse --short HEAD) --path ./ --builder heroku/buildpacks:18 --env-file ./env_porter
-        sudo docker push registry.digitalocean.com/majapi/pijama-porter:$(git rev-parse --short HEAD)
+        sudo pack build registry.digitalocean.com/majapi/pijama-majapi:$(git rev-parse --short HEAD) --path ./ --builder heroku/buildpacks:18 --env-file ./env_porter
+        sudo docker push registry.digitalocean.com/majapi/pijama-majapi:$(git rev-parse --short HEAD)
     - name: Deploy on Porter
       id: deploy_porter
       run: |2
