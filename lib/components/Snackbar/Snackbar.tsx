@@ -11,13 +11,13 @@ import {
   TransitionGroup,
   TransitionStatus,
 } from "react-transition-group"
+import { useEffect, useState, VFC } from "react"
 import { Button } from "../Button/Button"
 import { Gray } from "../../styles"
 import Icon from "@iconify/react"
 import { SxProps } from "@material-ui/system"
 import { useMeasure } from "react-use"
 import { useSnapshot } from "valtio"
-import { VFC } from "react"
 import xIcon from "@iconify/icons-heroicons-outline/x"
 
 export type SnackbarProps = {}
@@ -29,7 +29,7 @@ const snackbarContainerStyles: SxProps<Theme> = {
   position: "fixed",
   right: 0,
   top: 0,
-  zIndex: 2,
+  zIndex: (theme) => theme.zIndex.appBar + 1,
 }
 
 const snackbarStyles: SxProps<Theme> = {
@@ -131,9 +131,18 @@ export const Snackbar: VFC<SnackbarProps> = () => {
   const { messages } = useSnapshot(snackbarState)
   const theme = useTheme()
 
+  const [top, setTop] = useState(0)
+
+  useEffect(() => {
+    const newTop =
+      document.querySelector(".MuiAppBar-root")?.getBoundingClientRect()
+        .height || 0
+    setTop(newTop)
+  }, [messages])
+
   return (
     <Fade in={!!messages.length}>
-      <Box sx={snackbarContainerStyles}>
+      <Box style={{ top }} sx={snackbarContainerStyles}>
         <TransitionGroup>
           {messages
             .slice()
