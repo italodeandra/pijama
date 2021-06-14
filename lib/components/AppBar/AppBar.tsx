@@ -36,7 +36,7 @@ export const AppBar = styled<VFC<AppBarProps>>(
   ({ elevation = 0, color = "default", square = true, ...props }) => (
     <MuiAppBar color={color} elevation={elevation} square={square} {...props} />
   )
-)(({ theme, color }) => ({
+)(({ theme, color = "default" }) => ({
   backdropFilter: color === "default" ? "saturate(180%) blur(5px)" : undefined,
   backgroundColor: color === "default" ? "rgba(255, 255, 255, 0.5)" : undefined,
   color: theme.palette.text.primary,
