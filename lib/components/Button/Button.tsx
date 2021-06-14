@@ -43,6 +43,10 @@ export const Button = styled<VFC<ButtonProps>>(
         boxShadow: `0 0 0 3px ${ringColor}`,
       },
     },
+    [`&.${buttonClasses.outlined}`]: {
+      boxShadow:
+        "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+    },
     "&::after": {
       borderRadius: "inherit",
       bottom: 0,
