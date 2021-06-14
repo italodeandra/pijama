@@ -160,5 +160,9 @@
     "name": "Ítalo Andrade",
     "email": "italodeandra@gmail.com",
     "url": "https://italodeandra.de"
+  },
+  "engines": {
+    "node": "14.17.0",
+    "npm": "7.17.0"
   }
 }
