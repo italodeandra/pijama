@@ -1,5 +1,14 @@
 FROM node:14.17.1-alpine
-RUN mkdir -p /usr/src/app
-COPY . /usr/src/app
-RUN npm install && npm cache clean --force && npm build
+
+WORKDIR /home/app
+
+COPY package.json /home/app/
+COPY package-lock.json /home/app/
+
+RUN npm ci
+
+COPY . /home/app
+
+RUN npm run build
+
 CMD [ "npm", "start" ]
