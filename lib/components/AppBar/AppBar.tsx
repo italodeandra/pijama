@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core"
 import { AppBarPropsColorOverrides } from "@material-ui/core/AppBar/AppBar"
 import { OverridableStringUnion } from "@material-ui/types"
-import { VFC } from "react"
+import { forwardRef, VFC } from "react"
 
 export interface AppBarProps extends MuiAppBarProps {
   /**
@@ -33,8 +33,16 @@ export interface AppBarProps extends MuiAppBarProps {
 }
 
 export const AppBar = styled<VFC<AppBarProps>>(
-  ({ elevation = 0, color = "default", square = true, ...props }) => (
-    <MuiAppBar color={color} elevation={elevation} square={square} {...props} />
+  forwardRef(
+    ({ elevation = 0, color = "default", square = true, ...props }, ref) => (
+      <MuiAppBar
+        color={color}
+        elevation={elevation}
+        ref={ref}
+        square={square}
+        {...props}
+      />
+    )
   )
 )(({ theme, color = "default" }) => ({
   backdropFilter: color === "default" ? "saturate(180%) blur(5px)" : undefined,
