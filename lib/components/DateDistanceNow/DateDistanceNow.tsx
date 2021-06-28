@@ -1,9 +1,9 @@
-import { Box, BoxProps } from "@material-ui/core"
+import { Box, BoxProps } from "../index"
 import { Fragment, VFC } from "react"
 import { useInterval, useUpdate } from "react-use"
 import { formatDistance } from "date-fns"
 
-export type DateDistanceNowProps = {
+export interface DateDistanceNowProps extends BoxProps {
   /**
    * The date to be formatted.
    */
@@ -16,13 +16,13 @@ export type DateDistanceNowProps = {
    * If should show the suffix.
    */
   addSuffix?: boolean
-} & BoxProps
+}
 
 /**
  * Shows how much time it passed since the passed date. Or how long it will
  * take from now. This is auto updated every minute.
  *
- * [Demo](https://pijama.majapi.com.br/components/DateDistanceNow)
+ * [Demo](https://pijama.majapi.com/?path=/docs/components-datedistancenow--date-distance-now)
  *
  * @example
  * <DateDistanceNow date="2021-05-10T14:47:10.954Z" />

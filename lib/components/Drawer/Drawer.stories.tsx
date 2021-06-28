@@ -6,12 +6,12 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-} from "@material-ui/core"
+} from "../index"
 import { Drawer as DrawerComponent, DrawerProps } from "./Drawer"
 import { Meta, Story } from "@storybook/react"
 import { defaultTheme } from "../../styles"
 
-const disableControl = {
+const hideControl = {
   table: {
     disable: true,
   },
@@ -20,24 +20,24 @@ const disableControl = {
 // noinspection JSUnusedGlobalSymbols
 export default {
   argTypes: {
-    BackdropComponent: disableControl,
-    BackdropProps: disableControl,
-    as: disableControl,
-    children: disableControl,
-    closeAfterTransition: disableControl,
-    components: disableControl,
-    componentsProps: disableControl,
-    container: disableControl,
-    disableAutoFocus: disableControl,
-    disableEnforceFocus: disableControl,
-    disableEscapeKeyDown: disableControl,
-    disablePortal: disableControl,
-    disableRestoreFocus: disableControl,
-    disableScrollLock: disableControl,
-    keepMounted: disableControl,
-    onBackdropClick: disableControl,
-    ref: disableControl,
-    theme: disableControl,
+    BackdropComponent: hideControl,
+    BackdropProps: hideControl,
+    as: hideControl,
+    children: hideControl,
+    closeAfterTransition: hideControl,
+    components: hideControl,
+    componentsProps: hideControl,
+    container: hideControl,
+    disableAutoFocus: hideControl,
+    disableEnforceFocus: hideControl,
+    disableEscapeKeyDown: hideControl,
+    disablePortal: hideControl,
+    disableRestoreFocus: hideControl,
+    disableScrollLock: hideControl,
+    keepMounted: hideControl,
+    onBackdropClick: hideControl,
+    ref: hideControl,
+    theme: hideControl,
   },
   component: DrawerComponent,
   parameters: {
@@ -87,7 +87,7 @@ Drawer.args = {
             <ListItemText primary={"Menu 1"} />
           </ListItem>
         </List>
-        <Divider />
+        <Divider light />
         <List>
           <ListItem button>
             <ListItemText primary={"Menu 2"} />

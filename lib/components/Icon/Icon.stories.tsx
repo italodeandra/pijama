@@ -4,7 +4,7 @@ import { Icon as IconComponent, IconProps } from "./Icon"
 import { Meta, Story } from "@storybook/react"
 import menuIcon from "@iconify/icons-heroicons-outline/menu"
 
-const disableControl = {
+const hideControl = {
   table: {
     disable: true,
   },
@@ -12,9 +12,9 @@ const disableControl = {
 
 export default {
   argTypes: {
-    classes: disableControl,
-    ref: disableControl,
-    sx: disableControl,
+    classes: hideControl,
+    ref: hideControl,
+    sx: hideControl,
   },
   component: IconComponent,
   title: "Components/Icon",

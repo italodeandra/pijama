@@ -1,8 +1,8 @@
-import { Box, BoxProps } from "@material-ui/core"
+import { Box, BoxProps } from "../index"
 import { Fragment, memo, VFC } from "react"
 import { format as formatDate } from "date-fns"
 
-export type DateFormatProps = {
+export interface DateFormatProps extends BoxProps {
   /**
    * The date to be formatted.bambo
    */
@@ -14,12 +14,12 @@ export type DateFormatProps = {
    * @default Pp
    */
   format?: string
-} & BoxProps
+}
 
 /**
  * Format the date.
  *
- * [Demo](https://pijama.majapi.com.br/components/DateFormat)
+ * [Demo](https://pijama.majapi.com/?path=/docs/components-dateformat--date-format)
  *
  * @example
  * <DateFormat date="2021-05-10T14:47:10.954Z" />

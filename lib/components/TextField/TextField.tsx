@@ -37,6 +37,22 @@ export interface TextFieldProps
   size?: OverridableStringUnion<"small" | "medium", TextFieldPropsSizeOverrides>
 }
 
+/**
+ * Let users enter and edit text.
+ *
+ * [Demo](https://pijama.majapi.com/?path=/docs/components-textfield--text-field)
+ *
+ * ** Material UI**
+ *
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [TextField API](https://material-ui.com/api/text-field/)
+ * - inherits [FormControl API](https://material-ui.com/api/form-control/)
+ */
 export const TextField = styled<VFC<TextFieldProps>>(
   forwardRef(({ fullWidth = true, ...props }, ref) => (
     <MuiTextField fullWidth={fullWidth} ref={ref} {...props} />

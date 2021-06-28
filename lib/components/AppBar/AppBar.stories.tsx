@@ -12,7 +12,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@material-ui/core"
+} from "../index"
 import { Meta, Story } from "@storybook/react"
 import { proxy, useSnapshot } from "valtio"
 import chevronDoubleLeft from "@iconify/icons-heroicons-outline/chevron-double-left"
@@ -22,9 +22,28 @@ import { Fragment } from "react"
 import { Icon } from "../Icon/Icon"
 import menuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2"
 import { numericArray } from "../../utils"
+import { useWindowScroll } from "react-use"
+
+const disableControl = {
+  control: false,
+}
+
+const hideControl = {
+  table: {
+    disable: true,
+  },
+}
 
 // noinspection JSUnusedGlobalSymbols
 export default {
+  argTypes: {
+    as: hideControl,
+    children: disableControl,
+    classes: hideControl,
+    ref: hideControl,
+    sx: hideControl,
+    theme: hideControl,
+  },
   component: AppBarComponent,
   parameters: {
     layout: "fullscreen",
@@ -53,11 +72,17 @@ const drawerSize = defaultTheme.spacing(32)
 const Template: Story<AppBarProps> = (args) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
+  const { y: scrollTop } = useWindowScroll()
 
   const { isOpen } = useSnapshot(state)
   return (
     <>
-      <AppBarComponent {...args} />
+      <AppBarComponent
+        {...args}
+        elevation={
+          scrollTop > 8 * 4 ? 3 : scrollTop > 8 * 2 ? 2 : scrollTop > 0 ? 1 : 0
+        }
+      />
       <Box
         sx={{
           marginLeft: !isMobile && isOpen ? drawerSize : 0,
@@ -71,8 +96,8 @@ const Template: Story<AppBarProps> = (args) => {
       >
         <Toolbar />
         <Box p={2}>
-          The app bar content is not part of the component itself, this is just
-          an example. But you can copy this code from the{" "}
+          The app bar content and drawer are not part of the AppBar component,
+          this is just an example. But you can copy this code from the{" "}
           <Typography component="span" fontWeight={600}>
             Docs
           </Typography>{" "}

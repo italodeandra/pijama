@@ -27,10 +27,32 @@ export interface ButtonProps extends MuiButtonProps {
   >
 }
 
+/**
+ * Buttons allow users to take actions, and make choices, with a single tap.
+ *
+ * [Demo](https://pijama.majapi.com/?path=/docs/components-button--button)
+ *
+ * ** Material UI**
+ *
+ * Demos:
+ *
+ * - [Buttons](https://material-ui.com/components/buttons/)
+ *
+ * API:
+ *
+ * - [Button API](https://material-ui.com/api/button/)
+ * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
+ */
 export const Button = styled<VFC<ButtonProps>>(
-  ({ disableElevation = true, variant = "contained", ...props }) => (
+  ({
+    disableElevation = true,
+    focusRipple = false,
+    variant = "contained",
+    ...props
+  }) => (
     <MuiButton
       disableElevation={disableElevation}
+      focusRipple={focusRipple}
       variant={variant}
       {...props}
     />

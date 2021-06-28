@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+import { forwardRef, VFC } from "react"
 import {
   AppBar as MuiAppBar,
   AppBarProps as MuiAppBarProps,
@@ -8,7 +9,6 @@ import {
 } from "@material-ui/core"
 import { AppBarPropsColorOverrides } from "@material-ui/core/AppBar/AppBar"
 import { OverridableStringUnion } from "@material-ui/types"
-import { forwardRef, VFC } from "react"
 
 export interface AppBarProps extends MuiAppBarProps {
   /**
@@ -32,6 +32,24 @@ export interface AppBarProps extends MuiAppBarProps {
   square?: boolean
 }
 
+/**
+ * The top App Bar provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+ *
+ * It can transform into a contextual action bar or be used as a navbar.
+ *
+ * [Demo](https://pijama.majapi.com/?path=/docs/components-appbar--app-bar)
+ *
+ * **Material UI:**
+ *
+ * Demos:
+ *
+ * - [App Bar](https://material-ui.com/components/app-bar/)
+ *
+ * API:
+ *
+ * - [AppBar API](https://material-ui.com/api/app-bar/)
+ * - inherits [Paper API](https://material-ui.com/api/paper/)
+ */
 export const AppBar = styled<VFC<AppBarProps>>(
   forwardRef(
     ({ elevation = 0, color = "default", square = true, ...props }, ref) => (

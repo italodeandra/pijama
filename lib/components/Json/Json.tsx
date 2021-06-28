@@ -1,7 +1,6 @@
 import { Blue, Gray, Green, Orange, Purple } from "../../styles"
-import { NoSsr, Typography, TypographyProps } from "@material-ui/core"
+import { NoSsr, SxProps, Typography, TypographyProps } from "../index"
 import React, { VFC } from "react"
-import { SxProps } from "@material-ui/system"
 
 const jsonStyles: SxProps = {
   "& .boolean": {
@@ -21,7 +20,8 @@ const jsonStyles: SxProps = {
   },
 }
 
-export type JsonProps = {
+export interface JsonProps
+  extends Omit<TypographyProps, "children" | "sx" | "variant"> {
   /**
    * The JSON object that will be stringified and rendered.
    */
@@ -30,12 +30,12 @@ export type JsonProps = {
    * A label to differentiate if more than one Json component.
    */
   label?: string
-} & Omit<TypographyProps, "children" | "sx" | "variant">
+}
 
 /**
  * Show a JSON object formatted and colored. Useful for debugging.
  *
- * [Demo](https://pijama.majapi.com.br/components/Json)
+ * [Demo](https://pijama.majapi.com/?path=/docs/components-json--json)
  *
  * @example
  * <Json json='{ "number": 1 }' />

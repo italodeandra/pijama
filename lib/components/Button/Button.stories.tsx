@@ -1,7 +1,7 @@
 import { Button as ButtonComponent, ButtonProps } from "./Button"
 import { Meta, Story } from "@storybook/react"
 
-const disableControl = {
+const hideControl = {
   table: {
     disable: true,
   },
@@ -10,16 +10,16 @@ const disableControl = {
 // noinspection JSUnusedGlobalSymbols
 export default {
   argTypes: {
-    TouchRippleProps: disableControl,
-    action: disableControl,
-    as: disableControl,
-    classes: disableControl,
-    endIcon: disableControl,
-    focusVisibleClassName: disableControl,
-    ref: disableControl,
-    startIcon: disableControl,
-    sx: disableControl,
-    theme: disableControl,
+    TouchRippleProps: hideControl,
+    action: hideControl,
+    as: hideControl,
+    classes: hideControl,
+    endIcon: hideControl,
+    focusVisibleClassName: hideControl,
+    ref: hideControl,
+    startIcon: hideControl,
+    sx: hideControl,
+    theme: hideControl,
   },
   component: ButtonComponent,
   title: "Components/Button",
