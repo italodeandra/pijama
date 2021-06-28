@@ -1,22 +1,14 @@
 {
   "extends": [
     "react-app",
-    "plugin:@next/next/recommended"
+    "next",
+    "next/core-web-vitals"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "requireConfigFile": false,
-    "sourceType": "module",
-    "babelOptions": {
-      "presets": [
-        "next/babel"
-      ]
-    }
-  },
   "plugins": [
     "@emotion"
   ],
   "rules": {
+    "react/display-name": "off",
     "@next/next/no-html-link-for-pages": "off",
     "sort-imports": [
       "warn",
