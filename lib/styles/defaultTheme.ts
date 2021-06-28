@@ -1,31 +1,19 @@
 import { Gray, LightBlue, Pink, Red } from "./colors"
-import { componentsOverride } from "./componentsOverride"
+import { codeBlock } from "../components/Typography/codeBlock"
 import { createTheme } from "@material-ui/core"
-import { CSSProperties } from "react"
+import { MuiTableOverride } from "../components/Table/MuiTableOverride"
+import { MuiToolbarOverride } from "../components/Toolbar/MuiToolbarOverride"
+import { MuiTooltipOverride } from "../components/Tooltip/MuiTooltipOverride"
+import { shadows } from "./shadows/shadows"
 
 const theme = createTheme()
 
-declare module "@material-ui/core/styles" {
-  interface TypographyVariants {
-    codeBlock: CSSProperties
-  }
-
-  // allow configuration using `createTheme`
-  // noinspection JSUnusedGlobalSymbols
-  interface TypographyVariantsOptions {
-    codeBlock?: CSSProperties
-  }
-}
-
-// Update the Typography's variant prop options
-declare module "@material-ui/core/Typography" {
-  interface TypographyPropsVariantOverrides {
-    codeBlock: true
-  }
-}
-
 export const defaultTheme = createTheme({
-  components: componentsOverride,
+  components: {
+    MuiTable: MuiTableOverride,
+    MuiToolbar: MuiToolbarOverride,
+    MuiTooltip: MuiTooltipOverride,
+  },
   palette: {
     error: {
       main: Red.N500,
@@ -41,20 +29,9 @@ export const defaultTheme = createTheme({
       primary: Gray.N600,
     },
   },
+  shadows,
   typography: {
-    codeBlock: {
-      backgroundColor: Gray.N100,
-      borderRadius: theme.spacing(0.5),
-      color: Gray.N600,
-      display: "block",
-      fontFamily:
-        'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
-      fontSize: theme.typography.pxToRem(12),
-      overflow: "auto",
-      padding: theme.spacing(0.75, 1),
-      whiteSpace: "pre",
-      width: "100%",
-    },
-    fontFamily: `InterVariable, ${theme.typography.fontFamily}`,
+    codeBlock: codeBlock(theme),
+    fontFamily: `"InterVariable", ${theme.typography.fontFamily}`,
   },
 })
