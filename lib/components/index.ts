@@ -12,12 +12,16 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Menu,
+  MenuItem,
   NoSsr,
   Skeleton,
+  Slide,
   Stack,
   Theme,
   ThemeProvider,
   useMediaQuery,
+  useScrollTrigger,
   useTheme,
 } from "@material-ui/core"
 import { SxProps } from "@material-ui/system"
@@ -47,11 +51,15 @@ export {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Menu,
+  MenuItem,
   NoSsr,
   Skeleton,
+  Slide,
   Stack,
   ThemeProvider,
   useMediaQuery,
+  useScrollTrigger,
   useTheme,
 }
 export type { BoxProps, FadeProps, SxProps, Theme }
