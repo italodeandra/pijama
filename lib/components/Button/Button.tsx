@@ -7,9 +7,9 @@ import {
   ButtonProps as MuiButtonProps,
   styled,
 } from "@material-ui/core"
+import { forwardRef, VFC } from "react"
 import { ButtonPropsVariantOverrides } from "@material-ui/core/Button/Button"
 import { OverridableStringUnion } from "@material-ui/types"
-import { VFC } from "react"
 
 export interface ButtonProps extends MuiButtonProps {
   /**
@@ -44,18 +44,24 @@ export interface ButtonProps extends MuiButtonProps {
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 export const Button = styled<VFC<ButtonProps>>(
-  ({
-    disableElevation = true,
-    focusRipple = false,
-    variant = "contained",
-    ...props
-  }) => (
-    <MuiButton
-      disableElevation={disableElevation}
-      focusRipple={focusRipple}
-      variant={variant}
-      {...props}
-    />
+  forwardRef(
+    (
+      {
+        disableElevation = true,
+        focusRipple = false,
+        variant = "contained",
+        ...props
+      },
+      ref
+    ) => (
+      <MuiButton
+        disableElevation={disableElevation}
+        focusRipple={focusRipple}
+        ref={ref}
+        variant={variant}
+        {...props}
+      />
+    )
   )
 )(({ theme, color = "primary" }) => {
   const ringColor = alpha(theme.palette[color].main, 0.3)
