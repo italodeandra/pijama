@@ -16,6 +16,10 @@ export interface DateDistanceNowProps extends BoxProps {
    * If should show the suffix.
    */
   addSuffix?: boolean
+  /**
+   * Date Locale.
+   */
+  locale?: Locale
 }
 
 /**
@@ -31,6 +35,7 @@ export const DateDistanceNow: VFC<DateDistanceNowProps> = ({
   date,
   includeSeconds,
   addSuffix,
+  locale,
   ...props
 }) => {
   const Component = props.component ? Box : Fragment
@@ -54,6 +59,7 @@ export const DateDistanceNow: VFC<DateDistanceNowProps> = ({
         : formatDistance(date, new Date(), {
             addSuffix,
             includeSeconds,
+            locale,
           })}
     </Component>
   )

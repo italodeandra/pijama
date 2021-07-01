@@ -14,6 +14,10 @@ export interface DateFormatProps extends BoxProps {
    * @default Pp
    */
   format?: string
+  /**
+   * Date Locale.
+   */
+  locale?: Locale
 }
 
 /**
@@ -25,7 +29,7 @@ export interface DateFormatProps extends BoxProps {
  * <DateFormat date="2021-05-10T14:47:10.954Z" />
  */
 export const DateFormat: VFC<DateFormatProps> = memo(
-  ({ date, format = "Pp", ...props }) => {
+  ({ date, format = "Pp", locale, ...props }) => {
     const Component = props.component ? Box : Fragment
     if (!props.component) {
       props = {}
@@ -39,7 +43,7 @@ export const DateFormat: VFC<DateFormatProps> = memo(
     const isInvalid = isNaN(new Date(date).getTime())
     return (
       <Component {...props}>
-        {isInvalid ? "Invalid date" : formatDate(date, format)}
+        {isInvalid ? "Invalid date" : formatDate(date, format, { locale })}
       </Component>
     )
   }
