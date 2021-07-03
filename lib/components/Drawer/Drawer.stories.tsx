@@ -1,15 +1,13 @@
-import {
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Toolbar,
-  Typography,
-} from "../index"
-import { Drawer as DrawerComponent, DrawerProps } from "./Drawer"
-import { Meta, Story } from "@storybook/react"
-import { defaultTheme } from "../../styles"
+import { default as DrawerComponent, DrawerProps } from "./Drawer"
+import type { Meta, Story } from "@storybook/react"
+import Box from "@material-ui/core/Box"
+import defaultTheme from "../../styles/defaultTheme"
+import Divider from "@material-ui/core/Divider"
+import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
 
 const hideControl = {
   table: {

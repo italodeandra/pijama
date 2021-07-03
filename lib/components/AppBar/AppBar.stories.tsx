@@ -1,28 +1,26 @@
-import { AppBar as AppBarComponent, AppBarProps } from "./AppBar"
-import {
-  Box,
-  Divider,
-  duration,
-  Fade,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Toolbar,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "../index"
-import { Meta, Story } from "@storybook/react"
+import { default as AppBarComponent, AppBarProps } from "./AppBar"
+import type { Meta, Story } from "@storybook/react"
 import { proxy, useSnapshot } from "valtio"
+import Box from "@material-ui/core/Box"
 import chevronDoubleLeft from "@iconify/icons-heroicons-outline/chevron-double-left"
-import { defaultTheme } from "../../styles"
-import { Drawer } from "../Drawer/Drawer"
+import defaultTheme from "../../styles/defaultTheme"
+import Divider from "@material-ui/core/Divider"
+import Drawer from "../Drawer"
+import { duration } from "@material-ui/core/styles/createTransitions"
+import Fade from "@material-ui/core/Fade"
 import { Fragment } from "react"
-import { Icon } from "../Icon/Icon"
+import Icon from "../Icon"
+import IconButton from "../IconButton"
+import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
 import menuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2"
-import { numericArray } from "../../utils"
-import { useWindowScroll } from "react-use"
+import numericArray from "../../utils/numericArray"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import useTheme from "@material-ui/core/styles/useTheme"
+import useWindowScroll from "react-use/esm/useWindowScroll"
 
 const disableControl = {
   control: false,
@@ -53,6 +51,9 @@ export default {
 
 const state = proxy({
   isOpen: false,
+  toggle(isOpen?: boolean) {
+    state.isOpen = typeof isOpen === "boolean" ? isOpen : !state.isOpen
+  },
 })
 
 const AVeryBigLoremIpsum = () => (
@@ -74,7 +75,7 @@ const Template: Story<AppBarProps> = (args) => {
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
   const { y: scrollTop } = useWindowScroll()
 
-  const { isOpen } = useSnapshot(state)
+  const { isOpen, toggle } = useSnapshot(state)
   return (
     <>
       <AppBarComponent
@@ -82,7 +83,35 @@ const Template: Story<AppBarProps> = (args) => {
         elevation={
           scrollTop > 8 * 4 ? 3 : scrollTop > 8 * 2 ? 2 : scrollTop > 0 ? 1 : 0
         }
-      />
+      >
+        <Toolbar sx={{ ml: isOpen ? drawerSize : 0 }}>
+          <Fade in={!isOpen}>
+            <Box alignItems="center" display="flex">
+              <IconButton
+                aria-label="menu"
+                color="inherit"
+                edge="start"
+                onClick={() => {
+                  toggle()
+                }}
+                size="small"
+                sx={{
+                  ml: {
+                    sm: -2,
+                    xs: -1,
+                  },
+                  mr: 2,
+                }}
+              >
+                <Icon icon={!isOpen ? menuAlt2 : chevronDoubleLeft} />
+              </IconButton>
+              <Typography component="div" fontWeight={500} sx={{ flexGrow: 1 }}>
+                News
+              </Typography>
+            </Box>
+          </Fade>
+        </Toolbar>
+      </AppBarComponent>
       <Box
         sx={{
           marginLeft: !isMobile && isOpen ? drawerSize : 0,
@@ -108,10 +137,10 @@ const Template: Story<AppBarProps> = (args) => {
       <Drawer
         anchor="left"
         onClose={() => {
-          state.isOpen = false
+          toggle(false)
         }}
         onOpen={() => {
-          state.isOpen = true
+          toggle(true)
         }}
         open={isOpen}
       >
@@ -170,35 +199,6 @@ const Template: Story<AppBarProps> = (args) => {
 export const AppBar = Template.bind({})
 AppBar.storyName = "AppBar"
 AppBar.args = {
-  children: (
-    <Toolbar sx={{ ml: state.isOpen ? drawerSize : 0 }}>
-      <Fade in={!state.isOpen}>
-        <Box alignItems="center" display="flex">
-          <IconButton
-            aria-label="menu"
-            color="inherit"
-            edge="start"
-            onClick={() => {
-              state.isOpen = !state.isOpen
-            }}
-            size="small"
-            sx={{
-              ml: {
-                sm: -2,
-                xs: -1,
-              },
-              mr: 2,
-            }}
-          >
-            <Icon icon={!state.isOpen ? menuAlt2 : chevronDoubleLeft} />
-          </IconButton>
-          <Typography component="div" fontWeight={500} sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-        </Box>
-      </Fade>
-    </Toolbar>
-  ),
   position: "fixed",
   variant: "elevation",
 }

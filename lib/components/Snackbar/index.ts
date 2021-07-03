@@ -1,5 +1,5 @@
 /* istanbul ignore file */
 
-export * from "./Snackbar"
-export * from "./snackbarState"
-export { Message } from "./Message"
+import Snackbar from "./Snackbar"
+
+export default Snackbar

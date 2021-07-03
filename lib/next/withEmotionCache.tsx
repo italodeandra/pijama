@@ -1,8 +1,8 @@
-import { AppProps } from "next/app"
+import type { AppProps } from "next/app"
 import { CacheProvider } from "@emotion/react"
 import createCache from "@emotion/cache"
-import { EmotionCache } from "@emotion/utils"
-import { VFC } from "react"
+import type { EmotionCache } from "@emotion/utils"
+import type { VFC } from "react"
 
 let cache: EmotionCache
 
@@ -13,7 +13,7 @@ let cache: EmotionCache
  * const MyApp = withEmotionCache(({ Component, pageProps }) => {
  * ```
  */
-export const withEmotionCache = (App: VFC<AppProps>) => {
+export default function withEmotionCache(App: VFC<AppProps>) {
   if (!cache) {
     cache = createCache({ key: "css", prepend: true })
     cache.compat = true

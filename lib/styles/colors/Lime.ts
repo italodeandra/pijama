@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Lime {
+enum Lime {
   N50 = "#F7FEE7",
   N100 = "#ECFCCB",
   N200 = "#D9F99D",
@@ -12,3 +12,5 @@ export enum Lime {
   N800 = "#3F6212",
   N900 = "#365314",
 }
+
+export default Lime

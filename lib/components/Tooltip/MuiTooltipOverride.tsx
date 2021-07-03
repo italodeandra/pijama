@@ -1,9 +1,9 @@
-import { ComponentsOverrides } from "@material-ui/core/styles/overrides"
-import { ComponentsProps } from "@material-ui/core/styles/props"
-import { CoolGray } from "../../styles"
-import { shadows } from "../../styles/shadows/shadows"
+import type { ComponentsOverrides } from "@material-ui/core/styles/overrides"
+import type { ComponentsProps } from "@material-ui/core/styles/props"
+import CoolGray from "../../styles/colors/CoolGray"
+import shadows from "../../styles/shadows"
 
-export const MuiTooltipOverride: {
+const MuiTooltipOverride: {
   defaultProps?: ComponentsProps["MuiTooltip"]
   styleOverrides?: ComponentsOverrides["MuiTooltip"]
 } = {
@@ -21,3 +21,5 @@ export const MuiTooltipOverride: {
     },
   },
 }
+
+export default MuiTooltipOverride

@@ -32,7 +32,7 @@ const xxl =
  *
  * [Documentation](https://tailwindcss.com/docs/box-shadow)
  */
-export const shadows: Shadows = [
+const shadows: Shadows = [
   none,
   sm,
   normal,
@@ -59,3 +59,5 @@ export const shadows: Shadows = [
   none,
   none,
 ]
+
+export default shadows

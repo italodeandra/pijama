@@ -5,6 +5,7 @@
     "declaration": true,
     "emitDeclarationOnly": false,
     "outDir": "../dist",
+
     "jsx": "react-jsx",
     "module": "commonjs",
     "jsxImportSource": "@emotion/react"

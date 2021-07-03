@@ -1,4 +1,4 @@
-import { numericArray } from "./numericArray"
+import numericArray from "./numericArray"
 
 describe("numericArray", () => {
   test("should return array of 5 numbers", () => {

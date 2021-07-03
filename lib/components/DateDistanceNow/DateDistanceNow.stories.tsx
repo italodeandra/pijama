@@ -1,8 +1,8 @@
 import {
-  DateDistanceNow as DateDistanceNowComponent,
+  default as DateDistanceNowComponent,
   DateDistanceNowProps,
 } from "./DateDistanceNow"
-import { Meta, Story } from "@storybook/react"
+import type { Meta, Story } from "@storybook/react"
 
 const hideControl = {
   table: {

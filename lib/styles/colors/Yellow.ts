@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Yellow {
+enum Yellow {
   N50 = "#FEFCE8",
   N100 = "#FEF9C3",
   N200 = "#FEF08A",
@@ -12,3 +12,5 @@ export enum Yellow {
   N800 = "#854D0E",
   N900 = "#713F12",
 }
+
+export default Yellow

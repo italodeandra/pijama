@@ -1,5 +1,5 @@
-import { Meta, Story } from "@storybook/react"
-import { Tooltip as TooltipComponent, TooltipProps } from "./Tooltip"
+import type { Meta, Story } from "@storybook/react"
+import { default as TooltipComponent, TooltipProps } from "./Tooltip"
 
 const disableControl = {
   control: false,

@@ -1,9 +1,6 @@
-import {
-  IconButton as IconButtonComponent,
-  IconButtonProps,
-} from "./IconButton"
-import { Meta, Story } from "@storybook/react"
-import { Icon } from "../Icon/Icon"
+import { default as IconButtonComponent, IconButtonProps } from "./IconButton"
+import type { Meta, Story } from "@storybook/react"
+import Icon from "../Icon"
 import menuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2"
 
 const hideControl = {

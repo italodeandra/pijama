@@ -1,4 +1,3 @@
-import { Box, Theme, useTheme } from "../index"
 import {
   ENTERED,
   ENTERING,
@@ -6,13 +5,16 @@ import {
   EXITING,
 } from "react-transition-group/Transition"
 import { IMessage, removeNotification } from "./snackbarState"
-import { Button } from "../Button/Button"
-import { Gray } from "../../styles"
+import Box from "@material-ui/core/Box"
+import Button from "../Button"
+import Gray from "../../styles/colors/Gray"
 import Icon from "@iconify/react"
-import { SxProps } from "../index"
-import { TransitionStatus } from "react-transition-group"
-import { useMeasure } from "react-use"
-import { VFC } from "react"
+import type { SxProps } from "@material-ui/system/styleFunctionSx"
+import type { Theme } from "@material-ui/core/styles/createTheme"
+import type { TransitionStatus } from "react-transition-group/Transition"
+import useMeasure from "react-use/esm/useMeasure"
+import useTheme from "@material-ui/core/styles/useTheme"
+import type { VFC } from "react"
 import xIcon from "@iconify/icons-heroicons-outline/x"
 
 const snackbarStyles: SxProps<Theme> = {
@@ -54,7 +56,7 @@ const closeButtonStyles: SxProps<Theme> = {
   p: 0.5,
 }
 
-export const Message: VFC<{
+const Message: VFC<{
   message: IMessage
   state: TransitionStatus
 }> = ({ message, state }) => {
@@ -103,3 +105,5 @@ export const Message: VFC<{
     </Box>
   )
 }
+
+export default Message

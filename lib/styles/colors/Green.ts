@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Green {
+enum Green {
   N50 = "#F0FDF4",
   N100 = "#DCFCE7",
   N200 = "#BBF7D0",
@@ -12,3 +12,5 @@ export enum Green {
   N800 = "#166534",
   N900 = "#14532D",
 }
+
+export default Green

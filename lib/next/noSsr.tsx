@@ -1,5 +1,6 @@
-import { ComponentType } from "react"
+import type { ComponentType } from "react"
 import dynamic from "next/dynamic"
 
-export const noSsr = (Component: ComponentType) =>
-  dynamic(Promise.resolve(Component), { ssr: false })
+export default function noSsr(Component: ComponentType) {
+  return dynamic(Promise.resolve(Component), { ssr: false })
+}

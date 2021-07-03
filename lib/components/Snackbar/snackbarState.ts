@@ -1,7 +1,7 @@
 import { createRef, Ref } from "react"
 import { proxy, ref } from "valtio"
-import { remove } from "lodash"
-import { uuid } from "../../utils"
+import remove from "lodash-es/remove"
+import { v4 as uuid } from "uuid"
 
 export type IMessage = {
   id: string
@@ -9,9 +9,11 @@ export type IMessage = {
   nodeRef: Ref<HTMLDivElement>
 }
 
-export const snackbarState = proxy({
+const snackbarState = proxy({
   messages: [] as IMessage[],
 })
+
+export default snackbarState
 
 /**
  * The Snackbar API that creates a new message on the snackbar.

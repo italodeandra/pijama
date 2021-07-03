@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Rose {
+enum Rose {
   N50 = "#FFF1F2",
   N100 = "#FFE4E6",
   N200 = "#FECDD3",
@@ -12,3 +12,5 @@ export enum Rose {
   N800 = "#9F1239",
   N900 = "#881337",
 }
+
+export default Rose

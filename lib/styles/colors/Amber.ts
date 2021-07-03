@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Amber {
+enum Amber {
   N50 = "#FFFBEB",
   N100 = "#FEF3C7",
   N200 = "#FDE68A",
@@ -12,3 +12,5 @@ export enum Amber {
   N800 = "#92400E",
   N900 = "#78350F",
 }
+
+export default Amber

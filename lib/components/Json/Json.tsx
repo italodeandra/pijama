@@ -1,6 +1,12 @@
-import { Blue, Gray, Green, Orange, Purple } from "../../styles"
-import { NoSsr, SxProps, Typography, TypographyProps } from "../index"
-import React, { VFC } from "react"
+import Typography, { TypographyProps } from "@material-ui/core/Typography"
+import Blue from "../../styles/colors/Blue"
+import Gray from "../../styles/colors/Gray"
+import Green from "../../styles/colors/Green"
+import NoSsr from "@material-ui/core/NoSsr"
+import Orange from "../../styles/colors/Orange"
+import Purple from "../../styles/colors/Purple"
+import type { SxProps } from "@material-ui/system/styleFunctionSx"
+import type { VFC } from "react"
 
 const jsonStyles: SxProps = {
   "& .boolean": {
@@ -40,7 +46,7 @@ export interface JsonProps
  * @example
  * <Json json='{ "number": 1 }' />
  */
-export const Json: VFC<JsonProps> = ({ json, label, ...props }) => {
+const Json: VFC<JsonProps> = ({ json, label, ...props }) => {
   if (typeof json !== "undefined") {
     return (
       <NoSsr>
@@ -56,6 +62,8 @@ export const Json: VFC<JsonProps> = ({ json, label, ...props }) => {
     return <></>
   }
 }
+
+export default Json
 
 function syntaxHighlight(json: any, label?: string) {
   try {

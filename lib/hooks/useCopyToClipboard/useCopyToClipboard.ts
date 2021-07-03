@@ -1,5 +1,6 @@
-import { useMountedState, useSetState } from "react-use"
 import { useCallback } from "react"
+import useMountedState from "react-use/esm/useMountedState"
+import useSetState from "react-use/esm/useSetState"
 import writeText from "copy-to-clipboard"
 
 export interface CopyToClipboardState {
@@ -15,11 +16,11 @@ export interface CopyToClipboardState {
  * 2 - the function that is called with the value that should be copied.
  * 3 - the function that should be called to reset the clipboard state
  */
-export const useCopyToClipboard = (): [
+export default function useCopyToClipboard(): [
   CopyToClipboardState,
   (value: string) => void,
   () => void
-] => {
+] {
   const isMounted = useMountedState()
   const [state, setState] = useSetState<CopyToClipboardState>({
     error: undefined,

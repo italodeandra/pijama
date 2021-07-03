@@ -1,14 +1,17 @@
-import { Gray, LightBlue, Pink, Red } from "./colors"
 import { codeBlock } from "../components/Typography/codeBlock"
 import { createTheme } from "@material-ui/core"
-import { MuiTableOverride } from "../components/Table/MuiTableOverride"
-import { MuiToolbarOverride } from "../components/Toolbar/MuiToolbarOverride"
-import { MuiTooltipOverride } from "../components/Tooltip/MuiTooltipOverride"
-import { shadows } from "./shadows/shadows"
+import Gray from "./colors/Gray"
+import LightBlue from "./colors/LightBlue"
+import MuiTableOverride from "../components/Table/MuiTableOverride"
+import MuiToolbarOverride from "../components/Toolbar/MuiToolbarOverride"
+import MuiTooltipOverride from "../components/Tooltip/MuiTooltipOverride"
+import Pink from "./colors/Pink"
+import Red from "./colors/Red"
+import shadows from "./shadows"
 
 const theme = createTheme()
 
-export const defaultTheme = createTheme({
+const defaultTheme = createTheme({
   components: {
     MuiTable: MuiTableOverride,
     MuiToolbar: MuiToolbarOverride,
@@ -35,3 +38,5 @@ export const defaultTheme = createTheme({
     fontFamily: `"InterVariable", ${theme.typography.fontFamily}`,
   },
 })
+
+export default defaultTheme

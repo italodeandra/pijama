@@ -1,6 +1,6 @@
 import "@fontsource/inter/variable-full.css"
 import CssBaseline from "@material-ui/core/CssBaseline"
-import { defaultTheme } from "../lib"
+import defaultTheme from "../lib/styles/defaultTheme"
 import { ThemeProvider } from "@material-ui/core"
 
 // noinspection NpmUsedModulesInstalled

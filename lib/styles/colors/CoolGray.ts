@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum CoolGray {
+enum CoolGray {
   N50 = "#F9FAFB",
   N100 = "#F4F4F5",
   N200 = "#E5E7EB",
@@ -12,3 +12,5 @@ export enum CoolGray {
   N800 = "#27272A",
   N900 = "#111827",
 }
+
+export default CoolGray

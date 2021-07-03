@@ -1,4 +1,4 @@
-import { sleep } from "./sleep"
+import sleep from "./sleep"
 
 describe("sleep", () => {
   test("should wait 1ms", async () => {

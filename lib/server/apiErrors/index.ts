@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { NextApiResponse } from "next"
+import type { NextApiResponse } from "next"
 
 /**
  * Respond with a bad request response.

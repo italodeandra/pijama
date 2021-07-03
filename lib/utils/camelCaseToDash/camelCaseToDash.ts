@@ -1,7 +1,7 @@
 /**
  * Transform a string in camelCase to dash-case.
  */
-export const camelCaseToDash = (str: string) => {
+export default function camelCaseToDash(str: string) {
   let result = "",
     prevLowercase = false
   for (let char of str) {

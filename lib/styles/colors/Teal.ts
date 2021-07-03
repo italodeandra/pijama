@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Teal {
+enum Teal {
   N50 = "#F0FDFA",
   N100 = "#CCFBF1",
   N200 = "#99F6E4",
@@ -12,3 +12,5 @@ export enum Teal {
   N800 = "#115E59",
   N900 = "#134E4A",
 }
+
+export default Teal

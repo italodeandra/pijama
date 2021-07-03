@@ -2,13 +2,13 @@
 
 import { forwardRef, VFC } from "react"
 import {
-  AppBar as MuiAppBar,
+  default as MuiAppBar,
   AppBarProps as MuiAppBarProps,
-  PropTypes,
-  styled,
-} from "@material-ui/core"
-import { AppBarPropsColorOverrides } from "@material-ui/core/AppBar/AppBar"
-import { OverridableStringUnion } from "@material-ui/types"
+} from "@material-ui/core/AppBar"
+import type { AppBarPropsColorOverrides } from "@material-ui/core/AppBar/AppBar"
+import type { OverridableStringUnion } from "@material-ui/types"
+import type { PropTypes } from "@material-ui/core"
+import styled from "@material-ui/core/styles/styled"
 
 export interface AppBarProps extends MuiAppBarProps {
   /**
@@ -50,7 +50,7 @@ export interface AppBarProps extends MuiAppBarProps {
  * - [AppBar API](https://material-ui.com/api/app-bar/)
  * - inherits [Paper API](https://material-ui.com/api/paper/)
  */
-export const AppBar = styled<VFC<AppBarProps>>(
+const AppBar = styled<VFC<AppBarProps>>(
   forwardRef(
     ({ elevation = 0, color = "default", square = true, ...props }, ref) => (
       <MuiAppBar
@@ -68,3 +68,5 @@ export const AppBar = styled<VFC<AppBarProps>>(
   color: theme.palette.text.primary,
   display: "flex",
 }))
+
+export default AppBar

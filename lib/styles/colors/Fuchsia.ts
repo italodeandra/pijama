@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Fuchsia {
+enum Fuchsia {
   N50 = "#FDF4FF",
   N100 = "#FAE8FF",
   N200 = "#F5D0FE",
@@ -12,3 +12,5 @@ export enum Fuchsia {
   N800 = "#86198F",
   N900 = "#701A75",
 }
+
+export default Fuchsia

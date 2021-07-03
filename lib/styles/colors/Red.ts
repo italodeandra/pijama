@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Red {
+enum Red {
   N50 = "#FEF2F2",
   N100 = "#FEE2E2",
   N200 = "#FECACA",
@@ -12,3 +12,5 @@ export enum Red {
   N800 = "#991B1B",
   N900 = "#7F1D1D",
 }
+
+export default Red

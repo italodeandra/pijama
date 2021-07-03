@@ -1,7 +1,7 @@
-import { CSSProperties } from "react"
-import { Gray } from "../../styles"
-import { Theme } from "@material-ui/core"
-import { TypographyStyle } from "@material-ui/core/styles/createTypography"
+import type { CSSProperties } from "react"
+import Gray from "../../styles/colors/Gray"
+import type { Theme } from "@material-ui/core/styles/createTheme"
+import type { TypographyStyle } from "@material-ui/core/styles/createTypography"
 
 declare module "@material-ui/core/styles" {
   interface TypographyVariants {

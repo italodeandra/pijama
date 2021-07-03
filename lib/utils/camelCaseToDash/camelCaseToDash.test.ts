@@ -1,4 +1,4 @@
-import { camelCaseToDash } from "./camelCaseToDash"
+import camelCaseToDash from "./camelCaseToDash"
 
 describe("camelCaseToDash", () => {
   test("two words should have the dash", () => {

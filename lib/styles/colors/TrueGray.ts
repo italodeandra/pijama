@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum TrueGray {
+enum TrueGray {
   N50 = "#FAFAFA",
   N100 = "#F5F5F5",
   N200 = "#E5E5E5",
@@ -12,3 +12,5 @@ export enum TrueGray {
   N800 = "#262626",
   N900 = "#171717",
 }
+
+export default TrueGray

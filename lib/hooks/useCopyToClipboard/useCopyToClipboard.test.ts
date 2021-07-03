@@ -2,7 +2,7 @@
 import * as reactUse from "react-use"
 import { act } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
-import { useCopyToClipboard } from "./useCopyToClipboard"
+import useCopyToClipboard from "./useCopyToClipboard"
 import writeText from "copy-to-clipboard"
 
 jest.mock("copy-to-clipboard", () => {

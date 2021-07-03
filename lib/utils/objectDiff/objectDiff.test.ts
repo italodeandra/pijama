@@ -1,4 +1,4 @@
-import { objectDiff } from "./objectDiff"
+import objectDiff from "./objectDiff"
 
 describe("objectDiff", () => {
   test("should return the deep object difference with deep difference", () => {

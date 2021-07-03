@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum LightBlue {
+enum LightBlue {
   N50 = "#F0F9FF",
   N100 = "#E0F2FE",
   N200 = "#BAE6FD",
@@ -12,3 +12,5 @@ export enum LightBlue {
   N800 = "#075985",
   N900 = "#0C4A6E",
 }
+
+export default LightBlue

@@ -4,9 +4,9 @@ import { MouseEvent } from "react"
  * It scrolls smoothly to an element that the id is taken from the target of the
  * click event.
  */
-export const goToIdSmoothly = (
+export default function goToIdSmoothly(
   event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
-) => {
+) {
   event?.preventDefault()
   const currentTarget = event.currentTarget
   const parentNode = currentTarget?.parentNode as HTMLAnchorElement | undefined

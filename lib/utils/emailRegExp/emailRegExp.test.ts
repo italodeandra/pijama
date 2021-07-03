@@ -1,4 +1,4 @@
-import { emailRegExp } from "./emailRegExp"
+import emailRegExp from "./emailRegExp"
 
 describe("emailRegExp", () => {
   test("should return true for valid email", () => {

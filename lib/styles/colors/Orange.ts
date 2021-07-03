@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Orange {
+enum Orange {
   N50 = "#FFF7ED",
   N100 = "#FFEDD5",
   N200 = "#FED7AA",
@@ -12,3 +12,5 @@ export enum Orange {
   N800 = "#9A3412",
   N900 = "#7C2D12",
 }
+
+export default Orange

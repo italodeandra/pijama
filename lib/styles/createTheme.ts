@@ -1,5 +1,7 @@
-import { defaultTheme } from "./defaultTheme"
-import { createTheme as muiCreateTheme } from "@material-ui/core"
+import defaultTheme from "./defaultTheme"
+import { default as muiCreateTheme } from "@material-ui/core/styles/createTheme"
 
-export const createTheme: typeof muiCreateTheme = (theme) =>
+const createTheme: typeof muiCreateTheme = (theme) =>
   muiCreateTheme(defaultTheme, theme)
+
+export default createTheme

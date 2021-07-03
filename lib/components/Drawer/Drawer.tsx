@@ -1,15 +1,14 @@
 /* istanbul ignore file */
 
-import {
-  paperClasses,
-  styled,
-  SwipeableDrawer,
+import SwipeableDrawer, {
   SwipeableDrawerProps,
-  useMediaQuery,
-  useTheme,
-} from "@material-ui/core"
-import { Gray } from "../../styles"
-import { VFC } from "react"
+} from "@material-ui/core/SwipeableDrawer"
+import Gray from "../../styles/colors/Gray"
+import paperClasses from "@material-ui/core/Paper/paperClasses"
+import styled from "@material-ui/core/styles/styled"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import useTheme from "@material-ui/core/styles/useTheme"
+import type { VFC } from "react"
 
 const iOS =
   typeof navigator !== "undefined" &&
@@ -33,7 +32,7 @@ export interface DrawerProps extends SwipeableDrawerProps {}
  * - [SwipeableDrawer API](https://material-ui.com/api/swipeable-drawer/)
  * - inherits [Drawer API](https://material-ui.com/api/drawer/)
  */
-export const Drawer = styled<VFC<DrawerProps>>((props) => {
+const Drawer = styled<VFC<DrawerProps>>((props) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
   return (
@@ -50,3 +49,5 @@ export const Drawer = styled<VFC<DrawerProps>>((props) => {
     borderRight: "none",
   },
 }))
+
+export default Drawer

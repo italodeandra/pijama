@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
-import { SvgIcon, SvgIconProps } from "@material-ui/core"
+import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon"
 import { Icon as Iconify } from "@iconify/react"
-import { VFC } from "react"
+import type { VFC } from "react"
 
 export interface IconProps extends Omit<SvgIconProps, "children"> {
   icon: object
@@ -24,8 +24,10 @@ export interface IconProps extends Omit<SvgIconProps, "children"> {
  *
  * - [SvgIcon API](https://material-ui.com/api/svg-icon/)
  */
-export const Icon: VFC<IconProps> = ({ icon, ...props }) => (
+const Icon: VFC<IconProps> = ({ icon, ...props }) => (
   <SvgIcon {...props}>
     <Iconify icon={icon} />
   </SvgIcon>
 )
+
+export default Icon

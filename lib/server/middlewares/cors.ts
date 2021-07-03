@@ -1,10 +1,10 @@
 import ConfigCors, { CorsOptions } from "cors"
-import { NextMiddleware } from "next-api-middleware"
+import type { NextMiddleware } from "next-api-middleware"
 
 /**
  * The CORS middleware.
  */
-export const cors: (config?: CorsOptions) => NextMiddleware =
+const cors: (config?: CorsOptions) => NextMiddleware =
   (config) => async (req, res, next) => {
     await new Promise((resolve) =>
       ConfigCors({
@@ -14,3 +14,5 @@ export const cors: (config?: CorsOptions) => NextMiddleware =
     )
     await next()
   }
+
+export default cors

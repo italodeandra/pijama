@@ -1,19 +1,18 @@
 /* istanbul ignore file */
 
-import * as React from "react"
+import { forwardRef, ReactNode, VFC } from "react"
 import {
-  alpha,
-  formHelperTextClasses,
-  inputBaseClasses,
-  inputLabelClasses,
-  TextField as MuiTextField,
-  outlinedInputClasses,
+  default as MuiTextField,
   OutlinedTextFieldProps,
-  styled,
-} from "@material-ui/core"
-import { forwardRef, VFC } from "react"
-import { OverridableStringUnion } from "@material-ui/types"
-import { TextFieldPropsSizeOverrides } from "@material-ui/core/TextField/TextField"
+  TextFieldPropsSizeOverrides,
+} from "@material-ui/core/TextField/TextField"
+import { alpha } from "@material-ui/system/colorManipulator"
+import formHelperTextClasses from "@material-ui/core/FormHelperText/formHelperTextClasses"
+import inputBaseClasses from "@material-ui/core/InputBase/inputBaseClasses"
+import inputLabelClasses from "@material-ui/core/InputLabel/inputLabelClasses"
+import outlinedInputClasses from "@material-ui/core/OutlinedInput/outlinedInputClasses"
+import type { OverridableStringUnion } from "@material-ui/types"
+import styled from "@material-ui/core/styles/styled"
 
 export interface TextFieldProps
   extends Omit<OutlinedTextFieldProps, "variant" | "hiddenLabel"> {
@@ -25,7 +24,7 @@ export interface TextFieldProps
   /**
    * The helper text content.
    */
-  helperText?: React.ReactNode
+  helperText?: ReactNode
   /**
    * If `true`, the input will take up the full width of its container.
    * @default true
@@ -53,7 +52,7 @@ export interface TextFieldProps
  * - [TextField API](https://material-ui.com/api/text-field/)
  * - inherits [FormControl API](https://material-ui.com/api/form-control/)
  */
-export const TextField = styled<VFC<TextFieldProps>>(
+const TextField = styled<VFC<TextFieldProps>>(
   forwardRef(({ fullWidth = true, ...props }, ref) => (
     <MuiTextField fullWidth={fullWidth} ref={ref} {...props} />
   ))
@@ -127,3 +126,5 @@ export const TextField = styled<VFC<TextFieldProps>>(
     },
   }
 })
+
+export default TextField

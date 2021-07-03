@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Cyan {
+enum Cyan {
   N50 = "#ECFEFF",
   N100 = "#CFFAFE",
   N200 = "#A5F3FC",
@@ -12,3 +12,5 @@ export enum Cyan {
   N800 = "#155E75",
   N900 = "#164E63",
 }
+
+export default Cyan

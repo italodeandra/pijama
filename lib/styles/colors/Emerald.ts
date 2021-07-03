@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Emerald {
+enum Emerald {
   N50 = "#ECFDF5",
   N100 = "#D1FAE5",
   N200 = "#A7F3D0",
@@ -12,3 +12,5 @@ export enum Emerald {
   N800 = "#065F46",
   N900 = "#064E3B",
 }
+
+export default Emerald

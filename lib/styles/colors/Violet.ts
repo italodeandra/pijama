@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Violet {
+enum Violet {
   N50 = "#F5F3FF",
   N100 = "#EDE9FE",
   N200 = "#DDD6FE",
@@ -12,3 +12,5 @@ export enum Violet {
   N800 = "#5B21B6",
   N900 = "#4C1D95",
 }
+
+export default Violet

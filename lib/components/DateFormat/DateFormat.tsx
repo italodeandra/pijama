@@ -1,6 +1,6 @@
-import { Box, BoxProps } from "../index"
+import Box, { BoxProps } from "@material-ui/core/Box"
 import { Fragment, memo, VFC } from "react"
-import { format as formatDate } from "date-fns"
+import { default as formatDate } from "date-fns/format"
 
 export interface DateFormatProps extends BoxProps {
   /**
@@ -28,7 +28,7 @@ export interface DateFormatProps extends BoxProps {
  * @example
  * <DateFormat date="2021-05-10T14:47:10.954Z" />
  */
-export const DateFormat: VFC<DateFormatProps> = memo(
+const DateFormat: VFC<DateFormatProps> = memo(
   ({ date, format = "Pp", locale, ...props }) => {
     const Component = props.component ? Box : Fragment
     if (!props.component) {
@@ -48,3 +48,5 @@ export const DateFormat: VFC<DateFormatProps> = memo(
     )
   }
 )
+
+export default DateFormat

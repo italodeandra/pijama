@@ -1,8 +1,8 @@
 import {
-  Tooltip as MuiTooltip,
+  default as MuiTooltip,
   TooltipProps as MuiTooltipProps,
-} from "@material-ui/core"
-import { ReactElement, ReactNode, VFC } from "react"
+} from "@material-ui/core/Tooltip"
+import type { ReactElement, ReactNode, VFC } from "react"
 
 /* MuiTooltipProps has a weird problem with Storybook where it doesn't get the
 controls automatically. So to fix that, it was needed to copy the properties
@@ -58,4 +58,6 @@ export interface TooltipProps
  *
  * - [Tooltip API](https://material-ui.com/api/tooltip/)
  */
-export const Tooltip: VFC<TooltipProps> = MuiTooltip
+const Tooltip: VFC<TooltipProps> = MuiTooltip
+
+export default Tooltip

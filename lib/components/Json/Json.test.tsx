@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import { Json } from "./Json"
-import { Orange } from "../../styles"
+import Json from "./Json"
+import Orange from "../../styles/colors/Orange"
 
 describe("Json", () => {
   test("should print a formatted and colored json from a object with a label", () => {

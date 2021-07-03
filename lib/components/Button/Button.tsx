@@ -1,15 +1,15 @@
 /* istanbul ignore file */
 
 import {
-  alpha,
   buttonClasses,
-  Button as MuiButton,
+  ButtonPropsVariantOverrides,
+  default as MuiButton,
   ButtonProps as MuiButtonProps,
-  styled,
-} from "@material-ui/core"
+} from "@material-ui/core/Button"
 import { forwardRef, VFC } from "react"
-import { ButtonPropsVariantOverrides } from "@material-ui/core/Button/Button"
-import { OverridableStringUnion } from "@material-ui/types"
+import { alpha } from "@material-ui/system/colorManipulator"
+import type { OverridableStringUnion } from "@material-ui/types"
+import styled from "@material-ui/core/styles/styled"
 
 export interface ButtonProps extends MuiButtonProps {
   /**
@@ -43,7 +43,7 @@ export interface ButtonProps extends MuiButtonProps {
  * - [Button API](https://material-ui.com/api/button/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
-export const Button = styled<VFC<ButtonProps>>(
+const Button = styled<VFC<ButtonProps>>(
   forwardRef(
     (
       {
@@ -90,3 +90,5 @@ export const Button = styled<VFC<ButtonProps>>(
     textTransform: "inherit",
   }
 })
+
+export default Button

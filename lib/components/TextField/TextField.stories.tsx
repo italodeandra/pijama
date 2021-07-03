@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { Meta, Story } from "@storybook/react"
-import { TextField as TextFieldComponent, TextFieldProps } from "./TextField"
+import type { Meta, Story } from "@storybook/react"
+import { default as TextFieldComponent, TextFieldProps } from "./TextField"
 
 const disableControl = {
   table: {

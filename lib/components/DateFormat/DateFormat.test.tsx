@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { DateFormat } from "./DateFormat"
+import DateFormat from "./DateFormat"
 
 describe("DateFormat", () => {
   test("should print date formatted", () => {

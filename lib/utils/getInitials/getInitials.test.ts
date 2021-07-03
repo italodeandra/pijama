@@ -1,4 +1,4 @@
-import { getInitials } from "./getInitials"
+import getInitials from "./getInitials"
 
 describe("getInitials", () => {
   test("should return the name initials", () => {

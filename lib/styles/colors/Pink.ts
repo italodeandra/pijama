@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Pink {
+enum Pink {
   N50 = "#FDF2F8",
   N100 = "#FCE7F3",
   N200 = "#FBCFE8",
@@ -12,3 +12,5 @@ export enum Pink {
   N800 = "#9D174D",
   N900 = "#831843",
 }
+
+export default Pink

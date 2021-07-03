@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { Icon as IconComponent, IconProps } from "./Icon"
-import { Meta, Story } from "@storybook/react"
+import { default as IconComponent, IconProps } from "./Icon"
+import type { Meta, Story } from "@storybook/react"
 import menuIcon from "@iconify/icons-heroicons-outline/menu"
 
 const hideControl = {

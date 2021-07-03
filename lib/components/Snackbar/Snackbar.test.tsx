@@ -1,6 +1,6 @@
 import { act, render, screen, waitFor } from "@testing-library/react"
 import { notify } from "./snackbarState"
-import { Snackbar } from "./Snackbar"
+import Snackbar from "./Snackbar"
 import user from "@testing-library/user-event"
 
 describe("Snackbar", () => {

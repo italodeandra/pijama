@@ -1,7 +1,11 @@
-import { differenceWith, fromPairs, isEqual, mapValues, toPairs } from "lodash"
+import differenceWith from "lodash-es/differenceWith"
+import fromPairs from "lodash-es/fromPairs"
+import isEqual from "lodash-es/isEqual"
+import mapValues from "lodash-es/mapValues"
+import toPairs from "lodash-es/toPairs"
 
-export const objectDiff = (a, b) =>
-  fromPairs(
+export default function objectDiff(a: any, b: any) {
+  return fromPairs(
     differenceWith(
       toPairs(
         mapValues(b, (value, key) =>
@@ -14,3 +18,4 @@ export const objectDiff = (a, b) =>
       (b, a) => isEqual(b[1], {}) || isEqual(b, a)
     )
   )
+}

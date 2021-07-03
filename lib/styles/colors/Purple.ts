@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Purple {
+enum Purple {
   N50 = "#FAF5FF",
   N100 = "#F3E8FF",
   N200 = "#E9D5FF",
@@ -12,3 +12,5 @@ export enum Purple {
   N800 = "#6B21A8",
   N900 = "#581C87",
 }
+
+export default Purple

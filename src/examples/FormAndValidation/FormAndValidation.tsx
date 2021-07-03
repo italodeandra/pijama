@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 
-import { Button, TextField } from "../../../lib"
-import { Box } from "@material-ui/core"
+import Box from "@material-ui/core/Box"
+import Button from "../../../lib/components/Button"
+import TextField from "../../../lib/components/TextField"
 import { useForm } from "react-hook-form"
 
-export const FormAndValidation = () => {
+const FormAndValidation = () => {
   const {
     register,
     handleSubmit,
@@ -45,3 +46,5 @@ export const FormAndValidation = () => {
     </Box>
   )
 }
+
+export default FormAndValidation

@@ -6,7 +6,7 @@ import {
   styled,
 } from "@material-ui/core"
 import { forwardRef, VFC } from "react"
-import { Gray } from "../../styles"
+import Gray from "../../styles/colors/Gray"
 
 export interface IconButtonProps extends MuiIconButtonProps {}
 
@@ -28,7 +28,7 @@ export interface IconButtonProps extends MuiIconButtonProps {}
  * - [IconButton API](https://material-ui.com/api/icon-button/)
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
-export const IconButton = styled<VFC<IconButtonProps>>(
+const IconButton = styled<VFC<IconButtonProps>>(
   forwardRef(({ centerRipple = false, focusRipple = false, ...props }, ref) => (
     <MuiIconButton
       centerRipple={centerRipple}
@@ -63,3 +63,5 @@ export const IconButton = styled<VFC<IconButtonProps>>(
     fontWeight: 400,
   }
 })
+
+export default IconButton

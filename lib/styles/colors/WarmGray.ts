@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum WarmGray {
+enum WarmGray {
   N50 = "#FAFAF9",
   N100 = "#F5F5F4",
   N200 = "#E7E5E4",
@@ -12,3 +12,5 @@ export enum WarmGray {
   N800 = "#292524",
   N900 = "#1C1917",
 }
+
+export default WarmGray

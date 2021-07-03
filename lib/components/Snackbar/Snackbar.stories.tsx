@@ -1,7 +1,7 @@
-import { Meta, Story } from "@storybook/react"
-import { Button } from "../Button/Button"
+import type { Meta, Story } from "@storybook/react"
+import Button from "../Button"
 import { notify } from "./snackbarState"
-import { Snackbar as SnackbarComponent } from "./Snackbar"
+import { default as SnackbarComponent } from "./Snackbar"
 
 // noinspection JSUnusedGlobalSymbols
 export default {

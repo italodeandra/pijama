@@ -1,8 +1,5 @@
-import {
-  DateFormat as DateFormatComponent,
-  DateFormatProps,
-} from "./DateFormat"
-import { Meta, Story } from "@storybook/react"
+import { default as DateFormatComponent, DateFormatProps } from "./DateFormat"
+import type { Meta, Story } from "@storybook/react"
 
 const hideControl = {
   table: {

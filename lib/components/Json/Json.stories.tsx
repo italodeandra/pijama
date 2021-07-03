@@ -1,5 +1,5 @@
-import { Json as JsonComponent, JsonProps } from "./Json"
-import { Meta, Story } from "@storybook/react"
+import { default as JsonComponent, JsonProps } from "./Json"
+import type { Meta, Story } from "@storybook/react"
 
 const hideControl = {
   table: {

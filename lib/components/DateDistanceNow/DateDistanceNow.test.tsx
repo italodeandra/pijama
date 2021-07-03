@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { DateDistanceNow } from "./DateDistanceNow"
+import DateDistanceNow from "./DateDistanceNow"
 
 describe("DateDistanceNow", () => {
   test("should print less than a minute when using a Date", () => {

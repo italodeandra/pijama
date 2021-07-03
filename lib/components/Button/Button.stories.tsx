@@ -1,5 +1,5 @@
-import { Button as ButtonComponent, ButtonProps } from "./Button"
-import { Meta, Story } from "@storybook/react"
+import { default as ButtonComponent, ButtonProps } from "./Button"
+import type { Meta, Story } from "@storybook/react"
 
 const hideControl = {
   table: {

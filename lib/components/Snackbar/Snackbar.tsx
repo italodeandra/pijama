@@ -1,9 +1,13 @@
-import { Box, Fade, SxProps, Theme, useTheme } from "../index"
+import snackbarState, { IMessage } from "./snackbarState"
 import { Transition, TransitionGroup } from "react-transition-group"
 import { useEffect, useState, VFC } from "react"
-import { Message } from "./Message"
-import { snackbarState } from "./snackbarState"
+import Box from "@material-ui/core/Box"
+import Fade from "@material-ui/core/Fade"
+import Message from "./Message"
+import type { SxProps } from "@material-ui/system/styleFunctionSx"
+import type { Theme } from "@material-ui/core/styles/createTheme"
 import { useSnapshot } from "valtio"
+import useTheme from "@material-ui/core/styles/useTheme"
 
 const snackbarContainerStyles: SxProps<Theme> = {
   margin: (theme) => theme.spacing(0, -1, -1, -1),
@@ -23,8 +27,8 @@ export interface SnackbarProps {}
  *
  * [Demo](https://pijama.majapi.com/?path=/story/components-snackbar--snackbar)
  */
-export const Snackbar: VFC<SnackbarProps> = () => {
-  const { messages } = useSnapshot(snackbarState)
+const Snackbar: VFC<SnackbarProps> = () => {
+  const { messages } = useSnapshot(snackbarState) as { messages: IMessage[] }
   const theme = useTheme()
 
   const [top, setTop] = useState(0)
@@ -61,3 +65,5 @@ export const Snackbar: VFC<SnackbarProps> = () => {
     </Fade>
   )
 }
+
+export default Snackbar

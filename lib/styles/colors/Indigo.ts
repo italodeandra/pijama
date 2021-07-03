@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum Indigo {
+enum Indigo {
   N50 = "#EEF2FF",
   N100 = "#E0E7FF",
   N200 = "#C7D2FE",
@@ -12,3 +12,5 @@ export enum Indigo {
   N800 = "#3730A3",
   N900 = "#312E81",
 }
+
+export default Indigo

@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-export enum BlueGray {
+enum BlueGray {
   N50 = "#F8FAFC",
   N100 = "#F1F5F9",
   N200 = "#E2E8F0",
@@ -12,3 +12,5 @@ export enum BlueGray {
   N800 = "#1E293B",
   N900 = "#0F172A",
 }
+
+export default BlueGray

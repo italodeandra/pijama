@@ -1,8 +1,8 @@
-import { Meta, Story } from "@storybook/react"
+import type { Meta, Story } from "@storybook/react"
 import {
-  Typography as TypographyComponent,
+  default as TypographyComponent,
   TypographyProps,
-} from "./Typography"
+} from "@material-ui/core/Typography"
 
 const disableControl = {
   table: {

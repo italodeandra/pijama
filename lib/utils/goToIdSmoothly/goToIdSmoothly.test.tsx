@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { goToIdSmoothly } from "./goToIdSmoothly"
+import goToIdSmoothly from "./goToIdSmoothly"
 import user from "@testing-library/user-event"
 
 describe("goToIdSmoothly", () => {
