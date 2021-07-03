@@ -1,6 +1,6 @@
 import { createRef, Ref } from "react"
 import { proxy, ref } from "valtio"
-import remove from "lodash-es/remove"
+import remove from "lodash/remove"
 import { v4 as uuid } from "uuid"
 
 export type IMessage = {

@@ -1,8 +1,8 @@
-import differenceWith from "lodash-es/differenceWith"
-import fromPairs from "lodash-es/fromPairs"
-import isEqual from "lodash-es/isEqual"
-import mapValues from "lodash-es/mapValues"
-import toPairs from "lodash-es/toPairs"
+import differenceWith from "lodash/differenceWith"
+import fromPairs from "lodash/fromPairs"
+import isEqual from "lodash/isEqual"
+import mapValues from "lodash/mapValues"
+import toPairs from "lodash/toPairs"
 
 export default function objectDiff(a: any, b: any) {
   return fromPairs(
