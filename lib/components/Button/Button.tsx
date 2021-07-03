@@ -9,7 +9,7 @@ import {
 import { forwardRef, VFC } from "react"
 import { alpha } from "@material-ui/system/colorManipulator"
 import type { OverridableStringUnion } from "@material-ui/types"
-import styled from "@material-ui/core/styles/styled"
+import { styled } from "@material-ui/core/styles"
 
 export interface ButtonProps extends MuiButtonProps {
   /**

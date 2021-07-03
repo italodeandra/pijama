@@ -1,6 +1,6 @@
 import { useCallback } from "react"
-import useMountedState from "react-use/esm/useMountedState"
-import useSetState from "react-use/esm/useSetState"
+import useMountedState from "react-use/lib/useMountedState"
+import useSetState from "react-use/lib/useSetState"
 import writeText from "copy-to-clipboard"
 
 export interface CopyToClipboardState {

@@ -1,8 +1,8 @@
 import Box, { BoxProps } from "@material-ui/core/Box"
 import { Fragment, VFC } from "react"
 import formatDistance from "date-fns/formatDistance"
-import useInterval from "react-use/esm/useInterval"
-import useUpdate from "react-use/esm/useUpdate"
+import useInterval from "react-use/lib/useInterval"
+import useUpdate from "react-use/lib/useUpdate"
 
 export interface DateDistanceNowProps extends BoxProps {
   /**
