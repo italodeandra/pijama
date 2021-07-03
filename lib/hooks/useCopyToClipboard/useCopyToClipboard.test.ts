@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import * as reactUse from "react-use"
+import * as useMountedState from "react-use/lib/useMountedState"
 import { act } from "@testing-library/react"
 import { renderHook } from "@testing-library/react-hooks"
 import useCopyToClipboard from "./useCopyToClipboard"
@@ -38,7 +38,7 @@ describe("useCopyToClipboard", () => {
 
   test("should copy nothing when not mounted anymore", () => {
     jest
-      .spyOn(reactUse, "useMountedState")
+      .spyOn(useMountedState, "default")
       .mockImplementationOnce(() => () => false)
 
     const text = "Test"
