@@ -1,13 +1,12 @@
 /* istanbul ignore file */
 
+import { styled, useTheme } from "@material-ui/core/styles"
 import SwipeableDrawer, {
   SwipeableDrawerProps,
 } from "@material-ui/core/SwipeableDrawer"
 import Gray from "../../styles/colors/Gray"
-import paperClasses from "@material-ui/core/Paper/paperClasses"
-import styled from "@material-ui/core/styles/styled"
+import { paperClasses } from "@material-ui/core/Paper"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
-import useTheme from "@material-ui/core/styles/useTheme"
 import type { VFC } from "react"
 
 const iOS =

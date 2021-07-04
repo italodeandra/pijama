@@ -12,7 +12,7 @@ import inputBaseClasses from "@material-ui/core/InputBase/inputBaseClasses"
 import inputLabelClasses from "@material-ui/core/InputLabel/inputLabelClasses"
 import outlinedInputClasses from "@material-ui/core/OutlinedInput/outlinedInputClasses"
 import type { OverridableStringUnion } from "@material-ui/types"
-import styled from "@material-ui/core/styles/styled"
+import { styled } from "@material-ui/core/styles"
 
 export interface TextFieldProps
   extends Omit<OutlinedTextFieldProps, "variant" | "hiddenLabel"> {

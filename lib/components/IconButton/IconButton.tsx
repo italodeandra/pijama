@@ -1,12 +1,12 @@
-import {
-  alpha,
-  buttonClasses,
-  IconButton as MuiIconButton,
-  IconButtonProps as MuiIconButtonProps,
-  styled,
-} from "@material-ui/core"
 import { forwardRef, VFC } from "react"
+import {
+  default as MuiIconButton,
+  IconButtonProps as MuiIconButtonProps,
+} from "@material-ui/core/IconButton"
+import { alpha } from "@material-ui/system/colorManipulator"
+import { buttonClasses } from "@material-ui/core/Button"
 import Gray from "../../styles/colors/Gray"
+import { styled } from "@material-ui/core/styles"
 
 export interface IconButtonProps extends MuiIconButtonProps {}
 

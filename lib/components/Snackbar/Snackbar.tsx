@@ -1,13 +1,12 @@
 import snackbarState, { IMessage } from "./snackbarState"
+import { Theme, useTheme } from "@material-ui/core/styles"
 import { Transition, TransitionGroup } from "react-transition-group"
 import { useEffect, useState, VFC } from "react"
 import Box from "@material-ui/core/Box"
 import Fade from "@material-ui/core/Fade"
 import Message from "./Message"
 import type { SxProps } from "@material-ui/system/styleFunctionSx"
-import type { Theme } from "@material-ui/core/styles"
 import { useSnapshot } from "valtio"
-import { useTheme } from "@material-ui/core/styles"
 
 const snackbarContainerStyles: SxProps<Theme> = {
   margin: (theme) => theme.spacing(0, -1, -1, -1),

@@ -8,7 +8,7 @@ import {
 import type { AppBarPropsColorOverrides } from "@material-ui/core/AppBar/AppBar"
 import type { OverridableStringUnion } from "@material-ui/types"
 import type { PropTypes } from "@material-ui/core"
-import styled from "@material-ui/core/styles/styled"
+import { styled } from "@material-ui/core/styles"
 
 export interface AppBarProps extends MuiAppBarProps {
   /**

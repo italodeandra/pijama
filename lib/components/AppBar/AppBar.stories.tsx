@@ -1,4 +1,5 @@
 import { default as AppBarComponent, AppBarProps } from "./AppBar"
+import { duration, useTheme } from "@material-ui/core/styles"
 import type { Meta, Story } from "@storybook/react"
 import { proxy, useSnapshot } from "valtio"
 import Box from "@material-ui/core/Box"
@@ -6,7 +7,6 @@ import chevronDoubleLeft from "@iconify/icons-heroicons-outline/chevron-double-l
 import defaultTheme from "../../styles/defaultTheme"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "../Drawer"
-import { duration } from "@material-ui/core/styles/createTransitions"
 import Fade from "@material-ui/core/Fade"
 import { Fragment } from "react"
 import Icon from "../Icon"
@@ -19,7 +19,6 @@ import numericArray from "../../utils/numericArray"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
-import useTheme from "@material-ui/core/styles/useTheme"
 import useWindowScroll from "react-use/esm/useWindowScroll"
 
 const disableControl = {

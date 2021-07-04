@@ -1,5 +1,5 @@
 import { codeBlock } from "../components/Typography/codeBlock"
-import { createTheme } from "@material-ui/core"
+import { createTheme } from "@material-ui/core/styles"
 import Gray from "./colors/Gray"
 import LightBlue from "./colors/LightBlue"
 import MuiTableOverride from "../components/Table/MuiTableOverride"
