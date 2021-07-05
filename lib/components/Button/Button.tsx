@@ -5,18 +5,17 @@ import {
   ButtonPropsVariantOverrides,
   default as MuiButton,
   ButtonProps as MuiButtonProps,
-} from "@material-ui/core/Button"
-import { forwardRef, VFC } from "react"
-import { alpha } from "@material-ui/system/colorManipulator"
-import type { OverridableStringUnion } from "@material-ui/types"
-import { styled } from "@material-ui/core/styles"
+} from "@material-ui/core/Button";
+import { forwardRef, VFC } from "react";
+import type { OverridableStringUnion } from "@material-ui/types";
+import { styled } from "@material-ui/core/styles";
 
 export interface ButtonProps extends MuiButtonProps {
   /**
    * If `true`, no elevation is used.
    * @default true
    */
-  disableElevation?: boolean
+  disableElevation?: boolean;
   /**
    * The variant to use.
    * @default contained
@@ -24,7 +23,7 @@ export interface ButtonProps extends MuiButtonProps {
   variant?: OverridableStringUnion<
     "text" | "outlined" | "contained",
     ButtonPropsVariantOverrides
-  >
+  >;
 }
 
 /**
@@ -64,11 +63,17 @@ const Button = styled<VFC<ButtonProps>>(
     )
   )
 )(({ theme, color = "primary" }) => {
-  const ringColor = alpha(theme.palette[color].main, 0.3)
+  const ringColor = theme.palette[color]?.main || "currentColor";
+  const ringShadow = (size: number) => `0 0 0 ${size}px ${ringColor}`;
   return {
-    [`&.${buttonClasses.focusVisible}`]: {
+    [`&:focus`]: {
       "&::after": {
-        boxShadow: `0 0 0 3px ${ringColor}`,
+        boxShadow: ringShadow(3),
+      },
+      [`&.${buttonClasses.outlined}`]: {
+        "&::after": {
+          boxShadow: ringShadow(4),
+        },
       },
     },
     [`&.${buttonClasses.outlined}`]: {
@@ -83,12 +88,13 @@ const Button = styled<VFC<ButtonProps>>(
       position: "absolute",
       right: 0,
       top: 0,
+      opacity: 0.3,
+      color: "inherit",
       transition: theme.transitions.create(["box-shadow"]),
     },
-    fontWeight: 400,
-    padding: "4px 10px",
+    fontWeight: 500,
     textTransform: "inherit",
-  }
-})
+  };
+});
 
-export default Button
+export default Button;
