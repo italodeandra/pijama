@@ -93,6 +93,7 @@ const Button = styled<VFC<ButtonProps>>(
       transition: theme.transitions.create(["box-shadow"]),
     },
     fontWeight: 500,
+    padding: [0.5, 1.25],
     textTransform: "inherit",
   };
 });

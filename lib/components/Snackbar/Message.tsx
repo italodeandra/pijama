@@ -50,7 +50,7 @@ const innerSnackbarStyles: SxProps<Theme> = {
   boxShadow: (theme) => theme.shadows[4],
   display: "flex",
   margin: (theme) => theme.spacing(0, 1, 2, 1),
-  padding: (theme) => theme.spacing(2, 2, 2, 2.5),
+  padding: (theme) => theme.spacing(1, 1, 1, 2),
   position: "relative",
 };
 
@@ -112,9 +112,15 @@ const Message: VFC<MessageProps> = ({ message, state }) => {
       >
         <Box sx={innerSnackbarStyles}>
           {message.variant === "error" && (
-            <Icon icon={exclamationCircle} color={"error"} sx={{ mr: 2 }} />
+            <Icon
+              icon={exclamationCircle}
+              color={"error"}
+              sx={{ mr: 2, ml: -0.25 }}
+            />
           )}
-          <Typography fontWeight={500}>{message.content}</Typography>
+          <Typography variant={"subtitle2"} sx={{ mt: -0.25 }}>
+            {message.content}
+          </Typography>
           <Button
             data-testid="remove"
             onClick={() => removeNotification(message.id)}
