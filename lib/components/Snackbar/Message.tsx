@@ -1,27 +1,32 @@
+import type { TransitionStatus } from "react-transition-group/Transition";
 import {
   ENTERED,
   ENTERING,
   EXITED,
   EXITING,
-} from "react-transition-group/Transition"
-import { IMessage, removeNotification } from "./snackbarState"
-import Box from "@material-ui/core/Box"
-import Button from "../Button"
-import Gray from "../../styles/colors/Gray"
-import Icon from "@iconify/react"
-import type { SxProps } from "@material-ui/system/styleFunctionSx"
-import type { Theme } from "@material-ui/core/styles/createTheme"
-import type { TransitionStatus } from "react-transition-group/Transition"
-import useMeasure from "react-use/lib/useMeasure"
-import { useTheme } from "@material-ui/core/styles"
-import type { VFC } from "react"
-import xIcon from "@iconify/icons-heroicons-outline/x"
+} from "react-transition-group/Transition";
+import { IMessage, removeNotification } from "./snackbarState";
+import Box from "@material-ui/core/Box";
+import Button from "../Button";
+import Gray from "../../styles/colors/Gray";
+import Icon from "../Icon/Icon";
+import type { SxProps } from "@material-ui/system/styleFunctionSx";
+import type { Theme } from "@material-ui/core/styles/createTheme";
+import useMeasure from "react-use/lib/useMeasure";
+import { useTheme } from "@material-ui/core/styles";
+import type { VFC } from "react";
+import xIcon from "@iconify/icons-heroicons-outline/x";
+import exclamationCircle from "@iconify/icons-heroicons-outline/exclamation-circle";
+import { Typography } from "@material-ui/core";
 
 const snackbarStyles: SxProps<Theme> = {
   height: 0,
   transform: "translateX(120%)",
   transition: (theme) => theme.transitions.create(["height", "transform"]),
-}
+};
+
+/** The shadow used to bu cut because of the overflow=hidden, but this offset fix it */
+const shadowOffset = 1;
 
 const innerSnackbarStyles: SxProps<Theme> = {
   "& > span": {
@@ -30,6 +35,7 @@ const innerSnackbarStyles: SxProps<Theme> = {
     fontWeight: 500,
   },
   "&::before": {
+    content: '""',
     border: `1px solid ${Gray.N100}`,
     borderRadius: "inherit",
     bottom: 0,
@@ -40,13 +46,13 @@ const innerSnackbarStyles: SxProps<Theme> = {
   },
   alignItems: "center",
   backgroundColor: "white",
-  borderRadius: (theme) => theme.spacing(0.5),
-  boxShadow: (theme) => theme.shadows[3],
+  borderRadius: (theme) => theme.spacing(1),
+  boxShadow: (theme) => theme.shadows[4],
   display: "flex",
-  margin: (theme) => theme.spacing(0, 1, 1, 1),
-  padding: (theme) => theme.spacing(2),
+  margin: (theme) => theme.spacing(0, 1, 2, 1),
+  padding: (theme) => theme.spacing(2, 2, 2, 2.5),
   position: "relative",
-}
+};
 
 const closeButtonStyles: SxProps<Theme> = {
   color: Gray.N500,
@@ -54,18 +60,23 @@ const closeButtonStyles: SxProps<Theme> = {
   minWidth: 0,
   ml: 2,
   p: 0.5,
+};
+
+interface MessageProps {
+  message: IMessage;
+  state: TransitionStatus;
 }
 
-const Message: VFC<{
-  message: IMessage
-  state: TransitionStatus
-}> = ({ message, state }) => {
-  const [ref, { height }] = useMeasure()
-  const theme = useTheme()
+const Message: VFC<MessageProps> = ({ message, state }) => {
+  const [ref, { height }] = useMeasure();
+  const theme = useTheme();
 
+  const shadowOffsetPx = parseInt(
+    theme.spacing(shadowOffset).replace("px", "")
+  );
   const autoHeightStyles = {
-    height: [ENTERING, ENTERED].includes(state) ? height : 0,
-  }
+    height: [ENTERING, ENTERED].includes(state) ? height + shadowOffsetPx : 0,
+  };
 
   const transitions = {
     /* eslint-disable sort-keys */
@@ -78,7 +89,7 @@ const Message: VFC<{
       transitionDelay: `${theme.transitions.duration.leavingScreen}ms, 0ms`,
     },
     [EXITED]: { transform: "translateX(120%)" },
-  }
+  };
 
   return (
     <Box
@@ -89,21 +100,35 @@ const Message: VFC<{
       }}
       sx={snackbarStyles}
     >
-      <Box overflow="hidden" ref={ref}>
+      <Box
+        overflow="hidden"
+        ref={ref}
+        sx={{
+          display: "flex",
+          flexDirection: "row-reverse",
+          pb: shadowOffset,
+          mt: -shadowOffset,
+        }}
+      >
         <Box sx={innerSnackbarStyles}>
-          <span>{message.content}</span>
+          {message.variant === "error" && (
+            <Icon icon={exclamationCircle} color={"error"} sx={{ mr: 2 }} />
+          )}
+          <Typography fontWeight={500}>{message.content}</Typography>
           <Button
             data-testid="remove"
             onClick={() => removeNotification(message.id)}
             sx={closeButtonStyles}
             variant="text"
+            style={{ color: Gray.N400 }}
+            color={"inherit"}
           >
             <Icon icon={xIcon} />
           </Button>
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Message
+export default Message;

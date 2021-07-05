@@ -1,22 +1,22 @@
-import snackbarState, { IMessage } from "./snackbarState"
-import { Theme, useTheme } from "@material-ui/core/styles"
-import { Transition, TransitionGroup } from "react-transition-group"
-import { useEffect, useState, VFC } from "react"
-import Box from "@material-ui/core/Box"
-import Fade from "@material-ui/core/Fade"
-import Message from "./Message"
-import type { SxProps } from "@material-ui/system/styleFunctionSx"
-import { useSnapshot } from "valtio"
+import snackbarState, { IMessage } from "./snackbarState";
+import { Theme, useTheme } from "@material-ui/core/styles";
+import { Transition, TransitionGroup } from "react-transition-group";
+import { useEffect, useState, VFC } from "react";
+import Box from "@material-ui/core/Box";
+import Fade from "@material-ui/core/Fade";
+import Message from "./Message";
+import type { SxProps } from "@material-ui/system/styleFunctionSx";
+import { useSnapshot } from "valtio";
 
 const snackbarContainerStyles: SxProps<Theme> = {
   margin: (theme) => theme.spacing(0, -1, -1, -1),
   overflow: "hidden",
-  padding: (theme) => theme.spacing(2, 2, "", ""),
+  padding: (theme) => theme.spacing(3, 2, "", ""),
   position: "fixed",
   right: 0,
   top: 0,
   zIndex: (theme) => theme.zIndex.appBar + 1,
-}
+};
 
 export interface SnackbarProps {}
 
@@ -27,17 +27,17 @@ export interface SnackbarProps {}
  * [Demo](https://pijama.majapi.com/?path=/story/components-snackbar--snackbar)
  */
 const Snackbar: VFC<SnackbarProps> = () => {
-  const { messages } = useSnapshot(snackbarState) as { messages: IMessage[] }
-  const theme = useTheme()
+  const { messages } = useSnapshot(snackbarState) as { messages: IMessage[] };
+  const theme = useTheme();
 
-  const [top, setTop] = useState(0)
+  const [top, setTop] = useState(0);
 
   useEffect(() => {
     const newTop =
       document.querySelector(".MuiAppBar-root")?.getBoundingClientRect()
-        .height || 0
-    setTop(newTop)
-  }, [messages])
+        .height || 0;
+    setTop(newTop);
+  }, [messages]);
 
   return (
     <Fade in={!!messages.length}>
@@ -62,7 +62,7 @@ const Snackbar: VFC<SnackbarProps> = () => {
         </TransitionGroup>
       </Box>
     </Fade>
-  )
-}
+  );
+};
 
-export default Snackbar
+export default Snackbar;
