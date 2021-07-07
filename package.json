@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "build:lib": "shx rm -rf dist && tsc --build lib/tsconfig.json && shx cp package.json readme.md jest.config.js tsconfig.json next.config.js .lintstagedrc.js .eslintrc.js dist",
+    "build:lib": "shx rm -rf dist && tsc --build lib/tsconfig.json && shx cp package.json readme.md jest.config.js tsconfig.json next.config.js .lintstagedrc.js .eslintrc.js babel.config.js dist",
     "pre-publish": "npm run build:lib && cd dist && json -I -f package.json -e \"this.private=false; this.devDependencies=undefined; this.scripts=undefined;\"",
     "publish:github": "npm run pre-publish && cd dist && npm publish",
     "publish:yalc": "npm run pre-publish && cd dist && yalc publish --private",
