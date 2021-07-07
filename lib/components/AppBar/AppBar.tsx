@@ -1,14 +1,15 @@
 /* istanbul ignore file */
 
-import { forwardRef, VFC } from "react"
+import { forwardRef, VFC } from "react";
+import type { AppBarPropsColorOverrides } from "@material-ui/core/AppBar";
 import {
   default as MuiAppBar,
   AppBarProps as MuiAppBarProps,
-} from "@material-ui/core/AppBar"
-import type { AppBarPropsColorOverrides } from "@material-ui/core/AppBar/AppBar"
-import type { OverridableStringUnion } from "@material-ui/types"
-import type { PropTypes } from "@material-ui/core"
-import { styled } from "@material-ui/core/styles"
+} from "@material-ui/core/AppBar";
+import type { OverridableStringUnion } from "@material-ui/types";
+// eslint-disable-next-line no-restricted-imports
+import type { PropTypes } from "@material-ui/core";
+import { styled } from "@material-ui/core/styles";
 
 export interface AppBarProps extends MuiAppBarProps {
   /**
@@ -16,7 +17,7 @@ export interface AppBarProps extends MuiAppBarProps {
    * It accepts values between 0 and 24 inclusive.
    * @default 0
    */
-  elevation?: number
+  elevation?: number;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default default
@@ -24,12 +25,12 @@ export interface AppBarProps extends MuiAppBarProps {
   color?: OverridableStringUnion<
     PropTypes.Color | "transparent",
     AppBarPropsColorOverrides
-  >
+  >;
   /**
    * If `true`, rounded corners are disabled.
    * @default true
    */
-  square?: boolean
+  square?: boolean;
 }
 
 /**
@@ -67,6 +68,6 @@ const AppBar = styled<VFC<AppBarProps>>(
   backgroundColor: color === "default" ? "rgba(255, 255, 255, 0.5)" : undefined,
   color: theme.palette.text.primary,
   display: "flex",
-}))
+}));
 
-export default AppBar
+export default AppBar;

@@ -11,13 +11,13 @@ import Button from "../Button";
 import Gray from "../../styles/colors/Gray";
 import Icon from "../Icon/Icon";
 import type { SxProps } from "@material-ui/system/styleFunctionSx";
-import type { Theme } from "@material-ui/core/styles/createTheme";
+import type { Theme } from "@material-ui/core/styles";
 import useMeasure from "react-use/lib/useMeasure";
 import { useTheme } from "@material-ui/core/styles";
 import type { VFC } from "react";
 import xIcon from "@iconify/icons-heroicons-outline/x";
 import exclamationCircle from "@iconify/icons-heroicons-outline/exclamation-circle";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const snackbarStyles: SxProps<Theme> = {
   height: 0,

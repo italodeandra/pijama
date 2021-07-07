@@ -13,4 +13,5 @@ enum TrueGray {
   N900 = "#171717",
 }
 
-export default TrueGray
+// noinspection JSUnusedGlobalSymbols
+export default TrueGray;

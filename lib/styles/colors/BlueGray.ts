@@ -13,4 +13,5 @@ enum BlueGray {
   N900 = "#0F172A",
 }
 
-export default BlueGray
+// noinspection JSUnusedGlobalSymbols
+export default BlueGray;

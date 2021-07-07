@@ -1,24 +1,23 @@
-import type { CSSProperties } from "react"
-import Gray from "../../styles/colors/Gray"
-import type { Theme } from "@material-ui/core/styles/createTheme"
-import type { TypographyStyle } from "@material-ui/core/styles/createTypography"
+import type { CSSProperties } from "react";
+import Gray from "../../styles/colors/Gray";
+import type { Theme, TypographyStyle } from "@material-ui/core/styles";
 
 declare module "@material-ui/core/styles" {
   interface TypographyVariants {
-    codeBlock: CSSProperties
+    codeBlock: CSSProperties;
   }
 
   // allow configuration using `createTheme`
   // noinspection JSUnusedGlobalSymbols
   interface TypographyVariantsOptions {
-    codeBlock?: CSSProperties
+    codeBlock?: CSSProperties;
   }
 }
 
 // Update the Typography's variant prop options
 declare module "@material-ui/core/Typography" {
   interface TypographyPropsVariantOverrides {
-    codeBlock: true
+    codeBlock: true;
   }
 }
 
@@ -34,4 +33,4 @@ export const codeBlock = (theme: Theme): TypographyStyle => ({
   padding: theme.spacing(0.75, 1),
   whiteSpace: "pre",
   width: "100%",
-})
+});

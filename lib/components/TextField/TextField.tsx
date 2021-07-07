@@ -1,18 +1,18 @@
 /* istanbul ignore file */
 
-import { forwardRef, ReactNode, VFC } from "react"
+import { forwardRef, ReactNode, VFC } from "react";
 import {
   default as MuiTextField,
   OutlinedTextFieldProps,
   TextFieldPropsSizeOverrides,
-} from "@material-ui/core/TextField/TextField"
-import { alpha } from "@material-ui/system/colorManipulator"
-import formHelperTextClasses from "@material-ui/core/FormHelperText/formHelperTextClasses"
-import inputBaseClasses from "@material-ui/core/InputBase/inputBaseClasses"
-import inputLabelClasses from "@material-ui/core/InputLabel/inputLabelClasses"
-import outlinedInputClasses from "@material-ui/core/OutlinedInput/outlinedInputClasses"
-import type { OverridableStringUnion } from "@material-ui/types"
-import { styled } from "@material-ui/core/styles"
+} from "@material-ui/core/TextField";
+import { alpha } from "@material-ui/system/colorManipulator";
+import { formHelperTextClasses } from "@material-ui/core/FormHelperText";
+import { inputBaseClasses } from "@material-ui/core/InputBase";
+import { inputLabelClasses } from "@material-ui/core/InputLabel";
+import { outlinedInputClasses } from "@material-ui/core/OutlinedInput";
+import type { OverridableStringUnion } from "@material-ui/types";
+import { styled } from "@material-ui/core/styles";
 
 export interface TextFieldProps
   extends Omit<OutlinedTextFieldProps, "variant" | "hiddenLabel"> {
@@ -20,20 +20,23 @@ export interface TextFieldProps
    * If `true`, the label is displayed in an error state.
    * @default false
    */
-  error?: boolean
+  error?: boolean;
   /**
    * The helper text content.
    */
-  helperText?: ReactNode
+  helperText?: ReactNode;
   /**
    * If `true`, the input will take up the full width of its container.
    * @default true
    */
-  fullWidth?: boolean
+  fullWidth?: boolean;
   /**
    * The size of the component.
    */
-  size?: OverridableStringUnion<"small" | "medium", TextFieldPropsSizeOverrides>
+  size?: OverridableStringUnion<
+    "small" | "medium",
+    TextFieldPropsSizeOverrides
+  >;
 }
 
 /**
@@ -57,7 +60,7 @@ const TextField = styled<VFC<TextFieldProps>>(
     <MuiTextField fullWidth={fullWidth} ref={ref} {...props} />
   ))
 )(({ error, theme, color = "primary" }) => {
-  const ringColor = alpha(theme.palette[error ? "error" : color].main, 0.3)
+  const ringColor = alpha(theme.palette[error ? "error" : color].main, 0.3);
   return {
     [`& .${inputLabelClasses.outlined}`]: {
       fontSize: theme.typography.pxToRem(14),
@@ -124,7 +127,7 @@ const TextField = styled<VFC<TextFieldProps>>(
       // fontSize: theme.typography.pxToRem(14),
       // padding: "10px 12px",
     },
-  }
-})
+  };
+});
 
-export default TextField
+export default TextField;

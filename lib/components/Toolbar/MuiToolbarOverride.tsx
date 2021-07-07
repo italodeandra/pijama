@@ -1,13 +1,15 @@
-import type { ComponentsOverrides } from "@material-ui/core/styles/overrides"
-import type { ComponentsProps } from "@material-ui/core/styles/props"
+import type {
+  ComponentsOverrides,
+  ComponentsProps,
+} from "@material-ui/core/styles";
 
 const MuiToolbarOverride: {
-  defaultProps?: ComponentsProps["MuiToolbar"]
-  styleOverrides?: ComponentsOverrides["MuiToolbar"]
+  defaultProps?: ComponentsProps["MuiToolbar"];
+  styleOverrides?: ComponentsOverrides["MuiToolbar"];
 } = {
   defaultProps: {
     variant: "dense",
   },
-}
+};
 
-export default MuiToolbarOverride
+export default MuiToolbarOverride;

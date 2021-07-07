@@ -13,4 +13,5 @@ enum Violet {
   N900 = "#4C1D95",
 }
 
-export default Violet
+// noinspection JSUnusedGlobalSymbols
+export default Violet;

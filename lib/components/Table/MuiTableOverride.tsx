@@ -1,13 +1,12 @@
-import { ComponentsOverrides } from "@material-ui/core/styles/overrides"
-import { ComponentsProps } from "@material-ui/core/styles/props"
+import { ComponentsOverrides, ComponentsProps } from "@material-ui/core/styles";
 
 const MuiTableOverride: {
-  defaultProps?: ComponentsProps["MuiTable"]
-  styleOverrides?: ComponentsOverrides["MuiTable"]
+  defaultProps?: ComponentsProps["MuiTable"];
+  styleOverrides?: ComponentsOverrides["MuiTable"];
 } = {
   defaultProps: {
     size: "small",
   },
-}
+};
 
-export default MuiTableOverride
+export default MuiTableOverride;
