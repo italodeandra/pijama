@@ -9,6 +9,8 @@ import {
 import { forwardRef, VFC } from "react";
 import type { OverridableStringUnion } from "@material-ui/types";
 import { styled } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import Fade from "@material-ui/core/Fade";
 
 export interface ButtonProps extends MuiButtonProps {
   /**
@@ -24,6 +26,10 @@ export interface ButtonProps extends MuiButtonProps {
     "text" | "outlined" | "contained",
     ButtonPropsVariantOverrides
   >;
+  /**
+   * If the button should show a loading state (indeterminate progress bar in the bottom).
+   */
+  loading?: boolean;
 }
 
 /**
@@ -49,6 +55,8 @@ const Button = styled<VFC<ButtonProps>>(
         disableElevation = true,
         focusRipple = false,
         variant = "contained",
+        loading,
+        children,
         ...props
       },
       ref
@@ -59,7 +67,23 @@ const Button = styled<VFC<ButtonProps>>(
         ref={ref}
         variant={variant}
         {...props}
-      />
+      >
+        {children}
+        <Fade in={loading}>
+          <LinearProgress
+            variant={"indeterminate"}
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              borderRadius: (theme) =>
+                `0 0 ${theme.spacing(1)} ${theme.spacing(1)}`,
+              height: 4,
+            }}
+          />
+        </Fade>
+      </MuiButton>
     )
   )
 )(({ theme, color = "primary" }) => {
