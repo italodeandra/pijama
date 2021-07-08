@@ -8,6 +8,7 @@ import MuiTooltipOverride from "../components/Tooltip/MuiTooltipOverride";
 import Pink from "./colors/Pink";
 import Red from "./colors/Red";
 import shadows from "./shadows";
+import MuiCardOverride from "../components/Card/MuiCardOverride";
 
 const theme = createTheme();
 
@@ -16,6 +17,7 @@ const defaultTheme = createTheme({
     MuiTable: MuiTableOverride,
     MuiToolbar: MuiToolbarOverride,
     MuiTooltip: MuiTooltipOverride,
+    MuiCard: MuiCardOverride,
   },
   palette: {
     error: {
