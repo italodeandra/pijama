@@ -69,7 +69,7 @@ const Button = styled<VFC<ButtonProps>>(
         {...props}
       >
         {children}
-        <Fade in={loading}>
+        <Fade in={loading} mountOnEnter unmountOnExit>
           <LinearProgress
             variant={"indeterminate"}
             sx={{
