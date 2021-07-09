@@ -1,11 +1,18 @@
 /* istanbul ignore file */
 
 import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
-import { Icon as Iconify } from "@iconify/react";
+import { Icon as Iconify, InlineIcon } from "@iconify/react";
 import type { VFC } from "react";
 
 export interface IconProps extends Omit<SvgIconProps, "children"> {
+  /**
+   * The icon from Iconify.
+   */
   icon: object;
+  /**
+   * If the icon should be inline.
+   */
+  inline?: boolean;
 }
 
 /**
@@ -24,8 +31,8 @@ export interface IconProps extends Omit<SvgIconProps, "children"> {
  *
  * - [SvgIcon API](https://material-ui.com/api/svg-icon/)
  */
-const Icon: VFC<IconProps> = ({ icon, ...props }) => (
-  <SvgIcon component={Iconify} icon={icon} {...props} />
+const Icon: VFC<IconProps> = ({ icon, inline, ...props }) => (
+  <SvgIcon component={!inline ? Iconify : InlineIcon} icon={icon} {...props} />
 );
 
 export default Icon;

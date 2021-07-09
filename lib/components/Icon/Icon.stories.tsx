@@ -1,30 +1,36 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { default as IconComponent, IconProps } from "./Icon"
-import type { Meta, Story } from "@storybook/react"
-import menuIcon from "@iconify/icons-heroicons-outline/menu"
+import { default as IconComponent, IconProps } from "./Icon";
+import type { Meta, Story } from "@storybook/react";
+import menuIcon from "@iconify/icons-heroicons-outline/menu";
+
+const disableControl = {
+  control: false,
+};
 
 const hideControl = {
   table: {
     disable: true,
   },
-}
+};
 
 export default {
   argTypes: {
     classes: hideControl,
     ref: hideControl,
     sx: hideControl,
+    viewBox: hideControl,
+    icon: disableControl,
   },
   component: IconComponent,
   title: "Components/Icon",
-} as Meta
+} as Meta;
 
-const Template: Story<IconProps> = (args) => <IconComponent {...args} />
+const Template: Story<IconProps> = (args) => <IconComponent {...args} />;
 
-export const Icon = Template.bind({})
+export const Icon = Template.bind({});
 Icon.args = {
   color: "inherit",
   icon: menuIcon,
-  viewBox: "0 0 24 24",
-}
+  inline: false,
+};
