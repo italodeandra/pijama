@@ -12,7 +12,7 @@ import MuiCardOverride from "../components/Card/MuiCardOverride";
 
 const theme = createTheme();
 
-const defaultTheme = createTheme({
+export const defaultThemeOptions = {
   components: {
     MuiTable: MuiTableOverride,
     MuiToolbar: MuiToolbarOverride,
@@ -39,6 +39,8 @@ const defaultTheme = createTheme({
     codeBlock: codeBlock(theme),
     fontFamily: `"InterVariable", ${theme.typography.fontFamily}`,
   },
-});
+};
+
+const defaultTheme = createTheme(defaultThemeOptions);
 
 export default defaultTheme;
