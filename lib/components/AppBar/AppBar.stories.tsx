@@ -1,35 +1,35 @@
-import { default as AppBarComponent, AppBarProps } from "./AppBar"
-import { duration, useTheme } from "@material-ui/core/styles"
-import type { Meta, Story } from "@storybook/react"
-import { proxy, useSnapshot } from "valtio"
-import Box from "@material-ui/core/Box"
-import chevronDoubleLeft from "@iconify/icons-heroicons-outline/chevron-double-left"
-import defaultTheme from "../../styles/defaultTheme"
-import Divider from "@material-ui/core/Divider"
-import Drawer from "../Drawer"
-import Fade from "@material-ui/core/Fade"
-import { Fragment } from "react"
-import Icon from "../Icon"
-import IconButton from "../IconButton"
-import List from "@material-ui/core/List"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText"
-import menuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2"
-import numericArray from "../../utils/numericArray"
-import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
-import useMediaQuery from "@material-ui/core/useMediaQuery"
-import useWindowScroll from "react-use/esm/useWindowScroll"
+import { default as AppBarComponent, AppBarProps } from "./AppBar";
+import { duration, useTheme } from "@material-ui/core/styles";
+import type { Meta, Story } from "@storybook/react";
+import { proxy, useSnapshot } from "valtio";
+import Box from "@material-ui/core/Box";
+import chevronDoubleLeft from "@iconify/icons-heroicons-outline/chevron-double-left";
+import defaultTheme from "../../styles/defaultTheme";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "../Drawer";
+import Fade from "@material-ui/core/Fade";
+import { Fragment } from "react";
+import Icon from "../Icon";
+import IconButton from "../IconButton";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import menuAlt2 from "@iconify/icons-heroicons-outline/menu-alt-2";
+import numericArray from "../../utils/numericArray";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import useWindowScroll from "react-use/esm/useWindowScroll";
 
 const disableControl = {
   control: false,
-}
+};
 
 const hideControl = {
   table: {
     disable: true,
   },
-}
+};
 
 // noinspection JSUnusedGlobalSymbols
 export default {
@@ -46,14 +46,14 @@ export default {
     layout: "fullscreen",
   },
   title: "Components/AppBar",
-} as Meta
+} as Meta;
 
 const state = proxy({
   isOpen: false,
   toggle(isOpen?: boolean) {
-    state.isOpen = typeof isOpen === "boolean" ? isOpen : !state.isOpen
+    state.isOpen = typeof isOpen === "boolean" ? isOpen : !state.isOpen;
   },
-})
+});
 
 const AVeryBigLoremIpsum = () => (
   <>
@@ -65,16 +65,16 @@ const AVeryBigLoremIpsum = () => (
       </Fragment>
     ))}
   </>
-)
+);
 
-const drawerSize = defaultTheme.spacing(32)
+const drawerSize = defaultTheme.spacing(32);
 
 const Template: Story<AppBarProps> = (args) => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.only("xs"))
-  const { y: scrollTop } = useWindowScroll()
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.only("xs"));
+  const { y: scrollTop } = useWindowScroll();
 
-  const { isOpen, toggle } = useSnapshot(state)
+  const { isOpen, toggle } = useSnapshot(state);
   return (
     <>
       <AppBarComponent
@@ -83,7 +83,17 @@ const Template: Story<AppBarProps> = (args) => {
           scrollTop > 8 * 4 ? 3 : scrollTop > 8 * 2 ? 2 : scrollTop > 0 ? 1 : 0
         }
       >
-        <Toolbar sx={{ ml: isOpen ? drawerSize : 0 }}>
+        <Toolbar
+          sx={{
+            ml: isOpen ? drawerSize : 0,
+            transition: (theme2) =>
+              theme2.transitions.create("margin-left", {
+                duration: isOpen
+                  ? duration.enteringScreen
+                  : duration.leavingScreen,
+              }),
+          }}
+        >
           <Fade in={!isOpen}>
             <Box alignItems="center" display="flex">
               <IconButton
@@ -91,7 +101,7 @@ const Template: Story<AppBarProps> = (args) => {
                 color="inherit"
                 edge="start"
                 onClick={() => {
-                  toggle()
+                  toggle();
                 }}
                 size="small"
                 sx={{
@@ -113,7 +123,7 @@ const Template: Story<AppBarProps> = (args) => {
       </AppBarComponent>
       <Box
         sx={{
-          marginLeft: !isMobile && isOpen ? drawerSize : 0,
+          ml: !isMobile && isOpen ? drawerSize : 0,
           transition: (theme2) =>
             theme2.transitions.create("margin-left", {
               duration: isOpen
@@ -136,10 +146,10 @@ const Template: Story<AppBarProps> = (args) => {
       <Drawer
         anchor="left"
         onClose={() => {
-          toggle(false)
+          toggle(false);
         }}
         onOpen={() => {
-          toggle(true)
+          toggle(true);
         }}
         open={isOpen}
       >
@@ -162,7 +172,7 @@ const Template: Story<AppBarProps> = (args) => {
               color="inherit"
               edge="start"
               onClick={() => {
-                state.isOpen = !state.isOpen
+                state.isOpen = !state.isOpen;
               }}
               size="small"
               sx={{
@@ -192,12 +202,12 @@ const Template: Story<AppBarProps> = (args) => {
         </Box>
       </Drawer>
     </>
-  )
-}
+  );
+};
 
-export const AppBar = Template.bind({})
-AppBar.storyName = "AppBar"
+export const AppBar = Template.bind({});
+AppBar.storyName = "AppBar";
 AppBar.args = {
   position: "fixed",
   variant: "elevation",
-}
+};
