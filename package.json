@@ -67,6 +67,7 @@
     "@types/uuid": "8.3.1",
     "@typescript-eslint/eslint-plugin": "4.24.0",
     "@typescript-eslint/parser": "4.24.0",
+    "babel-plugin-superjson-next": "0.3.0",
     "eslint": "7.27.0",
     "eslint-config-next": "^11.0.1",
     "husky": "6.0.0",
@@ -81,6 +82,7 @@
     "typescript": "4.2.4"
   },
   "peerDependencies": {
+    "babel-plugin-superjson-next": "0.3.0",
     "@iconify/icons-heroicons-outline": "1.1.2",
     "@material-ui/core": "5.0.0-beta.2",
     "material-ui-popup-state": "1.8.4",
