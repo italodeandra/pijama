@@ -44,6 +44,7 @@ const NProgress = () => {
           top: 0,
           left: 0,
           right: 0,
+          zIndex: (theme) => theme.zIndex.appBar + 1,
         }}
       >
         <Collapse in={value !== undefined} mountOnEnter unmountOnExit>
