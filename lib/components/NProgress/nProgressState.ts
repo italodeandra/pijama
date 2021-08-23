@@ -16,12 +16,9 @@ const nProgressState = proxy({
     }, nProgressState.initialDelay);
   },
   finish() {
-    if (timeout) {
-      clearTimeout(timeout);
-    } else {
-      if (nProgressState.value !== undefined) {
-        nProgressState.set(100);
-      }
+    clearTimeout(timeout);
+    if (nProgressState.value !== undefined) {
+      nProgressState.set(100);
     }
   },
 });
