@@ -7,7 +7,6 @@ import {
   AppBarProps as MuiAppBarProps,
 } from "@material-ui/core/AppBar";
 import type { OverridableStringUnion } from "@material-ui/types";
-// eslint-disable-next-line no-restricted-imports
 import type { PropTypes } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 
