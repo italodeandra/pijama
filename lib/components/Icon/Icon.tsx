@@ -3,6 +3,7 @@
 import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
 import { Icon as Iconify, InlineIcon } from "@iconify/react";
 import type { VFC } from "react";
+import { forwardRef } from "react";
 
 export interface IconProps extends Omit<SvgIconProps, "children"> {
   /**
@@ -31,8 +32,13 @@ export interface IconProps extends Omit<SvgIconProps, "children"> {
  *
  * - [SvgIcon API](https://material-ui.com/api/svg-icon/)
  */
-const Icon: VFC<IconProps> = ({ icon, inline, ...props }) => (
-  <SvgIcon component={!inline ? Iconify : InlineIcon} icon={icon} {...props} />
-);
+const Icon: VFC<IconProps> = forwardRef(({ icon, inline, ...props }, ref) => (
+  <SvgIcon
+    ref={ref}
+    component={!inline ? Iconify : InlineIcon}
+    icon={icon}
+    {...props}
+  />
+));
 
 export default Icon;
