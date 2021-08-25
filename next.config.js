@@ -15,4 +15,8 @@ module.exports = withBundleAnalyzer({
     }
     return config;
   },
+  serverRuntimeConfig: {
+    appEnv: process.env.APP_ENV || "development",
+    mongodbUri: process.env.MONGODB_URI,
+  },
 });
