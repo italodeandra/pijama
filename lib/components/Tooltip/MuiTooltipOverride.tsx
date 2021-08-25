@@ -20,6 +20,7 @@ const MuiTooltipOverride: {
       backgroundColor: CoolGray.N900,
       boxShadow: shadows[2],
       fontWeight: 500,
+      textAlign: "center",
     },
   },
 };
