@@ -1,5 +1,5 @@
 import { codeBlock } from "../components/Typography/codeBlock";
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import Gray from "./colors/Gray";
 import LightBlue from "./colors/LightBlue";
 import MuiTableOverride from "../components/Table/MuiTableOverride";
@@ -43,6 +43,8 @@ export const defaultThemeOptions = {
   },
 };
 
-const defaultTheme = createTheme(defaultThemeOptions);
+let defaultTheme = createTheme(defaultThemeOptions);
+
+defaultTheme = responsiveFontSizes(defaultTheme);
 
 export default defaultTheme;
