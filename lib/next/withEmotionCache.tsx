@@ -1,10 +1,10 @@
-import type { AppProps } from "next/app"
-import { CacheProvider } from "@emotion/react"
-import createCache from "@emotion/cache"
-import type { EmotionCache } from "@emotion/utils"
-import type { VFC } from "react"
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import type { EmotionCache } from "@emotion/utils";
+import type { VFC } from "react";
+import AppProps from "./AppProps";
 
-let cache: EmotionCache
+let cache: EmotionCache;
 
 /**
  * Use it on your _app.tsx like this
@@ -15,13 +15,13 @@ let cache: EmotionCache
  */
 export default function withEmotionCache(App: VFC<AppProps>) {
   if (!cache) {
-    cache = createCache({ key: "css", prepend: true })
-    cache.compat = true
+    cache = createCache({ key: "css", prepend: true });
+    cache.compat = true;
   }
 
   return (props: AppProps) => (
     <CacheProvider value={cache}>
       <App {...props} />
     </CacheProvider>
-  )
+  );
 }
