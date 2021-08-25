@@ -1,6 +1,6 @@
 import { Server } from "http";
 import { Server as SocketServer } from "socket.io";
-import socketIOClient from "socket.io-client";
+import socketIOClient, { Socket } from "socket.io-client";
 import { isServer } from "../utils/isBrowser";
 
 declare global {
@@ -13,6 +13,15 @@ export function setupSocketServer(server: Server) {
   global.io = new SocketServer(server);
 }
 
-const socket = isServer ? global.io : socketIOClient();
+let cachedSocked: SocketServer | Socket;
+
+const socket = new Proxy<SocketServer | Socket>({} as any, {
+  get: function (target, prop) {
+    return (...props: any) => {
+      cachedSocked = cachedSocked || isServer ? global.io : socketIOClient();
+      return (cachedSocked as any)[prop](...props);
+    };
+  },
+});
 
 export default socket;
