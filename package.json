@@ -1,6 +1,6 @@
 {
   "name": "@italodeandra/pijama",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Majapi's framework for building apps",
   "private": true,
   "main": "index.js",
