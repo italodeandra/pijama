@@ -13,6 +13,7 @@ import { inputLabelClasses } from "@material-ui/core/InputLabel";
 import { outlinedInputClasses } from "@material-ui/core/OutlinedInput";
 import type { OverridableStringUnion } from "@material-ui/types";
 import { styled } from "@material-ui/core/styles";
+import { inputAdornmentClasses } from "@material-ui/core";
 
 export interface TextFieldProps
   extends Omit<OutlinedTextFieldProps, "variant" | "hiddenLabel"> {
@@ -126,6 +127,9 @@ const TextField = styled<VFC<TextFieldProps>>(
     [`& .${outlinedInputClasses.multiline}`]: {
       // fontSize: theme.typography.pxToRem(14),
       // padding: "10px 12px",
+    },
+    [`& .${inputAdornmentClasses.positionEnd}`]: {
+      marginRight: "6px",
     },
   };
 });
