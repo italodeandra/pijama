@@ -83,7 +83,11 @@
     "ts-node": "10.2.1",
     "typescript": "4.3.5",
     "uuid": "8.3.2",
-    "valtio": "1.0.6"
+    "valtio": "1.0.6",
+    "nodemailer": "6.6.2",
+    "@types/nodemailer": "6.4.3",
+    "mailgen": "2.0.15",
+    "nookies": "2.5.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.3.4",

@@ -11,6 +11,8 @@ module.exports = withBundleAnalyzer({
         mongodb: false,
         "mongodb-memory-server": false,
         "socket.io": false,
+        nodemailer: false,
+        mailgen: false,
       };
     }
     return config;
