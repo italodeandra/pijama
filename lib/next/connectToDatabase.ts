@@ -4,13 +4,13 @@ import getConfig from "next/config";
 const config = getConfig();
 const { mongodbUri, appEnv } = config?.serverRuntimeConfig || {};
 
-type ClientAndDb = { client: MongoClient; db: Db };
+type DatabaseConnect = { client: MongoClient; db: Db; uri: string };
 
 declare global {
   // noinspection ES6ConvertVarToLetConst,JSUnusedGlobalSymbols
   var mongo: {
-    conn: ClientAndDb | null;
-    promise: Promise<ClientAndDb> | null;
+    conn: DatabaseConnect | null;
+    promise: Promise<DatabaseConnect> | null;
   };
 }
 
@@ -25,7 +25,7 @@ if (!cached) {
   cached = global.mongo = { conn: null, promise: null };
 }
 
-export default async function connectToDatabase(): Promise<ClientAndDb> {
+export default async function connectToDatabase(): Promise<DatabaseConnect> {
   if (cached.conn) {
     return cached.conn;
   }
@@ -40,7 +40,9 @@ export default async function connectToDatabase(): Promise<ClientAndDb> {
     if (!uri && appEnv !== "production") {
       const { MongoMemoryServer } = await import("mongodb-memory-server");
 
-      const mongod = await MongoMemoryServer.create();
+      const mongod = await MongoMemoryServer.create({
+        instance: { port: 5432 },
+      });
       uri = mongod.getUri();
       console.info("Started a MongoDB Memory Server at", uri);
     }
@@ -53,6 +55,7 @@ export default async function connectToDatabase(): Promise<ClientAndDb> {
       return {
         client,
         db: client.db(),
+        uri,
       };
     });
   }
