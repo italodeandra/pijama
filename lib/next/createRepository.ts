@@ -1,7 +1,7 @@
 import { Collection } from "mongodb";
 import connectToDatabase from "./connectToDatabase";
 
-export function createRepository<TSchema>(
+export default function createRepository<TSchema>(
   collectionName: string,
   setup?: () => Promise<void> | void
 ): Collection<TSchema> {
