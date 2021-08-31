@@ -58,7 +58,7 @@ export interface TextFieldProps
  */
 const TextField = styled<VFC<TextFieldProps>>(
   forwardRef(({ fullWidth = true, ...props }, ref) => (
-    <MuiTextField fullWidth={fullWidth} ref={ref} {...props} />
+    <MuiTextField fullWidth={fullWidth} inputRef={ref} {...props} />
   ))
 )(({ error, theme, color = "primary" }) => {
   const ringColor = alpha(theme.palette[error ? "error" : color].main, 0.3);
