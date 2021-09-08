@@ -1,12 +1,12 @@
-import { forwardRef, VFC } from "react"
+import { forwardRef, VFC } from "react";
 import {
   default as MuiIconButton,
   IconButtonProps as MuiIconButtonProps,
-} from "@material-ui/core/IconButton"
-import { alpha } from "@material-ui/system/colorManipulator"
-import { buttonClasses } from "@material-ui/core/Button"
-import Gray from "../../styles/colors/Gray"
-import { styled } from "@material-ui/core/styles"
+} from "@material-ui/core/IconButton";
+import { alpha } from "@material-ui/system/colorManipulator";
+import { buttonClasses } from "@material-ui/core/Button";
+import Gray from "../../styles/colors/Gray";
+import { styled } from "@material-ui/core/styles";
 
 export interface IconButtonProps extends MuiIconButtonProps {}
 
@@ -38,8 +38,8 @@ const IconButton = styled<VFC<IconButtonProps>>(
     />
   ))
 )(({ theme, color = "primary" }) => {
-  const mainColor = theme.palette[color]?.main
-  const ringColor = alpha(mainColor || Gray.N500, 0.3)
+  const mainColor = theme.palette[color]?.main;
+  const ringColor = alpha(mainColor || Gray.N500, 0.3);
   return {
     [`&.${buttonClasses.focusVisible}`]: {
       "&::after": {
@@ -47,7 +47,7 @@ const IconButton = styled<VFC<IconButtonProps>>(
       },
     },
     [`&.${buttonClasses.outlined}`]: {
-      boxShadow: (theme) => theme.shadows[1],
+      boxShadow: theme.shadows[1],
     },
     "&::after": {
       borderRadius: "inherit",
@@ -61,7 +61,7 @@ const IconButton = styled<VFC<IconButtonProps>>(
     },
     borderRadius: 4,
     fontWeight: 400,
-  }
-})
+  };
+});
 
-export default IconButton
+export default IconButton;
