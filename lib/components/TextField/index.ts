@@ -1,5 +1,11 @@
-import TextField, { TextFieldProps } from "./TextField"
+import TextField, {
+  TextFieldProps,
+  FormLabel,
+  FormLabelProps,
+} from "./TextField";
 
-export default TextField
+export default TextField;
 
-export type { TextFieldProps }
+export { FormLabel };
+
+export type { TextFieldProps, FormLabelProps };

@@ -12,8 +12,22 @@ import { inputBaseClasses } from "@material-ui/core/InputBase";
 import { inputLabelClasses } from "@material-ui/core/InputLabel";
 import { outlinedInputClasses } from "@material-ui/core/OutlinedInput";
 import type { OverridableStringUnion } from "@material-ui/types";
-import { styled } from "@material-ui/core/styles";
-import { inputAdornmentClasses } from "@material-ui/core";
+import { styled, Theme, CSSObject } from "@material-ui/core/styles";
+import {
+  default as MuiFormLabel,
+  FormLabelProps,
+} from "@material-ui/core/FormLabel";
+import { inputAdornmentClasses } from "@material-ui/core/InputAdornment";
+
+const inputLabelStyles = (theme: Theme): CSSObject => ({
+  fontSize: theme.typography.pxToRem(14),
+  fontWeight: 500,
+  marginBottom: theme.spacing(0.5),
+  maxWidth: "100%",
+  padding: 0,
+  position: "relative",
+  transform: "none",
+});
 
 export interface TextFieldProps
   extends Omit<OutlinedTextFieldProps, "variant" | "hiddenLabel"> {
@@ -63,15 +77,7 @@ const TextField = styled<VFC<TextFieldProps>>(
 )(({ error, theme, color = "primary" }) => {
   const ringColor = alpha(theme.palette[error ? "error" : color].main, 0.3);
   return {
-    [`& .${inputLabelClasses.outlined}`]: {
-      fontSize: theme.typography.pxToRem(14),
-      fontWeight: 500,
-      marginBottom: theme.spacing(0.5),
-      maxWidth: "100%",
-      padding: 0,
-      position: "relative",
-      transform: "none",
-    },
+    [`& .${inputLabelClasses.outlined}`]: inputLabelStyles(theme),
     [`& .${inputLabelClasses.sizeSmall}`]: {
       fontSize: theme.typography.pxToRem(12),
     },
@@ -124,10 +130,6 @@ const TextField = styled<VFC<TextFieldProps>>(
     [`& .${inputBaseClasses.inputSizeSmall}`]: {
       padding: "6px 8px",
     },
-    [`& .${outlinedInputClasses.multiline}`]: {
-      // fontSize: theme.typography.pxToRem(14),
-      // padding: "10px 12px",
-    },
     [`& .${inputAdornmentClasses.positionEnd}`]: {
       marginRight: "6px",
     },
@@ -135,3 +137,9 @@ const TextField = styled<VFC<TextFieldProps>>(
 });
 
 export default TextField;
+
+export type { FormLabelProps };
+
+export const FormLabel = styled<VFC<FormLabelProps>>(MuiFormLabel)(
+  ({ theme }) => inputLabelStyles(theme)
+);

@@ -1,13 +1,13 @@
 // noinspection JSUnusedGlobalSymbols
 
-import type { Meta, Story } from "@storybook/react"
-import { default as TextFieldComponent, TextFieldProps } from "./TextField"
+import type { Meta, Story } from "@storybook/react";
+import { default as TextFieldComponent, TextFieldProps } from "./TextField";
 
 const disableControl = {
   table: {
     disable: true,
   },
-}
+};
 
 export default {
   argTypes: {
@@ -17,15 +17,15 @@ export default {
   },
   component: TextFieldComponent,
   title: "Components/TextField",
-} as Meta
+} as Meta;
 
 const Template: Story<TextFieldProps> = (args) => (
   <TextFieldComponent {...args} />
-)
+);
 
-export const TextField = Template.bind({})
-TextField.storyName = "TextField"
+export const TextField = Template.bind({});
+TextField.storyName = "TextField";
 TextField.args = {
   label: "Text field",
   margin: "none",
-}
+};
