@@ -2,6 +2,18 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
+const smtp = {
+  from: process.env.SMTP_FROM,
+  server: {
+    auth: {
+      pass: process.env.SMTP_PASS,
+      user: process.env.SMTP_USER,
+    },
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT && parseInt(process.env.SMTP_PORT),
+  },
+};
+
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   webpack: (config, { isServer }) => {
@@ -20,5 +32,17 @@ module.exports = withBundleAnalyzer({
   serverRuntimeConfig: {
     appEnv: process.env.APP_ENV || "development",
     mongodbUri: process.env.MONGODB_URI,
+    smtp,
+    nextAuth: {
+      url: process.env.NEXTAUTH_URL,
+      debug: process.env.NEXTAUTH_DEBUG === "true",
+      providerEmail: smtp,
+    },
+    product: {
+      name: "Majapi",
+      link: "https://majapi.com.br/",
+      logo: "https://majapi.com.br/majapinho.png",
+      copyright: `&copy; ${new Date().getFullYear()} <a href="https://majapi.com.br/" target="_blank">Majapi</a>. Todos os direitos reservados.`,
+    },
   },
 });
