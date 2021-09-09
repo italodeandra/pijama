@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 .pnpm-debug.log
+yalc.lock
+.yalc
 
 # testing
 /coverage
