@@ -35,6 +35,16 @@ export const defaultThemeOptions = {
     text: {
       primary: Gray.N600,
     },
+    gray: {
+      light: Gray.N400,
+      main: Gray.N500,
+      dark: Gray.N600,
+    },
+    lightGray: {
+      light: Gray.N50,
+      main: Gray.N100,
+      dark: Gray.N200,
+    },
   },
   shadows,
   typography: {
