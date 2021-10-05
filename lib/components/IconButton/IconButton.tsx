@@ -7,8 +7,19 @@ import { alpha } from "@material-ui/system/colorManipulator";
 import { buttonClasses } from "@material-ui/core/Button";
 import Gray from "../../styles/colors/Gray";
 import { styled } from "@material-ui/core/styles";
+import Fade from "@material-ui/core/Fade";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-export interface IconButtonProps extends MuiIconButtonProps {}
+export interface IconButtonProps extends MuiIconButtonProps {
+  /***
+   * If the button is a link, this will be it's target.
+   */
+  target?: string;
+  /**
+   * If the button should show a loading state (indeterminate progress bar in the bottom).
+   */
+  loading?: boolean;
+}
 
 // noinspection RequiredAttributes
 /**
@@ -29,14 +40,41 @@ export interface IconButtonProps extends MuiIconButtonProps {}
  * - inherits [ButtonBase API](https://material-ui.com/api/button-base/)
  */
 const IconButton = styled<VFC<IconButtonProps>>(
-  forwardRef(({ centerRipple = false, focusRipple = false, ...props }, ref) => (
-    <MuiIconButton
-      centerRipple={centerRipple}
-      focusRipple={focusRipple}
-      ref={ref}
-      {...props}
-    />
-  ))
+  forwardRef(
+    (
+      {
+        centerRipple = false,
+        focusRipple = false,
+        children,
+        loading,
+        ...props
+      },
+      ref
+    ) => (
+      <MuiIconButton
+        centerRipple={centerRipple}
+        focusRipple={focusRipple}
+        ref={ref}
+        {...props}
+      >
+        {children}
+        <Fade in={loading} mountOnEnter unmountOnExit>
+          <LinearProgress
+            variant={"indeterminate"}
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              borderRadius: (theme) =>
+                `0 0 ${theme.spacing(1)} ${theme.spacing(1)}`,
+              height: 4,
+            }}
+          />
+        </Fade>
+      </MuiIconButton>
+    )
+  )
 )(({ theme, color = "primary" }) => {
   const mainColor = theme.palette[color]?.main;
   const ringColor = alpha(mainColor || Gray.N500, 0.3);
