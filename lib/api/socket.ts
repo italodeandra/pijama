@@ -18,7 +18,7 @@ let cachedSocked: SocketServer | Socket;
 const socket = new Proxy<SocketServer | Socket>({} as any, {
   get: function (target, prop) {
     return (...props: any) => {
-      cachedSocked = cachedSocked || isServer ? global.io : socketIOClient();
+      cachedSocked = cachedSocked || (isServer ? global.io : socketIOClient());
       return (cachedSocked as any)[prop](...props);
     };
   },
