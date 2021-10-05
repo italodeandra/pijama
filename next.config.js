@@ -44,5 +44,13 @@ module.exports = withBundleAnalyzer({
       logo: "https://majapi.com.br/majapinho.png",
       copyright: `&copy; ${new Date().getFullYear()} <a href="https://majapi.com.br/" target="_blank">Majapi</a>. Todos os direitos reservados.`,
     },
+    s3: {
+      endPoint: process.env.S3_ENDPOINT,
+      useSSL: process.env.S3_USE_SSL === "true",
+      accessKey: process.env.S3_ACCESS_KEY,
+      secretKey: process.env.S3_SECRET_KEY,
+      bucketName: process.env.S3_BUCKET_NAME,
+      region: process.env.S3_REGION,
+    },
   },
 });
