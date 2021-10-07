@@ -10,6 +10,7 @@ import Red from "./colors/Red";
 import shadows from "./shadows";
 import MuiCardOverride from "../components/Card/MuiCardOverride";
 import MuiMenuOverride from "../components/Menu/MuiMenuOverride";
+import { code } from "../components/Typography/code";
 
 const theme = createTheme();
 
@@ -49,6 +50,7 @@ export const defaultThemeOptions = {
   shadows,
   typography: {
     codeBlock: codeBlock(theme),
+    code: code(theme),
     fontFamily: `"InterVariable", ${theme.typography.fontFamily}`,
   },
 };
