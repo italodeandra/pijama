@@ -130,8 +130,15 @@ const TextField = styled<VFC<TextFieldProps>>(
     [`& .${inputBaseClasses.inputSizeSmall}`]: {
       padding: "6px 8px",
     },
+    [`& .${inputAdornmentClasses.root}`]: {
+      marginLeft: 0,
+      marginRight: 0,
+    },
     [`& .${inputAdornmentClasses.positionEnd}`]: {
       marginRight: "6px",
+    },
+    [`& .${inputAdornmentClasses.positionStart}`]: {
+      marginLeft: "6px",
     },
   };
 });
