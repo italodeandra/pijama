@@ -33,6 +33,7 @@
     "@iconify/icons-heroicons-outline": "1.1.2",
     "@iconify/react": "1.1.4",
     "@material-ui/core": "5.0.0-beta.3",
+    "@material-ui/lab": "5.0.0-alpha.44",
     "@next-auth/mongodb-adapter": "0.0.2-next.276",
     "@next/bundle-analyzer": "11.1.0",
     "@testing-library/dom": "7.31.0",
