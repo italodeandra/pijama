@@ -3,9 +3,9 @@ import type {
   ComponentsProps,
 } from "@material-ui/core/styles";
 
-const MuiMenuOverride: {
-  defaultProps?: ComponentsProps["MuiMenu"];
-  styleOverrides?: ComponentsOverrides["MuiMenu"];
+const MuiPopoverOverride: {
+  defaultProps?: ComponentsProps["MuiPopover"];
+  styleOverrides?: ComponentsOverrides["MuiPopover"];
 } = {
   defaultProps: {
     elevation: 3,
@@ -13,4 +13,4 @@ const MuiMenuOverride: {
   styleOverrides: {},
 };
 
-export default MuiMenuOverride;
+export default MuiPopoverOverride;

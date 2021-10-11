@@ -9,7 +9,7 @@ import Pink from "./colors/Pink";
 import Red from "./colors/Red";
 import shadows from "./shadows";
 import MuiCardOverride from "../components/Card/MuiCardOverride";
-import MuiMenuOverride from "../components/Menu/MuiMenuOverride";
+import MuiPopoverOverride from "../components/Popover/MuiPopoverOverride";
 import { code } from "../components/Typography/code";
 
 const theme = createTheme();
@@ -20,7 +20,7 @@ export const defaultThemeOptions = {
     MuiToolbar: MuiToolbarOverride,
     MuiTooltip: MuiTooltipOverride,
     MuiCard: MuiCardOverride,
-    MuiMenu: MuiMenuOverride,
+    MuiPopover: MuiPopoverOverride,
   },
   palette: {
     error: {
