@@ -33,9 +33,6 @@ export const defaultThemeOptions = {
     secondary: {
       main: Pink.N400,
     },
-    text: {
-      primary: Gray.N600,
-    },
     gray: {
       light: Gray.N400,
       main: Gray.N500,
