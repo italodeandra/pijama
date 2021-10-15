@@ -1,9 +1,6 @@
 import { Db, MongoClient, MongoClientOptions } from "mongodb";
 import getConfig from "next/config";
 
-const config = getConfig();
-const { mongodbUri, appEnv } = config?.serverRuntimeConfig || {};
-
 type DatabaseConnect = { client: MongoClient; db: Db; uri: string };
 
 declare global {
@@ -26,6 +23,9 @@ if (!cached) {
 }
 
 export default async function connectToDatabase(): Promise<DatabaseConnect> {
+  const config = getConfig();
+  const { mongodbUri, appEnv } = config.serverRuntimeConfig || {};
+
   if (cached.conn) {
     return cached.conn;
   }
