@@ -1,4 +1,6 @@
-import { Db, MongoClient, MongoClientOptions } from "mongodb";
+/* eslint-disable no-var */
+
+import { Db, MongoClient, MongoClientOptions, Collection } from "mongodb";
 import getConfig from "next/config";
 
 type DatabaseConnect = { client: MongoClient; db: Db; uri: string };
@@ -8,6 +10,8 @@ declare global {
   var mongo: {
     conn: DatabaseConnect | null;
     promise: Promise<DatabaseConnect> | null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    collections: Record<string, Collection<any>>;
   };
 }
 
@@ -19,7 +23,7 @@ declare global {
 let cached = global.mongo;
 
 if (!cached) {
-  cached = global.mongo = { conn: null, promise: null };
+  cached = global.mongo = { conn: null, promise: null, collections: {} };
 }
 
 export default async function connectToDatabase(): Promise<DatabaseConnect> {
