@@ -88,7 +88,6 @@
     "react-dnd-touch-backend": "^14.1.1",
     "react-dom": "17.0.2",
     "react-hook-form": "7.10.1",
-    "react-query": "3.18.1",
     "react-transition-group": "4.4.1",
     "react-use": "17.2.4",
     "sharp": "0.29.0",
