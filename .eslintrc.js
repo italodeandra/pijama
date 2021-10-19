@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["next", "next/core-web-vitals"],
+  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   rules: {
     "react/display-name": "off",
     "no-console": ["error", { allow: ["info", "error"] }],
@@ -23,6 +23,11 @@ module.exports = {
           },
         ],
       },
+    ],
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      { allowExpressions: true },
     ],
   },
 };
