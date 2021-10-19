@@ -13,13 +13,15 @@ let cache: EmotionCache;
  * const MyApp = withEmotionCache(({ Component, pageProps }) => {
  * ```
  */
-export default function withEmotionCache(App: VFC<AppProps>) {
+export default function withEmotionCache<Props = AppProps>(
+  App: VFC<Props>
+): VFC {
   if (!cache) {
     cache = createCache({ key: "css", prepend: true });
     cache.compat = true;
   }
 
-  return (props: AppProps) => (
+  return (props: Props) => (
     <CacheProvider value={cache}>
       <App {...props} />
     </CacheProvider>

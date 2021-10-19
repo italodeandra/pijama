@@ -3,8 +3,11 @@ import { ReactNode } from "react";
 
 export type GetLayout = (page: ReactNode) => ReactNode;
 
-type AppProps = Omit<NextAppProps, "Component"> & {
-  Component: NextAppProps["Component"] & {
+type AppProps<PageProps = Record<string, unknown>> = Omit<
+  NextAppProps<PageProps>,
+  "Component"
+> & {
+  Component: NextAppProps<PageProps>["Component"] & {
     getLayout: GetLayout;
   };
 };
